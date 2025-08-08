@@ -1,7 +1,6 @@
-"""Core RAG pipeline components."""
-# Temporary backward compatibility
-import sys
-import os
-sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+"""Shared utilities."""
+from .sluggify import *
 
-# Will be updated after files are moved
+# Backward compatibility
+import sys
+sys.modules['sluggify_util'] = sys.modules['utils.sluggify']
