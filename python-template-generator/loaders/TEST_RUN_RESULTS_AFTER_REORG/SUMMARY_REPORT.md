@@ -1,6 +1,6 @@
 # RAG Framework Test Results
 
-**Test Date:** 2025-08-09T01:18:45.028209
+**Test Date:** 2025-08-09T01:39:49.177392
 
 ## Configuration
 
@@ -16,8 +16,8 @@
 - **Files Processed:** 249
 - **Total Chunks:** 3728
 - **Total Vectors:** 3728
-- **Avg Processing Time:** 0.177s
-- **Total Processing Time:** 44.07s
+- **Avg Processing Time:** 0.174s
+- **Total Processing Time:** 43.29s
 
 ## Analysis
 
@@ -28,10 +28,10 @@
 - **total_vectors:** 3728
 
 ### Performance
-- **avg_query_time:** 0.0050s
-- **max_query_time:** 0.0055s
+- **avg_query_time:** 0.0049s
+- **max_query_time:** 0.0052s
 - **min_query_time:** 0.0046s
-- **total_indexing_time:** 44.0739s
+- **total_indexing_time:** 43.2907s
 
 ### Quality
 - **avg_relevance_score:** 0.515

@@ -2,7 +2,7 @@
 
 ## Query: What is the architecture of the system?
 
-**Search Time:** 0.0055s
+**Search Time:** 0.0051s
 **Results Found:** 3
 
 ### Result 1
@@ -46,7 +46,7 @@ descri...
 
 ## Query: How does the RAG pipeline work?
 
-**Search Time:** 0.0052s
+**Search Time:** 0.0050s
 **Results Found:** 3
 
 ### Result 1
@@ -87,7 +87,7 @@ Complete API documentation for all components of the RAG pipeline system.
 
 ## Query: Explain the chunking strategy
 
-**Search Time:** 0.0049s
+**Search Time:** 0.0050s
 **Results Found:** 3
 
 ### Result 1
@@ -132,7 +132,7 @@ config = RAGConfig(
 
 ## Query: What are the testing standards?
 
-**Search Time:** 0.0051s
+**Search Time:** 0.0047s
 **Results Found:** 3
 
 ### Result 1
@@ -171,7 +171,7 @@ config = RAGConfig(
 
 ## Query: How to ensure code quality?
 
-**Search Time:** 0.0047s
+**Search Time:** 0.0046s
 **Results Found:** 3
 
 ### Result 1
@@ -216,7 +216,7 @@ Your approach should emphasize:
 
 ## Query: What are the security requirements?
 
-**Search Time:** 0.0047s
+**Search Time:** 0.0050s
 **Results Found:** 3
 
 ### Result 1
@@ -299,7 +299,7 @@ List things that might trip up new developers:
 
 ## Query: What is the git workflow?
 
-**Search Time:** 0.0054s
+**Search Time:** 0.0047s
 **Results Found:** 3
 
 ### Result 1
@@ -337,7 +337,7 @@ List things that might trip up new developers:
 
 ## Query: How to contribute to the project?
 
-**Search Time:** 0.0049s
+**Search Time:** 0.0048s
 **Results Found:** 3
 
 ### Result 1
@@ -379,7 +379,7 @@ First, analyze the repository structure and provide:
 
 ## Query: How does the vector store work?
 
-**Search Time:** 0.0048s
+**Search Time:** 0.0052s
 **Results Found:** 3
 
 ### Result 1
@@ -427,7 +427,7 @@ RAGPipeline          ──►  ChainAdapter         ──►  Chain
 
 ## Query: What embedding models are supported?
 
-**Search Time:** 0.0051s
+**Search Time:** 0.0047s
 **Results Found:** 3
 
 ### Result 1
@@ -516,7 +516,7 @@ Inte...
 
 ## Query: What documentation standards exist?
 
-**Search Time:** 0.0047s
+**Search Time:** 0.0052s
 **Results Found:** 3
 
 ### Result 1
@@ -556,7 +556,7 @@ Inte...
 
 ## Query: How to write good documentation?
 
-**Search Time:** 0.0047s
+**Search Time:** 0.0048s
 **Results Found:** 3
 
 ### Result 1
@@ -596,7 +596,7 @@ Ensure examples ar...
 
 ## Query: What is Chain of Thought?
 
-**Search Time:** 0.0051s
+**Search Time:** 0.0046s
 **Results Found:** 3
 
 ### Result 1

@@ -21,6 +21,10 @@ os.environ['CUDA_VISIBLE_DEVICES'] = ''
 # Add parent directory to path (loaders/)
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
+# Import paths management
+from project_paths import LoadersPaths
+paths = LoadersPaths()
+
 from chunker import SemanticChunker
 from chunker.models import ChunkingConfig
 from embeddings import SentenceTransformerProvider
@@ -84,7 +88,7 @@ class MarkdownRAGTester:
                 
                 # Chunk the content
                 # Get project root (CoT_official)
-                project_root = Path(__file__).parent.parent.parent.parent
+                project_root = paths.base_dir
                 relative_path = file_path.relative_to(project_root)
                 chunks = self.chunker.chunk_text(
                     content, 
@@ -378,12 +382,11 @@ def main():
     print("RAG Framework Markdown Documentation Test")
     print("=" * 60)
     
-    # Setup paths
-    base_dir = Path(__file__).parent.parent  # loaders directory
-    output_dir = base_dir / 'TEST_RUN_RESULTS_AFTER_REORG'
+    # Setup paths using paths system
+    output_dir = paths.test_results_after
     
     # Find all markdown files within the project
-    project_root = base_dir.parent.parent  # CoT_official directory
+    project_root = paths.base_dir
     md_files = []
     
     # Search for markdown files only within the project

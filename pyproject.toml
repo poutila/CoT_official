@@ -17,6 +17,7 @@ dependencies = [
     "markdown-it-py>=3.0.0",
     "tiktoken>=0.10.0",
     "faiss-cpu>=1.11.0.post1",
+    "python-dotenv>=1.1.1",
 ]
 
 [project.optional-dependencies]
@@ -132,4 +133,34 @@ dev = [
     "pytest-cov>=6.2.1",
     "pytest-mock>=3.14.1",
 ]
+
+[tool.project_paths.paths]
+# Loaders module paths
+loaders_core = "python-template-generator/loaders/core"
+loaders_enrichers = "python-template-generator/loaders/enrichers"
+loaders_validators = "python-template-generator/loaders/validators"
+loaders_utils = "python-template-generator/loaders/utils"
+loaders_scripts = "python-template-generator/loaders/scripts"
+
+# Sub-modules
+loaders_chunker = "python-template-generator/loaders/chunker"
+loaders_embeddings = "python-template-generator/loaders/embeddings"
+loaders_vector_store = "python-template-generator/loaders/vector_store"
+
+# Test directories
+loaders_tests = "python-template-generator/loaders/tests"
+loaders_test_results = "python-template-generator/loaders/TEST_RUN_RESULTS"
+loaders_test_results_after = "python-template-generator/loaders/TEST_RUN_RESULTS_AFTER_REORG"
+
+# Documentation
+loaders_docs = "python-template-generator/loaders/docs"
+loaders_trash = "python-template-generator/loaders/TRASH"
+
+[tool.project_paths.files]
+# Important files in loaders module
+loaders_api_reference = "python-template-generator/loaders/API_REFERENCE.md"
+loaders_architecture = "python-template-generator/loaders/ARCHITECTURE.md"
+loaders_readme = "python-template-generator/loaders/README.md"
+loaders_reorganization_plan = "python-template-generator/loaders/REORGANIZATION_PLAN.md"
+loaders_finalizing_plan = "python-template-generator/loaders/FINALIZING_PLAN.md"
 
