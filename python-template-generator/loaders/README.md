@@ -56,7 +56,7 @@ Efficient storage and retrieval using FAISS:
 - **Persistence support**
 - **Similarity metrics** (cosine, L2)
 
-### 5. RAG Pipeline (`rag_pipeline.py`)
+### 5. RAG Pipeline (`core/pipeline.py`)
 Orchestrates the complete workflow:
 - Document loading and processing
 - Chunking and embedding generation
