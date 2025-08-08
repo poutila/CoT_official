@@ -1,7 +1,14 @@
-"""Core RAG pipeline components."""
-# Temporary backward compatibility
-import sys
-import os
-sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+"""Document enrichment implementations."""
+from .context_fixed import ContextFixedEnricher
+from .enhanced_with_examples import EnhancedEnricherWithExamples
+from .full_enhanced import FullEnhancedEnricher
+from .minimal_enhanced import MinimalEnhancedEnricher
+from .markdown_validator import MarkdownValidatorEnricher
 
-# Will be updated after files are moved
+# Backward compatibility
+import sys
+sys.modules['context_fixed_enricher'] = sys.modules['enrichers.context_fixed']
+sys.modules['enhanced_enricher_with_examples'] = sys.modules['enrichers.enhanced_with_examples']
+sys.modules['full_enhanced_enricher'] = sys.modules['enrichers.full_enhanced']
+sys.modules['minimal_enhanced_enricher'] = sys.modules['enrichers.minimal_enhanced']
+sys.modules['markdown_validator_enricher'] = sys.modules['enrichers.markdown_validator']
