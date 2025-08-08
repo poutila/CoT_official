@@ -1,0 +1,57 @@
+[
+  {
+    "file": "CLAUDE.md",
+    "total_chunks": 131,
+    "avg_tokens": 108.16030534351145,
+    "chunk_types": {
+      "text": 65,
+      "requirement": 29,
+      "mixed": 9,
+      "section_header": 2,
+      "code": 26
+    },
+    "code_chunks": 35,
+    "example_types": {
+      "good": 6,
+      "neutral": 15,
+      "bad": 5
+    },
+    "overlapping_chunks": 108
+  },
+  {
+    "file": "ENRICHED_EXTENSION_PLAN.md",
+    "total_chunks": 144,
+    "avg_tokens": 76.89583333333333,
+    "chunk_types": {
+      "text": 97,
+      "mixed": 11,
+      "requirement": 2,
+      "code": 34
+    },
+    "code_chunks": 45,
+    "example_types": {
+      "neutral": 25,
+      "good": 5,
+      "bad": 4
+    },
+    "overlapping_chunks": 110
+  },
+  {
+    "file": "ENCODING_ERROR_PREVENTION.md",
+    "total_chunks": 20,
+    "avg_tokens": 51.35,
+    "chunk_types": {
+      "text": 8,
+      "mixed": 1,
+      "code": 10,
+      "section_header": 1
+    },
+    "code_chunks": 11,
+    "example_types": {
+      "bad": 1,
+      "good": 1,
+      "neutral": 8
+    },
+    "overlapping_chunks": 13
+  }
+]

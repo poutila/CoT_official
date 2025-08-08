@@ -1,0 +1,56 @@
+{
+  "document": "CLAUDE.md",
+  "pattern_summary": {
+    "good": 0,
+    "bad": 1,
+    "neutral": 19,
+    "comparison": 3,
+    "total": 23
+  },
+  "good_examples": [],
+  "bad_examples": [
+    {
+      "language": "python",
+      "section": "code-quality-rules",
+      "markers": [
+        "#\\s*BAD:",
+        "#\\s*Bad:"
+      ],
+      "preview": "# BAD: These patterns are forbidden for security reasons\n# The following are shown as documentation "
+    }
+  ],
+  "statistics": {
+    "total_code_blocks": 23,
+    "total_examples": 23,
+    "pattern_summary": {
+      "good": 0,
+      "bad": 1,
+      "neutral": 19,
+      "comparison": 3,
+      "total": 23
+    },
+    "languages_with_examples": {
+      "bash": {
+        "total": 13,
+        "good": 0,
+        "bad": 0
+      },
+      "python": {
+        "total": 9,
+        "good": 0,
+        "bad": 1
+      },
+      "yaml": {
+        "total": 1,
+        "good": 0,
+        "bad": 0
+      }
+    },
+    "sections_with_patterns": [
+      "example:-input-validation-(no-assumptions)",
+      "code-quality-rules",
+      "example:-configuration-validation",
+      "architecture-&-structure-(strict)"
+    ]
+  }
+}

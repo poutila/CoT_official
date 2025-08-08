@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional, List
+from typing import Optional, List, Literal
 
 class Fact(BaseModel):
     """
@@ -8,7 +8,7 @@ class Fact(BaseModel):
     """
 
     id: Optional[str] = Field(None, description="Optional unique identifier (UUID, hash, etc.)")
-    type: str = Field("Fact", const=True, description="Identifier for this object type")
+    type: Literal["Fact"] = Field(default="Fact", description="Identifier for this object type")
     statement: str = Field(..., description="The factual content in natural language")
     is_verifiable: bool = Field(..., description="True if the fact can be empirically verified")
     is_objective: bool = Field(..., description="True if the fact is not subject to opinion")

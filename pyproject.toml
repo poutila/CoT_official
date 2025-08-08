@@ -1,0 +1,128 @@
+[project]
+version = "0.1.0"
+name = "CoT-official"
+description = "Ultimate standard for Chain of thought"
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+    "click",
+    "pydantic",
+    "rapidfuzz",
+    "sentence-transformers",
+    "scikit-learn",
+    "typing-extensions",
+    "types-pyyaml>=6.0.12.20250516",
+    "pyyaml>=6.0.2",
+    "markdown-it-py>=3.0.0",
+    "tiktoken>=0.10.0",
+    "faiss-cpu>=1.11.0.post1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "pytest-asyncio",
+    "pytest-mock",
+    "mypy",
+    "ruff",
+    "black",
+    "bandit",
+    "safety",
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings[python]",
+    "nox",
+    "vulture",
+    "pipreqs",
+]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+addopts = [
+    "--strict-markers",
+    "--cov=src/docpipe",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-fail-under=0",  # Start at 0, will increase as we add tests
+]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = "sentence_transformers.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "rapidfuzz.*"
+ignore_missing_imports = true
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+fix = true
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "C", "B", "UP", "S", "A", "DTZ", "ICN", "PIE", "PT", "RET", "SIM", "TID", "TCH", "ARG", "PTH", "PL"]
+ignore = ["E501", "PLR0913"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101", "ARG", "PLR2004"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["docpipe"]
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+include = '\.pyi?$'
+
+[tool.coverage.run]
+source = ["docpipe"]
+omit = [
+    "tests/*",
+    "*/migrations/*",
+    "*/__pycache__/*",
+    "*/venv/*",
+    "*/virtualenv/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if __name__ == .__main__.:",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+]
+
+[tool.bandit]
+exclude_dirs = ["tests", "docs"]
+skips = ["B101"]
+
+[tool.vulture]
+exclude = ["*/test_*.py", "tests/"]
+min_confidence = 60
+ignore_names = ["model_config", "metadata", "field_validator"]
+

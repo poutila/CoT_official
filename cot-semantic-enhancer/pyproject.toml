@@ -1,0 +1,153 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cot-semantic-enhancer"
+version = "1.1.0"
+description = "Advanced semantic similarity and document processing for Chain-of-Thought reasoning systems"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "CoT Development Team", email = "team@cot-semantic.dev"}
+]
+keywords = [
+    "chain-of-thought",
+    "semantic-similarity",
+    "embeddings",
+    "vector-search",
+    "nlp",
+    "ai",
+    "reasoning",
+    "document-processing",
+    "markdown",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "numpy>=1.21.0",
+    "pydantic>=2.0.0",
+    "aiofiles>=23.0.0",
+    "python-dotenv>=1.0.0",
+    "tenacity>=8.0.0",
+    "cachetools>=5.0.0",
+    "markdown-it-py>=3.0.0",
+]
+
+[project.optional-dependencies]
+sentence-transformers = ["sentence-transformers>=2.2.0", "torch>=2.0.0"]
+openai = ["openai>=1.0.0"]
+cohere = ["cohere>=4.0.0"]
+faiss = ["faiss-cpu>=1.7.0"]
+pinecone = ["pinecone-client>=2.0.0"]
+weaviate = ["weaviate-client>=3.0.0"]
+qdrant = ["qdrant-client>=1.0.0"]
+chroma = ["chromadb>=0.4.0"]
+nlp = ["nltk>=3.8.0", "spacy>=3.5.0"]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "mypy>=1.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "sphinx>=6.0.0",
+    "sphinx-rtd-theme>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/cot-team/cot-semantic-enhancer"
+Documentation = "https://cot-semantic-enhancer.readthedocs.io"
+Repository = "https://github.com/cot-team/cot-semantic-enhancer"
+Issues = "https://github.com/cot-team/cot-semantic-enhancer/issues"
+
+[project.scripts]
+cot-semantic = "cot_semantic_enhancer.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+cot_semantic_enhancer = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
+
+[tool.coverage.run]
+source = ["src/cot_semantic_enhancer"]
+omit = ["*/tests/*", "*/test_*.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if __name__ == .__main__.:",
+    "raise AssertionError",
+    "raise NotImplementedError",
+]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_any_unimported = false
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+check_untyped_defs = true
+strict_optional = true
+
+[tool.ruff]
+target-version = "py39"
+line-length = 100
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4", # flake8-comprehensions
+    "UP", # pyupgrade
+]
+ignore = []
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    ".venv",
+    "venv",
+]
+
+[tool.black]
+line-length = 100
+target-version = ['py39', 'py310', 'py311', 'py312']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | __pycache__
+  | \.venv
+  | venv
+  | build
+  | dist
+)/
+'''

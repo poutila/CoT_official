@@ -1,0 +1,78 @@
+{
+  "ENRICHED_EXTENSION_PLAN.md": {
+    "stats": {
+      "total_examples": 29,
+      "examples_with_context": 29,
+      "context_coverage": "100.0%",
+      "average_context_length": {
+        "before": 31,
+        "after": 0
+      },
+      "context_samples": [
+        {
+          "example": "class MinimalEnhancedEnricher(MarkdownDocEnricher)...",
+          "before": "Section: 1.1 Base Enhanced Class...",
+          "after": "..."
+        }
+      ]
+    },
+    "elapsed_time": 0.059058427810668945
+  },
+  "CLAUDE.md": {
+    "stats": {
+      "total_examples": 26,
+      "examples_with_context": 26,
+      "context_coverage": "100.0%",
+      "average_context_length": {
+        "before": 43,
+        "after": 18
+      },
+      "context_samples": [
+        {
+          "example": "uv run scripts/check_task_completions.py\n...",
+          "before": "\u2705 Verify all completed tasks have summaries run:...",
+          "after": "..."
+        }
+      ]
+    },
+    "elapsed_time": 0.09321451187133789
+  },
+  "CHAIN_OF_THOUGHT_LIGHT.md": {
+    "stats": {
+      "total_examples": 12,
+      "examples_with_context": 12,
+      "context_coverage": "100.0%",
+      "average_context_length": {
+        "before": 27,
+        "after": 5
+      },
+      "context_samples": [
+        {
+          "example": "## \ud83e\udde0 Quick Reasoning\n\n**Task**: Fix null pointer e...",
+          "before": "Section: Minimal CoT (Simple Tasks)...",
+          "after": "..."
+        }
+      ]
+    },
+    "elapsed_time": 0.01764082908630371
+  },
+  "ENCODING_ERROR_PREVENTION.md": {
+    "stats": {
+      "total_examples": 10,
+      "examples_with_context": 10,
+      "context_coverage": "100.0%",
+      "average_context_length": {
+        "before": 27,
+        "after": 19
+      },
+      "context_samples": [
+        {
+          "example": "\u274c AVOID: Special Unicode symbols in titles (\u27a4, \u279c, ...",
+          "before": "**Safe character usage**:...",
+          "after": "**When using emoji or special characters**:..."
+        }
+      ]
+    },
+    "elapsed_time": 0.006518363952636719
+  }
+}

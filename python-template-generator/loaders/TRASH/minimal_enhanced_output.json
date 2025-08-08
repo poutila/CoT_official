@@ -1,0 +1,150 @@
+{
+  "document": "CLAUDE.md",
+  "sections_count": 103,
+  "code_blocks_count": 23,
+  "languages": [
+    "yaml",
+    "python",
+    "bash"
+  ],
+  "code_blocks": [
+    {
+      "language": "bash",
+      "section": "stop!-complete-these-steps-before-responding-to-any-user-request:",
+      "line_start": 48,
+      "content_preview": "uv run scripts/check_task_completions.py\n"
+    },
+    {
+      "language": "bash",
+      "section": "adding-a-package",
+      "line_start": 77,
+      "content_preview": "# Example of adding a dependency\nuv add requests\n"
+    },
+    {
+      "language": "bash",
+      "section": "adding-a-package",
+      "line_start": 82,
+      "content_preview": "# Example of adding a development dependency\nuv add --dev pytest ruff mypy\n"
+    },
+    {
+      "language": "bash",
+      "section": "adding-a-package",
+      "line_start": 90,
+      "content_preview": "# Example of removing a package\nuv remove requests\n"
+    },
+    {
+      "language": "bash",
+      "section": "running-commands-in-the-environment",
+      "line_start": 97,
+      "content_preview": "# Example of running a python script\nuv run python script.py\n"
+    },
+    {
+      "language": "bash",
+      "section": "running-commands-in-the-environment",
+      "line_start": 102,
+      "content_preview": "# Example of running a test\nuv run pytest\n"
+    },
+    {
+      "language": "bash",
+      "section": "running-commands-in-the-environment",
+      "line_start": 107,
+      "content_preview": "# Example of running a tool\nuv run ruff check .\n"
+    },
+    {
+      "language": "bash",
+      "section": "running-commands-in-the-environment",
+      "line_start": 112,
+      "content_preview": "uv python install 3.12\n"
+    },
+    {
+      "language": "bash",
+      "section": "bad-vs-good-script-running-examples",
+      "line_start": 119,
+      "content_preview": "# Bad example of running python script\npython script.py\n"
+    },
+    {
+      "language": "bash",
+      "section": "bad-vs-good-script-running-examples",
+      "line_start": 125,
+      "content_preview": "# Good example of running a python script\nuv run script.py\n# Or:\n.venv/bin/python -m scr.some_module..."
+    },
+    {
+      "language": "python",
+      "section": "example:-input-validation-(no-assumptions)",
+      "line_start": 410,
+      "content_preview": "# \u274c BAD: Assumes data structure\ndef process_user_input(data):\n    query = f\"SELECT * FROM users WHER..."
+    },
+    {
+      "language": "python",
+      "section": "example:-configuration-validation",
+      "line_start": 431,
+      "content_preview": "# \u274c BAD: Assumes environment variable exists\nAPI_KEY = os.getenv(\"API_KEY\")\n\n# \u2705 GOOD: Validates and..."
+    },
+    {
+      "language": "python",
+      "section": "example-pattern-with-no-assumptions",
+      "line_start": 472,
+      "content_preview": "def process_data(data: Dict[str, Any]) -> ProcessedData:\n    # Validate assumptions explicitly\n    i..."
+    },
+    {
+      "language": "python",
+      "section": "example-edge-case-test",
+      "line_start": 548,
+      "content_preview": "def test_process_data_validates_required_fields():\n    \"\"\"Test that missing required fields are dete..."
+    },
+    {
+      "language": "bash",
+      "section": "documentation-enforcement",
+      "line_start": 649,
+      "content_preview": "# Check session summaries\nuv run scripts/check_session_summary.py\n# Returns exit code 1 if non-compl..."
+    },
+    {
+      "language": "bash",
+      "section": "documentation-enforcement",
+      "line_start": 655,
+      "content_preview": "# Check task completions\nuv run scripts/check_task_completions.py\n# Returns exit code 1 if non-compl..."
+    },
+    {
+      "language": "python",
+      "section": "architecture-&-structure-(strict)",
+      "line_start": 736,
+      "content_preview": "# \u274c BAD: Too deeply nested\ndef process():\n    if condition:\n        for item in items:\n            i..."
+    },
+    {
+      "language": "python",
+      "section": "ai-agent-security-&-standards",
+      "line_start": 786,
+      "content_preview": "class ToolInput(BaseModel):\n    \"\"\"Input schema for agent tool.\"\"\"\n    query: str = Field(..., max_l..."
+    },
+    {
+      "language": "python",
+      "section": "code-quality-rules",
+      "line_start": 844,
+      "content_preview": "# BAD: These patterns are forbidden for security reasons\n# The following are shown as documentation ..."
+    },
+    {
+      "language": "yaml",
+      "section": "pre-commit-configuration",
+      "line_start": 974,
+      "content_preview": "# .pre-commit-config.yaml\nrepos:\n  - repo: local\n    hooks:\n      - id: validate-config\n        name..."
+    },
+    {
+      "language": "python",
+      "section": "nox-configuration-example",
+      "line_start": 1027,
+      "content_preview": "# noxfile.py\nimport nox\n\n@nox.session\ndef validate_config(session):\n    \"\"\"Validate project configur..."
+    },
+    {
+      "language": "python",
+      "section": "environment-configuration-example",
+      "line_start": 1124,
+      "content_preview": "# config.py\nimport os\nfrom pathlib import Path\nfrom dotenv import load_dotenv\n\n# Load environment-sp..."
+    },
+    {
+      "language": "bash",
+      "section": "quality-assurance",
+      "line_start": 1347,
+      "content_preview": "# First, verify project configuration\npython -c \"import tomllib; print(tomllib.load(open('pyproject...."
+    }
+  ]
+}

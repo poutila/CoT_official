@@ -1,0 +1,2317 @@
+{
+  "path": "python-template-generator/loaders/CLAUDE.md",
+  "content": "# CLAUDE.md\nThis document ensures consistent, secure, and high-quality code across all projects by providing:\n- **Clear, unambiguous standards** with numeric thresholds\n- **Security-first development** practices\n- **Automated quality enforcement** through tools\n- **AI-friendly guidelines** for consistent assistance\n- **No silent assumptions** - everything explicit and validated\n\n## ⚠️ MANDATORY STARTUP CHECKLIST - EXECUTE IMMEDIATELY\n### STOP! Complete these steps BEFORE responding to any user request:\n- ✅ Read .claude/settings.json\n- ✅ Verify virtual environment exists. Read [DEVELOPMENT_ENVIRONMENT.md](./docs/development/DEVELOPMENT_ENVIRONMENT.md)\n- ✅ Read pyproject.toml for project configuration\n- ✅ Read [PLANNING.md](./planning/PLANNING.md) for context\n- ✅ Read [TASK.md](./planning/TASK.md) for current tasks\n- ✅ Read latest [SESSION.md](./summaries/SESSION_yyyy-mm-dd_HHMM.md). Files are named: `SESSION_YYYY-MM-DD_HHMM.md`. Check if it is valid.\n- ✅ Check for task completion summaries in folder planning/completions/ (if any)\n- ✅ Verify all completed tasks have summaries run:\n```bash\nuv run scripts/check_task_completions.py\n```\n\n## Encoding\n- Execute [Encoding error prevention](./docs/standards/ENCODING_ERROR_PREVENTION.md)\n\n## Virtual environment\n**You must verify environment** before doing anything\n- Report existence of virtual environment\n## UV Package Management\n- This project uses UV for blazing-fast Python package and environment management.\n\n### Adding a package\n- **NEVER** UPDATE A DEPENDENCY DIRECTLY IN `PYPROJECT.toml`\n- **ALWAYS** USE `uv add` to install a dependency\n```bash\n# Example of adding a dependency\nuv add requests\n```\n- Installing a development dependency\n```bash\n# Example of adding a development dependency\nuv add --dev pytest ruff mypy\n```\n- **ALWAYS** use `uv remove` for removing a package\n```bash\n# Example of removing a package\nuv remove requests\n```\n### Running commands in the environment\n- Runing python script\n```bash\n# Example of running a python script\nuv run python script.py\n```\n- Running tests\n```bash\n# Example of running a test\nuv run pytest\n```\n- Running a tool\n```bash\n# Example of running a tool\nuv run ruff check .\n```\n- Installing a specific Python version\n```bash\nuv python install 3.12\n```\n#### Bad vs Good script running examples\n- **Bad** (silent assumption about Python and packages)\n```bash\n# Bad example of running python script\npython script.py\n```\n\n- **Good** (explicit, venv‑based)\n```bash\n# Good example of running a python script\nuv run script.py\n# Or:\n.venv/bin/python -m scr.some_module.some_script\n```\n\n## 🥚 CORE PRINCIPLE - This is the foundational principle that all other guidelines build upon\n### Definition of `Fact`\n- A `fact` is any piece of information that is explicitly provided in the current context, current codebase, validated against authoritative sources, or confirmed by the user.\n\n### Silent assumptions create fragile behavior that only surfaces during runtime failures or edge conditions.\n####Absolute Rules\n1. **No Silent Assumptions** — Every decision must be justified with explicit evidence from the provided context, verified data, or authoritative sources.\n2. **No Guessing** — If a fact is missing or unclear, pause and request clarification instead of inferring or filling in gaps.\n3. **Fact‑Based Decisions Only** — All decisions must be based solely on verifiable information.\n4. **Justification Over Intuition** — Intuition may only be used to form clearly labeled hypotheses, never as the sole basis for a final decision.\n5. **CoT Compliance** — All reasoning must be documented per [CoT](./CHAIN_OF_THOUGHT_LIGHT.md).\n\n\n## Project folder Structure\n- Read [Project Structure Standards](./docs/standards/PROJECT_STRUCTURE.md)\n- Veriry and report project's folder structure\n\n## Backward Compatibility Is Not Required by Default\n- By default, backward compatibility **must not** be preserved during early-stage or clean-slate development.\n- Code and structures **may break** between versions unless explicitly frozen.\n- Historical constraints **must be ignored** unless a human maintainer explicitly marks a version, feature, or behavior as frozen.\n- Do not assume prior behavior is preserved unless it is explicitly committed.\n- You must read [BACKWARD_COMPATIBILITY.md](./docs/development/BACKWARD_COMPATIBILITY.md)\n- Veriry and report backward compatibility status\n\n## ✅ Decision Validation Checklist\nBefore finalizing any output, you **must** verify all of the following. If any check fails, pause and either request clarification or present multiple clearly labeled options.\n\n### 1. Fact Origin Verification\n- [ ] All facts are explicitly stated or verified from an authoritative source.\n- [ ] No missing or ambiguous facts have been silently filled in.\n\n### 2. No Guessing Rule\n- [ ] No gaps have been filled with bias, defaults, or unverified assumptions.\n- [ ] Any hypothesis is explicitly labeled as such and not used for final decisions.\n\n### 3. CoT Compliance\n- [ ] Every reasoning step is traceable to a fact, requirement, or validated prior conclusion.\n- [ ] No unexplained logical jumps.\n- [ ] All  evidence must be collected. i.e. All files that are relevant to task, must be read from to Bottom.\n\n### 4. Decision Justification\n- [ ] The final decision is supported exclusively by verified facts.\n- [ ] The explanation is clear, evidence‑based, and reproducible.\n\n### 5. Output Integrity\n- [ ] The output matches the reasoning exactly.\n- [ ] All speculative details are removed or clearly labeled.\n- [ ] All uncertainties are clearly flagged.\n\n**Enforcement Rule:**\nIf any item above is unchecked → Stop and request clarification or present multiple clearly labeled alternatives.\n\n## Mandatory data Validation Requirements in code\n- **You must Validate data** before processing any data from external recources. For example: file reading, user input\n- **Check file existence** before reading or writing\n\n## Numeric Thresholds & Limits\n| Metric | Threshold | Enforcement | Validation Required |\n|--------|-----------|-------------|-------------------|\n| **Test Coverage** | ≥ 90% | CI/CD fails below threshold | Check in pyproject.toml |\n| **Cyclomatic Complexity** | ≤ 10 | `radon cc` check | Verify radon installed |\n| **Function Length** | < 50 lines | Code review | Check line count |\n| **File Length** | < 500 lines | Pre-commit hook | Validate before edit |\n| **Function Parameters** | ≤ 6 | Use dataclasses if more | Count parameters |\n| **Nesting Depth** | ≤ 2 levels | Refactor if deeper | Check indentation |\n| **Response Time** | < 200ms | Performance monitoring | Measure actual time |\n| **JWT Token Lifetime** | ≤ 15 minutes | Security policy | Check config |\n| **Timeout Default** | 30 seconds | All external calls | Verify timeout set |\n| **Dependency Health** | > 90% PyPI score | Security audit | Check PyPI API |\n\n## Documentation\n- **Project Overview**: [README.md](README.md) - Quick start and project introduction\n- **Current Tasks**: [TASK.md](planning/TASK.md) - Sprint tasks and priorities\n- **Architecture**: [PLANNING.md](planning/PLANNING.md) - System design and phases\n- **Terminology**: [GLOSSARY.md](GLOSSARY.md) - Project-specific terms\n- **Contributing**: [CONTRIBUTING.md](CONTRIBUTING.md) - How to contribute\n- **Version History**: [CHANGELOG.md](CHANGELOG.md) - Release notes\n\n## File protection\n**AI ASSISTANTS**: If asked to modify these files, politely refuse and suggest creating an ADR instead.\n### GENERAL PROTECTED FILES NAMING\n- Files that have string `template` or `TEMPLATE` (not case sensitive) in it's name are `read only` and **must not be edited** in any situation.\n- Example file names `CLAUDE_MD_template.md`, `CODE_REVIEW_template.md`\n\n### PROTECTED FILES LIST - NEVER MODIFY THESE FILES\n- **Golden standard**: [CLAUDE_MD_REQUIREMENTS.md](docs/standards/CLAUDE_MD_template.md) - The golden standard for CLAUDE.md\n- **Security standard**: [SECURITY_STANDARDS.md](docs/standards/SECURITY_STANDARDS.md) - Security requirements reference\n- **Workflow**: [DEVELOPMENT_WORKFLOW.md](docs/standards/DEVELOPMENT_WORKFLOW.md) - Development process standards\n- **Project structure**: [PROJECT_STRUCTURE.md](docs/standards/PROJECT_STRUCTURE.md) - Project organization standards\n\n## 🔒 Security Requirements\n- Must read [Security Standards](./docs/standards/SECURITY_STANDARDS.md) for comprehensive security requirements.\n### 🚨 CRITICAL: Never Commit Secrets\n- **NEVER commit secrets, API keys, passwords, or sensitive data** to version control\n- Use environment variables: `.env` or `pyproject.toml` for ALL hardcoded configuration\n- **Validate environment variables exist** before use\n- **Enforcement**: `gitleaks` in pre-commit hooks\n### Key Security Principles:\n- **Zero tolerance** for secrets in code or logs\n- **Input validation** at all boundaries (no assumptions about data format)\n- **OWASP ASVS Level 2** compliance required\n- **Security scanning** in CI/CD pipeline\n- **Explicit validation** - never assume data is safe\n### Security Examples\n#### Example: Input Validation (No Assumptions)\n```python\n# ❌ BAD: Assumes data structure\ndef process_user_input(data):\n    query = f\"SELECT * FROM users WHERE id = {data['id']}\"\n    return db.execute(query)\n\n# ✅ GOOD: Validates structure and content\ndef process_user_input(data: dict) -> UserResult:\n    # Validate input exists and has correct type\n    if not isinstance(data, dict):\n        raise ValueError(\"Input must be a dictionary\")\n\n    user_id = data.get('id')\n    if not isinstance(user_id, int) or user_id < 1:\n        raise ValueError(\"Invalid user ID\")\n\n    # Use parameterized query\n    query = \"SELECT * FROM users WHERE id = ?\"\n    return db.execute(query, (user_id,))\n```\n\n#### Example: Configuration Validation\n```python\n# ❌ BAD: Assumes environment variable exists\nAPI_KEY = os.getenv(\"API_KEY\")\n\n# ✅ GOOD: Validates and fails explicitly\nAPI_KEY = os.getenv(\"API_KEY\")\nif not API_KEY:\n    raise ValueError(\"API_KEY environment variable not set\")\n```\n\n## 🚨 HIGH PRIORITY - Reliability & Resilience\n### Error Handling Requirements\n- **Specific exception types** (never bare `except:`)\n- **Context managers** for resource management\n- **Fail fast** with input validation\n- **Structured logging** with context\n- **Circuit breakers** for external calls\n- **Timeouts** (default: 30 seconds)\n- **Retry with exponential backoff**\n- **No silent failures** - all error paths must log or raise\n\n### Example patterns\n#### Example Pattern with No Assumptions\n```python\ndef process_data(data: Dict[str, Any]) -> ProcessedData:\n    # Validate assumptions explicitly\n    if not data:\n        raise ValueError(\"Data cannot be empty\")\n\n    required_fields = ['user_id', 'action', 'timestamp']\n    missing = [f for f in required_fields if f not in data]\n    if missing:\n        raise ValueError(f\"Missing required fields: {missing}\")\n\n    try:\n        # Verify external service is configured\n        if not hasattr(external_service, 'process'):\n            raise ConfigurationError(\"External service not properly configured\")\n\n        with timeout_context(30):\n            result = external_service.process(data)\n        return ProcessedData(**result)\n\n    except ValidationError as e:\n        logger.error(f\"Validation failed: {e}\", extra={'data': data})\n        raise ProcessingError(\"Invalid input data\") from e\n    except Exception as e:\n        logger.error(f\"Unexpected error: {e}\", exc_info=True)\n        raise ProcessingError(\"Internal processing error\") from e\n```\n\n## Testing Requirements\n- You must read [Testing Standards](./docs/standards/TESTING_STANDARDS.md) for comprehensive testing requirements.**\n\n### Key Testing Principles:\n- **90% minimum coverage** enforced by CI/CD\n- **Test-first development** (TDD)\n- **Test naming convention**: `test_<method>_<condition>_<expected_result>`\n- **Every Python file needs tests** (except `__init__.py`)\n- **Test all assumptions** - verify validation logic works\n\n### Edge Case Testing Requirements\nEvery feature MUST include tests for:\n- **Boundary conditions** (min/max values, empty inputs)\n- **Invalid inputs** (wrong types, missing required fields)\n- **Error conditions** (network failures, timeouts, permissions)\n- **Concurrent access** (race conditions, deadlocks)\n- **Resource exhaustion** (memory limits, file handles)\n- **Configuration variations** (different Python versions, missing dependencies)\n\n### Example edge case test\n```python\ndef test_process_data_validates_required_fields():\n    \"\"\"Test that missing required fields are detected.\"\"\"\n    with pytest.raises(ValueError, match=\"Missing required fields\"):\n        process_data({\"user_id\": 123})  # Missing 'action' and 'timestamp'\n\ndef test_process_data_checks_service_configuration():\n    \"\"\"Test that misconfigured service is detected.\"\"\"\n    with patch('external_service.process', None):\n        with pytest.raises(ConfigurationError, match=\"not properly configured\"):\n            process_data({\"user_id\": 123, \"action\": \"update\", \"timestamp\": \"2024-01-01\"})\n```\n### 2. New Section: Documentation Requirements (after Testing Requirements)\n## 📝 Documentation Requirements\n\n### Mandatory Documentation Philosophy\n\"Knowledge is cheap, disc space is cheaper, lost context is expensive.\"\n\n**NO EXCEPTIONS RULE**: Every piece of work MUST be documented.\n\n### Session Summaries (MANDATORY)\n- **When**: At the end of EVERY work session\n- **Where**: `summaries/SESSION_YYYY-MM-DD_HHMM.md`\n- **Validation**: `uv run scripts/check_session_summary.py`\n- **Required Sections**:\n  - Completed Work\n  - Current State\n  - Known Issues\n  - Next Steps\n  - Modified Files\n\n### Task Completion Summaries (MANDATORY)\n- **When**: EVERY task marked as \"✅ Completed\" - NO EXCEPTIONS\n- **Where**: `planning/completions/T-XXX_COMPLETION.md`\n- **Templates**:\n  - Tasks ≥3 points: Use `TASK_COMPLETION_TEMPLATE.md`\n  - Tasks 1-2 points: Use `TASK_COMPLETION_MINIMAL.md`\n- **Validation**: `uv run scripts/check_task_completions.py`\n- **Required Content**:\n  - What was done\n  - Lessons learned (even if \"none\")\n  - Time spent vs estimated\n  - Files modified\n  - Next recommended task\n\n### Why Document Everything?\n- Even \"simple\" fixes teach lessons\n- Today's trivial task is tomorrow's mystery\n- Patterns emerge from accumulated decisions\n- Time estimates improve with historical data\n- Onboarding becomes self-service\n- Debugging has historical context\n\n### Documentation Enforcement\n- Check session summary\n```bash\n# Check session summaries\nuv run scripts/check_session_summary.py\n# Returns exit code 1 if non-compliant (CI/CD ready)\n```\n- Check task completions\n```bash\n# Check task completions\nuv run scripts/check_task_completions.py\n# Returns exit code 1 if non-compliant (CI/CD ready)\n```\n\n### AI Assistant Requirements\n- **MUST create session summary** when user indicates session end\n- For detailed documentation standards and examples, see [DOCUMENTATION_STANDARDS.md](./docs/standards/DOCUMENTATION_STANDARDS.md)\n- **MUST create task completion summary** for every completed task\n- **MUST check for existing summaries** at session start\n- **CANNOT mark task complete** without completion summary\n- **MUST refuse to proceed** if documentation is missing\n\n\n## 📊 CODE QUALITY - Structure & Maintainability\n### KISS (Keep It Simple, Stupid)\nSimplicity should be a key goal in design. Choose straightforward solutions over complex ones whenever possible. Simple solutions are easier to understand, maintain, and debug.\n### YAGNI (You Aren't Gonna Need It)\nAvoid building functionality on speculation. Implement features **only** when they are needed, not when you anticipate they might be useful in the future.\n### SOLID Design Principles (Architectural Foundation)\n- **S**ingle Responsibility - One class, one purpose\n- **O**pen/Closed - Open for extension, closed for modification\n- **L**iskov Substitution - Subtypes must be substitutable\n- **I**nterface Segregation - Small, focused interfaces\n- **D**ependency Inversion - Depend on abstractions, not concretions\n- All architecture and refactoring decisions should adhere to the SOLID principles\n\n### Key Implementation Guidelines\n- Use interfaces/protocols for abstraction\n- Inject dependencies rather than hardcoding\n- Create focused, single-purpose classes\n- Design for extension without modification\n- **Validate all injected dependencies** - no assumptions about their state\n\n### Architecture & Structure (Strict)\n- **NEVER create files longer than 500 lines** (including comments, excluding imports)\n  - **Consequence**: Pre-commit hook blocks commit, refactor required\n- **NEVER nest functions more than 3 levels deep**\n  - **Consequence**: Code review rejection, must flatten logic\n  ```python\n  # ❌ BAD: Too deeply nested\n  def process():\n      if condition:\n          for item in items:\n              if item.valid:\n                  with context:\n                      result = calculate()  # 4 levels deep!\n\n  # ✅ GOOD: Flattened logic\n  def process():\n      if not condition:\n          return\n      valid_items = [item for item in items if item.valid]\n      for item in valid_items:\n          _process_item(item)\n  ```\n- **NEVER create functions with more than 5 parameters** (use dataclasses/Pydantic models)\n- **Cyclomatic complexity MUST be ≤ 10** per function (check with `radon`)\n- **No circular imports** - design proper dependency hierarchy\n- **No global variables** - use dependency injection or configuration objects\n- **Single Responsibility Principle** - each function/class has ONE clear purpose\n\n### AI Agent Security & Standards\n- **PROMPT INJECTION PROTECTION**: Sanitize all user inputs, use input validation schemas\n- **TOOL METADATA CONTRACT**: All agent tools MUST use Pydantic models for input/output schemas\n- **JAILBREAK PREVENTION**: Implement content filtering and output validation\n- **ASSUMPTION VALIDATION**: All tool inputs must be validated before execution\n- **TOOL SCHEMA EXAMPLE**:\n  ```python\n  class ToolInput(BaseModel):\n      \"\"\"Input schema for agent tool.\"\"\"\n      query: str = Field(..., max_length=1000, description=\"Search query\")\n      filters: Dict[str, Any] = Field(default_factory=dict)\n\n      @validator('query')\n      def validate_query(cls, v):\n          if not v.strip():\n              raise ValueError(\"Query cannot be empty\")\n          return v\n\n  class ToolOutput(BaseModel):\n      \"\"\"Output schema for agent tool.\"\"\"\n      results: List[Dict[str, Any]]\n      metadata: Dict[str, Any]\n      success: bool\n  ```\n\n### Code Quality Rules\n- **Use type hints for EVERYTHING** - functions, variables, class attributes\n- **NO `# type: ignore`** - fix typing errors properly\n- **NO `# noqa`** - fix linting errors properly\n- **NO `# fmt: off`** - fix formatting errors properly\n- **NO commented-out code** - delete it or use version control\n- **NO print statements** - use structured logging only\n- **NO magic numbers** - define as named constants with clear purpose\n- **NO hardcoded values** - use configuration, environment variables, or constants\n- **NO duplicate code** - refactor into reusable functions (DRY principle)\n- **NO unused imports, variables, or functions** - delete immediately\n- **NO assumptions without validation** - check everything explicitly\n- **FORBIDDEN PATTERNS** - CI will reject code containing these dangerous functions:\n  ```python\n  # BAD: These patterns are forbidden for security reasons\n  # The following are shown as documentation examples only:\n  print(          # Use logging instead\n  eval(           # Security risk - dynamic code execution\n  exec(           # Security risk - arbitrary code execution\n  input(          # Use proper input validation frameworks\n  __import__(     # Use standard import statements\n  ```\n\n### Performance Requirements\n- **Profile performance** for all critical paths using `cProfile`\n- **Use async/await** for ALL I/O-bound operations (file, network, database)\n- **Implement caching** for expensive computations and external API calls\n- **Database queries MUST be optimized** - no N+1 queries, use proper indexing\n- **Memory usage monitoring** - no memory leaks, proper resource management\n- **Response time targets**: APIs < 200ms, background tasks < 5 minutes\n- **Use connection pooling** for database and external service connections\n- **Validate cache keys** - no assumptions about cache state\n\n### File & Naming Conventions\n- **Python files**: Use `snake_case.py` naming (e.g., `user_service.py`, `data_processor.py`)\n- **Test files**: Name as `test_<module>.py` (e.g., `test_user_service.py`)\n- **Config files**: Use `<tool>file.py` or `.<tool>rc` (e.g., `noxfile.py`, `.coveragerc`)\n- **Classes**: Use `PascalCase` (e.g., `UserService`, `DataProcessor`)\n- **Functions/variables**: Use `snake_case` (e.g., `get_user_data`, `process_request`)\n- **Constants**: Use `UPPER_SNAKE_CASE` (e.g., `MAX_RETRIES`, `DEFAULT_TIMEOUT`)\n- **Private items**: Prefix with underscore (e.g., `_internal_method`, `_private_var`)\n\n## 🔧 DEVELOPMENT PROCESS - Workflow & Standards\n### Development Workflow\n- You must read [Development Workflow Standards](./docs/standards/DEVELOPMENT_WORKFLOW.md) for Git, branching, and review processes.\n\n### Key Workflow Requirements:\n- **Conventional Commits** format required\n- **GitFlow branching** with protected main/develop\n- **Pre-commit hooks** mandatory (see configuration below)\n- **Code review** for all changes\n- **Nox task runner** for quality checks\n- **Configuration validation** before any compatibility changes\n\n### Pre-commit Configuration\n- All projects MUST use pre-commit hooks with this minimum configuration:\n```yaml\n# .pre-commit-config.yaml\nrepos:\n  - repo: local\n    hooks:\n      - id: validate-config\n        name: validate-config\n        entry: python -c \"import tomllib; tomllib.load(open('pyproject.toml','rb'))\"\n        language: system\n        files: pyproject.toml\n      - id: mypy\n        name: mypy\n        entry: mypy\n        language: system\n        types: [python]\n      - id: ruff\n        name: ruff\n        entry: ruff check\n        language: system\n        types: [python]\n      - id: black\n        name: black\n        entry: black\n        language: system\n        types: [python]\n      - id: pytest\n        name: pytest\n        entry: pytest\n        language: system\n        pass_filenames: false\n      - id: gitleaks\n        name: gitleaks\n        entry: gitleaks detect --source . --verbose\n        language: system\n        pass_filenames: false\n```\n\n### Tool Chain Requirements\nAll projects MUST pass these tools with specific commands:\n- `mypy src/ --strict --no-error-summary`\n- `ruff check src/ --fix --exit-non-zero-on-fix`\n- `ruff format src/ --check`\n- `pytest --cov=src --cov-fail-under=90 --tb=short`\n- `vulture src/ --min-confidence=70`\n- `bandit -r src/ -f json -o bandit_report.json`\n\n### Nox Configuration Example\n```python\n# noxfile.py\nimport nox\n\n@nox.session\ndef validate_config(session):\n    \"\"\"Validate project configuration before other checks.\"\"\"\n    session.run(\"python\", \"-c\",\n                \"import tomllib; config = tomllib.load(open('pyproject.toml','rb')); \"\n                \"print(f'Python {config['project']['requires-python']} required')\")\n\n@nox.session\ndef tests(session):\n    \"\"\"Run unit tests with coverage.\"\"\"\n    session.install(\"-r\", \"requirements-dev.txt\")\n    session.run(\"pytest\", \"--cov=src\", \"--cov-fail-under=90\")\n\n@nox.session\ndef lint(session):\n    \"\"\"Run linting and type checking.\"\"\"\n    session.install(\"mypy\", \"ruff\")\n    session.run(\"mypy\", \"src/\")\n    session.run(\"ruff\", \"check\", \"src/\")\n\n@nox.session\ndef security(session):\n    \"\"\"Run security scans.\"\"\"\n    session.install(\"bandit\", \"safety\")\n    session.run(\"bandit\", \"-r\", \"src/\")\n    session.run(\"safety\", \"check\")\n```\n\n## Documentation Requirements\n**Code Documentation:**\n- Google-style docstrings for all public functions\n- Document all assumptions and their validations\n- API docs auto-generated from schemas\n- ADRs for major decisions\n\n## Monitoring & Observability (Required)\n- **Structured logging** using JSON format with correlation IDs\n- **Log all assumption validations** - both successful and failed\n- **Log levels properly used**:\n  - DEBUG: Detailed diagnostic info (including validated assumptions)\n  - INFO: General application flow\n  - WARNING: Potentially harmful situations (e.g., fallback to defaults)\n  - ERROR: Error conditions that don't stop execution\n  - CRITICAL: Serious errors that MUST cause termination\n- **Health check endpoints** for all services (`/health`, `/ready`)\n- **Metrics collection** for business KPIs and system performance\n- **Request tracing** with unique request IDs in logs and responses\n- **Performance monitoring** with alerts for SLA violations\n\n## Environment Management\n\n### Configuration\n- Use `python-dotenv` for environment variables\n- **Validate all configuration on startup**\n- Environment-specific configs (`.env.development`, `.env.production`)\n\n### Environment Configuration Example\n```python\n# config.py\nimport os\nfrom pathlib import Path\nfrom dotenv import load_dotenv\n\n# Load environment-specific config\nenv = os.getenv(\"ENVIRONMENT\", \"development\")\nenv_file = Path(f\".env.{env}\")\nif not env_file.exists():\n    raise FileNotFoundError(f\"Configuration file {env_file} not found\")\nload_dotenv(env_file)\n\n# Configuration with validation\nclass Config:\n    DATABASE_URL = os.getenv(\"DATABASE_URL\")\n    SECRET_KEY = os.getenv(\"SECRET_KEY\")\n    DEBUG = os.getenv(\"DEBUG\", \"false\").lower() == \"true\"\n    LOG_LEVEL = os.getenv(\"LOG_LEVEL\", \"INFO\")\n\n    @classmethod\n    def validate(cls):\n        \"\"\"Ensure required config is set.\"\"\"\n        if not cls.DATABASE_URL:\n            raise ValueError(\"DATABASE_URL must be set in environment\")\n        if not cls.SECRET_KEY:\n            raise ValueError(\"SECRET_KEY must be set in environment\")\n\n        # Validate Python version matches project requirements\n        import sys\n        import tomllib\n        with open(\"pyproject.toml\", \"rb\") as f:\n            pyproject = tomllib.load(f)\n            required = pyproject[\"project\"][\"requires-python\"]\n            current = f\"{sys.version_info.major}.{sys.version_info.minor}\"\n            if not current.startswith(required.replace(\">=\", \"\")):\n                raise ValueError(f\"Python {required} required, but running {current}\")\n\n# Validate on import\nConfig.validate()\n```\n\n## Package Management\n### Local Development\n- Use `uv` (10-100x faster than pip)\n### Production/CI**\n- Use standard `pip`\n- Exact versions in `requirements-dev.txt`\n- Version ranges in `requirements.txt`\n### Validate package availability** before import\n### Dependency Requirements (Enforced by CI)\n- PyPI health score >90% (check with `pip-audit`)\n- No packages abandoned >2 years (check last release date)\n- Security audit with `safety` - zero known vulnerabilities\n- Only `.py` files in `src/` directory (reject PRs with other extensions)\n- Maximum 50 direct dependencies in `requirements.txt`\n- All dev dependencies pinned to exact versions in `requirements-dev.txt`\n\n## 📋 PROJECT MANAGEMENT - Task & Context Awareness\n\n### Mandatory Project Files\n- **ALWAYS read `PLANNING.md`** at conversation start for context\n- **CHECK `TASK.md`** before starting work:\n  - If task exists: follow specifications exactly\n  - If task missing: add with description, acceptance criteria, and date\n  - Mark completed tasks immediately with completion date\n- **UPDATE documentation** when features change\n- **VALIDATE project state** before making assumptions\n\n### Task Management (Enforced Standards)\n- **Break large tasks** into sub-tasks (< 4 hours each, maximum 8 sub-tasks per epic)\n- **Add discovered tasks** to `TASK.md` under \"Discovered During Work\" within 24 hours\n- **Include acceptance criteria** for each task (minimum 3 testable criteria)\n- **Estimate effort** using T-shirt sizes: Small (1-4h), Medium (4-16h), Large (16-40h)\n- **Track dependencies** between tasks using explicit dependency notation\n- **Update task status** within 2 hours of completion\n- **Document all assumptions** made during task execution\n\n## 🧠 AI BEHAVIOR RULES - Development Assistant Guidelines\n\n### Code Generation Standards\n- **CHECK PROJECT CONFIGURATION FIRST** - Read pyproject.toml, package.json, or equivalent before making version/compatibility assumptions\n- **NEVER hallucinate libraries** - only use verified, existing packages\n- **ALWAYS verify file paths** and module names before referencing\n- **ASK for clarification** when requirements are ambiguous\n- **PROVIDE examples** when suggesting new patterns or libraries\n- **EXPLAIN reasoning** for architectural decisions\n- **EVALUATE alternatives** and document trade-offs\n- **STATE ALL ASSUMPTIONS** explicitly in your output\n\n### Documentation Generation Requirements\n- **AI MUST create session summaries** at session end\n- **AI MUST create task completion summaries** for all completed tasks\n- **AI MUST verify documentation exists** before marking tasks complete\n- **AI MUST refuse to end session** without creating summary\n- **AI MUST check for summaries** at session start\n- **AI CANNOT claim task completion** without documentation\n\n### AI Code Generation Test Requirements\n- **AI MUST create test files** when generating Python modules\n- **AI MUST verify test coverage** before marking tasks complete\n- **AI MUST suggest test scenarios** for complex logic\n- **AI MUST test assumption validation** code\n- **AI assistants cannot claim completion** without corresponding tests\n\n### ADR Approval Policy (ADR-003)\n- **AI CAN create ADR proposals** with status \"Proposed\"\n- **AI CANNOT approve ADRs** - only humans can change status to \"Approved\"\n- **AI MUST verify human approval** before implementing protected document changes\n- **AI MUST NOT modify** documents marked as \"PROTECTED\" without approved ADR\n- **Protected documents include**: CLAUDE_MD_REQUIREMENTS.md, core architecture docs, security policies\n\n### Quality Assurance\n- **RUN quality checks** after each code change using `nox`:\n  ```bash\n  # First, verify project configuration\n  python -c \"import tomllib; print(tomllib.load(open('pyproject.toml','rb')))\"\n\n  # Then run quality pipeline\n  nox -s validate_config  # Check project configuration\n  nox -s lint            # Type checking, linting, security\n  nox -s tests           # Unit tests with coverage\n  nox -s format          # Code formatting (ruff + black)\n  nox -s security        # Security and vulnerability scans\n  ```\n- **VERIFY all imports** are available and correctly specified\n- **TEST code examples** before providing them\n- **VALIDATE against requirements** before marking tasks complete\n\n### Communication Standards\n- **Be explicit about assumptions** when generating code\n- **Warn about potential issues** or limitations\n- **Suggest improvements** to existing code when relevant\n- **Reference specific files** when discussing project structure\n- **Provide step-by-step instructions** for complex setup or deployment\n- **Document validation logic** for all assumptions\n\n### File Naming Conventions (2 points)\n- **Python files**: `snake_case.py` (e.g., `user_service.py`)\n- **Test files**: `test_<module>.py` (e.g., `test_user_service.py`)\n- **Config files**: `<tool>file.py` or `.<tool>rc`\n- **Classes**: `PascalCase` (e.g., `UserService`)\n- **Functions**: `snake_case` (e.g., `get_user_data`)\n- **Constants**: `UPPER_SNAKE_CASE` (e.g., `MAX_RETRIES`)\n\n---\n\n## ✅ AI Self-Check Checklist\n\nThis checklist enables autonomous verification after edits to maintain continuous quality.\n\n> ⚠️ This checklist is **mandatory**. It must be run after every code-editing action that affects functionality, structure, security, or documentation. No item is optional unless explicitly exempted via ADR.\n\n### Pre-execution Checks (NEW - No Assumptions)\n- [ ] Check project configuration (pyproject.toml, package.json, etc.)\n- [ ] Verify Python/Node/etc. version requirements\n- [ ] Confirm all dependencies are available\n- [ ] State all assumptions explicitly in output\n\n### Required Checklist Items:\n- [ ] Clean up all temporary and development artifacts\n- [ ] Formatting applied: `ruff format`\n- [ ] Type checking passes: `mypy`\n- [ ] Linting passes: `ruff check --fix`\n- [ ] No unused code: `vulture`\n- [ ] Security scan clean: `bandit -r src/`\n- [ ] No forbidden patterns in code\n- [ ] Test coverage ≥ 90%\n- [ ] All functions under 50 lines\n- [ ] No files over 500 lines\n- [ ] Documentation updated for any API or behavior changes\n- [ ] Test file exists for every Python file (except `__init__.py`)\n- [ ] All tests pass: `pytest`\n- [ ] CHANGELOG.md updated for features/fixes\n- [ ] All assumption validations in place\n- [ ] No Silent Assumptions principle included (10) **NEW**\n\n## 🎯 QUICK CHECKLIST - After Edit\n\n> ⚠️ This checklist is **mandatory**. It must be run after every code-editing action that affects functionality, structure, security, or documentation. No item is optional unless explicitly exempted via ADR.\n\n### Golden Egg Compliance (NEW)\n- [ ] Project configuration checked before version-specific changes\n- [ ] All assumptions stated explicitly in output\n- [ ] Input validation implemented for all external data\n- [ ] Environment variables validated before use\n- [ ] File paths verified before access\n\n### Completeness Checklist (40 points)\n- [ ] All forbidden patterns listed (5) - `print`, `eval`, `exec`, `# type: ignore`, `# noqa`\n- [ ] All required tools specified (5) - `mypy`, `ruff`, `pytest`, `vulture`, `bandit`\n- [ ] Test requirements complete (5) - 90% coverage, test naming, edge cases\n- [ ] Security rules comprehensive (5) - Input validation, secrets handling, OWASP compliance\n- [ ] Error handling patterns (5) - Specific exceptions, timeouts, retry logic\n- [ ] File/function limits defined (5) - <500 lines/file, <50 lines/function\n- [ ] Development workflow clear (5) - Git flow, PR process, CI/CD pipeline\n- [ ] Project structure defined (5) - DDD/Non-DDD/Agent patterns specified\n\n### Clarity Score (30 points)\n- [ ] Every rule has example (10) - All rules include ❌ BAD and ✅ GOOD examples\n- [ ] No ambiguous language (10) - Uses MUST/NEVER, not should/try\n- [ ] Clear consequences stated (10) - Each rule specifies what happens on violation\n\n### Consistency Score (20 points)\n- [ ] No contradictions (10) - All rules align without conflicts\n- [ ] All references valid (5) - All linked documents exist\n- [ ] Proper hierarchy (5) - Rules organized logically by importance\n\n### Enforceability Score (10 points)\n- [ ] Tools can verify rules (5) - mypy, ruff, pytest, vulture, bandit enforce rules\n- [ ] CI/CD can enforce (5) - All rules checked in automated pipeline\n\n### Additional Scoring Items (Bonus 10 points)\n- [ ] File naming conventions specified (2) - snake_case, PascalCase rules defined\n- [ ] AI self-check checklist included (3) - Comprehensive AI verification steps\n- [ ] Security section with examples (3) - Input validation, secrets, headers examples\n- [ ] Consistent header formatting (2) - Emoji markers, proper hierarchy\n\n### Tool Execution Checklist\n- [ ] Clean up all temporary and development artifacts (`nox -s cleanup`)\n- [ ] All tests pass with ≥90% coverage (`pytest`)\n- [ ] Session summary created if ending session\n- [ ] Task completion summaries created for all completed tasks\n- [ ] Documentation compliance verified (`uv run scripts/check_task_completions.py`)\n- [ ] Type checking passes (`mypy`)\n- [ ] Linting passes: `ruff check --fix`\n- [ ] Code formatting applied: `ruff format`\n- [ ] No unused code: `vulture`\n- [ ] Security scan clean: `bandit -r src/`\n- [ ] No forbidden patterns in code\n- [ ] Test coverage ≥ 90%\n- [ ] All functions under 50 lines\n- [ ] No files over 500 lines\n- [ ] Test file exists for every Python file (except `__init__.py`)\n- [ ] Documentation updated for any API or behavior changes\n- [ ] CHANGELOG.md updated for features/fixes\n\n### Alternative: Using Nox Task Runner\n\nIf your project uses `nox` as a task runner, you can run the equivalent commands:\n- [ ] Configuration validated (`nox -s validate_config`)\n- [ ] All tests pass with ≥90% coverage (`nox -s tests`)\n- [ ] Type checking passes (`nox -s lint`)\n- [ ] Code formatting applied (`nox -s format`)\n- [ ] Security scan clean (`nox -s security`)\n\n## 🚩 Red Flags (Automatic Failures)\n\n### BLOCKING CONDITIONS - Work Cannot Proceed\n- **Silent assumptions in code** - missing validation\n- **Python file without corresponding test file**\n- **Test coverage below 90% threshold**\n- **Tests not following naming conventions**\n- **Missing edge case or failure scenario tests**\n- **Integration tests absent for complex modules**\n- **Configuration not checked before compatibility changes**\n- **Completed task without completion summary**\n- **Session end without session summary**\n- **Missing documentation for any completed work**\n\n### Critical System Issues\n- **Any security vulnerability** detected\n- **Tests failing** in critical business logic\n- **Memory leaks** or performance degradation\n- **Circular imports** or architectural violations\n- **Hardcoded secrets** or configuration\n- **Missing error handling** in production code\n- **Uncaught exceptions** reaching users\n- **Data integrity issues** or potential corruption\n- **Assumptions without validation** in any code path\n\n### Immediate Action Required\nWhen any red flag is detected:\n1. **STOP** all current work immediately\n2. **FIX** the issue before proceeding\n3. **TEST** the fix thoroughly\n4. **DOCUMENT** the issue and resolution\n5. **REVIEW** with team if architectural\n\n*These conditions trigger immediate work stoppage and remediation.*\n\n*Remember: It's better to take time to do it right than to rush and create technical debt or security vulnerabilities.*\n\n---\n\n## 🆘 EMERGENCY RESPONSE\n\nFor critical incidents (security breach, data corruption, outage):\n1. **Contain** - Isolate affected systems (< 15 min)\n2. **Assess** - Determine scope and impact\n3. **Mitigate** - Roll back or apply temporary fix (< 2 hours)\n4. **Document** - Create postmortem in `docs/incidents/`\n5. **Learn** - Update procedures based on findings\n\n**Postmortem Template Location:** [INCIDENT_template.md](./docs/incidents/INCIDENT_template.md)\n- Naming `incident_name<timestamp>`\n\n\n## 📝 Change History\n",
+  "links": {
+    "valid_file": [
+      "planning/PLANNING.md",
+      "planning/TASK.md",
+      "planning/TASK.md",
+      "planning/PLANNING.md"
+    ],
+    "invalid_file": [
+      "docs/development/DEVELOPMENT_ENVIRONMENT.md",
+      "summaries/SESSION_yyyy-mm-dd_HHMM.md",
+      "docs/standards/ENCODING_ERROR_PREVENTION.md",
+      "CHAIN_OF_THOUGHT_LIGHT.md",
+      "docs/standards/PROJECT_STRUCTURE.md",
+      "docs/development/BACKWARD_COMPATIBILITY.md",
+      "README.md",
+      "GLOSSARY.md",
+      "CONTRIBUTING.md",
+      "CHANGELOG.md",
+      "docs/standards/CLAUDE_MD_template.md",
+      "docs/standards/SECURITY_STANDARDS.md",
+      "docs/standards/DEVELOPMENT_WORKFLOW.md",
+      "docs/standards/PROJECT_STRUCTURE.md",
+      "docs/standards/SECURITY_STANDARDS.md",
+      "docs/standards/TESTING_STANDARDS.md",
+      "docs/standards/DOCUMENTATION_STANDARDS.md",
+      "docs/standards/DEVELOPMENT_WORKFLOW.md",
+      "docs/incidents/INCIDENT_template.md"
+    ],
+    "invalid_anchor": []
+  },
+  "sections": [
+    {
+      "level": 1,
+      "title": "CLAUDE.md",
+      "content": "This document ensures consistent, secure, and high-quality code across all projects by providing:\n**Clear, unambiguous standards** with numeric thresholds\n**Security-first development** practices\n**Automated quality enforcement** through tools\n**AI-friendly guidelines** for consistent assistance\n**No silent assumptions** - everything explicit and validated\nThis document ensures consistent, secure, and high-quality code across all projects by providing:\n**Clear, unambiguous standards** with numeric thresholds\n**Security-first development** practices\n**Automated quality enforcement** through tools\n**AI-friendly guidelines** for consistent assistance\n**No silent assumptions** - everything explicit and validated\n",
+      "slug": "claudemd",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": null,
+      "next_slug": "-mandatory-startup-checklist---execute-immediately"
+    },
+    {
+      "level": 2,
+      "title": "⚠️ MANDATORY STARTUP CHECKLIST - EXECUTE IMMEDIATELY",
+      "content": "",
+      "slug": "-mandatory-startup-checklist---execute-immediately",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "claudemd",
+      "next_slug": "stop-complete-these-steps-before-responding-to-any-user-request"
+    },
+    {
+      "level": 3,
+      "title": "STOP! Complete these steps BEFORE responding to any user request:",
+      "content": "✅ Read .claude/settings.json\n✅ Verify virtual environment exists. Read [DEVELOPMENT_ENVIRONMENT.md](./docs/development/DEVELOPMENT_ENVIRONMENT.md)\n✅ Read pyproject.toml for project configuration\n✅ Read [PLANNING.md](./planning/PLANNING.md) for context\n✅ Read [TASK.md](./planning/TASK.md) for current tasks\n✅ Read latest [SESSION.md](./summaries/SESSION_yyyy-mm-dd_HHMM.md). Files are named: `SESSION_YYYY-MM-DD_HHMM.md`. Check if it is valid.\n✅ Check for task completion summaries in folder planning/completions/ (if any)\n✅ Verify all completed tasks have summaries run:\n✅ Read .claude/settings.json\n✅ Verify virtual environment exists. Read [DEVELOPMENT_ENVIRONMENT.md](./docs/development/DEVELOPMENT_ENVIRONMENT.md)\n✅ Read pyproject.toml for project configuration\n✅ Read [PLANNING.md](./planning/PLANNING.md) for context\n✅ Read [TASK.md](./planning/TASK.md) for current tasks\n✅ Read latest [SESSION.md](./summaries/SESSION_yyyy-mm-dd_HHMM.md). Files are named: `SESSION_YYYY-MM-DD_HHMM.md`. Check if it is valid.\n✅ Check for task completion summaries in folder planning/completions/ (if any)\n✅ Verify all completed tasks have summaries run:\n",
+      "slug": "stop-complete-these-steps-before-responding-to-any-user-request",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {
+        "valid_file": [
+          "planning/PLANNING.md",
+          "planning/TASK.md"
+        ],
+        "invalid_file": [
+          "docs/development/DEVELOPMENT_ENVIRONMENT.md",
+          "summaries/SESSION_yyyy-mm-dd_HHMM.md"
+        ],
+        "invalid_anchor": []
+      },
+      "tables": [],
+      "previous_slug": "-mandatory-startup-checklist---execute-immediately",
+      "next_slug": "encoding"
+    },
+    {
+      "level": 2,
+      "title": "Encoding",
+      "content": "Execute [Encoding error prevention](./docs/standards/ENCODING_ERROR_PREVENTION.md)\nExecute [Encoding error prevention](./docs/standards/ENCODING_ERROR_PREVENTION.md)\n",
+      "slug": "encoding",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {
+        "valid_file": [],
+        "invalid_file": [
+          "docs/standards/ENCODING_ERROR_PREVENTION.md"
+        ],
+        "invalid_anchor": []
+      },
+      "tables": [],
+      "previous_slug": "stop-complete-these-steps-before-responding-to-any-user-request",
+      "next_slug": "virtual-environment"
+    },
+    {
+      "level": 2,
+      "title": "Virtual environment",
+      "content": "**You must verify environment** before doing anything\nReport existence of virtual environment\n**You must verify environment** before doing anything\nReport existence of virtual environment\n",
+      "slug": "virtual-environment",
+      "requirements": [
+        {
+          "rule_text": "**You must verify environment** before doing anything",
+          "type": "MUST",
+          "source_block": "**You must verify environment** before doing anything\nReport existence of virtual environment"
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "encoding",
+      "next_slug": "uv-package-management"
+    },
+    {
+      "level": 2,
+      "title": "UV Package Management",
+      "content": "This project uses UV for blazing-fast Python package and environment management.\nThis project uses UV for blazing-fast Python package and environment management.\n",
+      "slug": "uv-package-management",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "virtual-environment",
+      "next_slug": "adding-a-package"
+    },
+    {
+      "level": 3,
+      "title": "Adding a package",
+      "content": "**NEVER** UPDATE A DEPENDENCY DIRECTLY IN `PYPROJECT.toml`\n**ALWAYS** USE `uv add` to install a dependency\nInstalling a development dependency\n**ALWAYS** use `uv remove` for removing a package\n**NEVER** UPDATE A DEPENDENCY DIRECTLY IN `PYPROJECT.toml`\n**ALWAYS** USE `uv add` to install a dependency\nInstalling a development dependency\n**ALWAYS** use `uv remove` for removing a package\n",
+      "slug": "adding-a-package",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "uv-package-management",
+      "next_slug": "running-commands-in-the-environment"
+    },
+    {
+      "level": 3,
+      "title": "Running commands in the environment",
+      "content": "Runing python script\nRunning tests\nRunning a tool\nInstalling a specific Python version\nRuning python script\nRunning tests\nRunning a tool\nInstalling a specific Python version\n",
+      "slug": "running-commands-in-the-environment",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "adding-a-package",
+      "next_slug": "bad-vs-good-script-running-examples"
+    },
+    {
+      "level": 4,
+      "title": "Bad vs Good script running examples",
+      "content": "**Bad** (silent assumption about Python and packages)\n**Good** (explicit, venv‑based)\n**Bad** (silent assumption about Python and packages)\n**Good** (explicit, venv‑based)\n",
+      "slug": "bad-vs-good-script-running-examples",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "running-commands-in-the-environment",
+      "next_slug": "-core-principle---this-is-the-foundational-principle-that-all-other-guidelines-build-upon"
+    },
+    {
+      "level": 2,
+      "title": "🥚 CORE PRINCIPLE - This is the foundational principle that all other guidelines build upon",
+      "content": "",
+      "slug": "-core-principle---this-is-the-foundational-principle-that-all-other-guidelines-build-upon",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "bad-vs-good-script-running-examples",
+      "next_slug": "definition-of-fact"
+    },
+    {
+      "level": 3,
+      "title": "Definition of `Fact`",
+      "content": "A `fact` is any piece of information that is explicitly provided in the current context, current codebase, validated against authoritative sources, or confirmed by the user.\nA `fact` is any piece of information that is explicitly provided in the current context, current codebase, validated against authoritative sources, or confirmed by the user.\n",
+      "slug": "definition-of-fact",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "-core-principle---this-is-the-foundational-principle-that-all-other-guidelines-build-upon",
+      "next_slug": "silent-assumptions-create-fragile-behavior-that-only-surfaces-during-runtime-failures-or-edge-conditions"
+    },
+    {
+      "level": 3,
+      "title": "Silent assumptions create fragile behavior that only surfaces during runtime failures or edge conditions.",
+      "content": "####Absolute Rules\n**No Silent Assumptions** — Every decision must be justified with explicit evidence from the provided context, verified data, or authoritative sources.\n**No Guessing** — If a fact is missing or unclear, pause and request clarification instead of inferring or filling in gaps.\n**Fact‑Based Decisions Only** — All decisions must be based solely on verifiable information.\n**Justification Over Intuition** — Intuition may only be used to form clearly labeled hypotheses, never as the sole basis for a final decision.\n**CoT Compliance** — All reasoning must be documented per [CoT](./CHAIN_OF_THOUGHT_LIGHT.md).\n####Absolute Rules\n**No Silent Assumptions** — Every decision must be justified with explicit evidence from the provided context, verified data, or authoritative sources.\n**No Guessing** — If a fact is missing or unclear, pause and request clarification instead of inferring or filling in gaps.\n**Fact‑Based Decisions Only** — All decisions must be based solely on verifiable information.\n**Justification Over Intuition** — Intuition may only be used to form clearly labeled hypotheses, never as the sole basis for a final decision.\n**CoT Compliance** — All reasoning must be documented per [CoT](./CHAIN_OF_THOUGHT_LIGHT.md).\n",
+      "slug": "silent-assumptions-create-fragile-behavior-that-only-surfaces-during-runtime-failures-or-edge-conditions",
+      "requirements": [
+        {
+          "rule_text": "**No Silent Assumptions** — Every decision must be justified with explicit evidence from the provided context, verified data, or authoritative sources.",
+          "type": "MUST",
+          "source_block": "####Absolute Rules\n**No Silent Assumptions** — Every decision must be justified with explicit evidence from the provided context, verified data, or authoritative sources.\n**No Guessing** — If a fact is missing or unclear, pause and request clarification instead of inferring or filling in gaps.\n**Fact‑Based Decisions Only** — All decisions must be based solely on verifiable information.\n**Justification Over Intuition** — Intuition may only be used to form clearly labeled hypotheses, never as the sole basis for a final decision.\n**CoT Compliance** — All reasoning must be documented per [CoT](./CHAIN_OF_THOUGHT_LIGHT.md)."
+        },
+        {
+          "rule_text": "**Fact‑Based Decisions Only** — All decisions must be based solely on verifiable information.",
+          "type": "MUST",
+          "source_block": "####Absolute Rules\n**No Silent Assumptions** — Every decision must be justified with explicit evidence from the provided context, verified data, or authoritative sources.\n**No Guessing** — If a fact is missing or unclear, pause and request clarification instead of inferring or filling in gaps.\n**Fact‑Based Decisions Only** — All decisions must be based solely on verifiable information.\n**Justification Over Intuition** — Intuition may only be used to form clearly labeled hypotheses, never as the sole basis for a final decision.\n**CoT Compliance** — All reasoning must be documented per [CoT](./CHAIN_OF_THOUGHT_LIGHT.md)."
+        },
+        {
+          "rule_text": "**Justification Over Intuition** — Intuition may only be used to form clearly labeled hypotheses, never as the sole basis for a final decision.",
+          "type": "MAY",
+          "source_block": "####Absolute Rules\n**No Silent Assumptions** — Every decision must be justified with explicit evidence from the provided context, verified data, or authoritative sources.\n**No Guessing** — If a fact is missing or unclear, pause and request clarification instead of inferring or filling in gaps.\n**Fact‑Based Decisions Only** — All decisions must be based solely on verifiable information.\n**Justification Over Intuition** — Intuition may only be used to form clearly labeled hypotheses, never as the sole basis for a final decision.\n**CoT Compliance** — All reasoning must be documented per [CoT](./CHAIN_OF_THOUGHT_LIGHT.md)."
+        },
+        {
+          "rule_text": "**CoT Compliance** — All reasoning must be documented per [CoT](./CHAIN_OF_THOUGHT_LIGHT.md).",
+          "type": "MUST",
+          "source_block": "####Absolute Rules\n**No Silent Assumptions** — Every decision must be justified with explicit evidence from the provided context, verified data, or authoritative sources.\n**No Guessing** — If a fact is missing or unclear, pause and request clarification instead of inferring or filling in gaps.\n**Fact‑Based Decisions Only** — All decisions must be based solely on verifiable information.\n**Justification Over Intuition** — Intuition may only be used to form clearly labeled hypotheses, never as the sole basis for a final decision.\n**CoT Compliance** — All reasoning must be documented per [CoT](./CHAIN_OF_THOUGHT_LIGHT.md)."
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {
+        "valid_file": [],
+        "invalid_file": [
+          "CHAIN_OF_THOUGHT_LIGHT.md"
+        ],
+        "invalid_anchor": []
+      },
+      "tables": [],
+      "previous_slug": "definition-of-fact",
+      "next_slug": "project-folder-structure"
+    },
+    {
+      "level": 2,
+      "title": "Project folder Structure",
+      "content": "Read [Project Structure Standards](./docs/standards/PROJECT_STRUCTURE.md)\nVeriry and report project's folder structure\nRead [Project Structure Standards](./docs/standards/PROJECT_STRUCTURE.md)\nVeriry and report project's folder structure\n",
+      "slug": "project-folder-structure",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {
+        "valid_file": [],
+        "invalid_file": [
+          "docs/standards/PROJECT_STRUCTURE.md"
+        ],
+        "invalid_anchor": []
+      },
+      "tables": [],
+      "previous_slug": "silent-assumptions-create-fragile-behavior-that-only-surfaces-during-runtime-failures-or-edge-conditions",
+      "next_slug": "backward-compatibility-is-not-required-by-default"
+    },
+    {
+      "level": 2,
+      "title": "Backward Compatibility Is Not Required by Default",
+      "content": "By default, backward compatibility **must not** be preserved during early-stage or clean-slate development.\nCode and structures **may break** between versions unless explicitly frozen.\nHistorical constraints **must be ignored** unless a human maintainer explicitly marks a version, feature, or behavior as frozen.\nDo not assume prior behavior is preserved unless it is explicitly committed.\nYou must read [BACKWARD_COMPATIBILITY.md](./docs/development/BACKWARD_COMPATIBILITY.md)\nVeriry and report backward compatibility status\nBy default, backward compatibility **must not** be preserved during early-stage or clean-slate development.\nCode and structures **may break** between versions unless explicitly frozen.\nHistorical constraints **must be ignored** unless a human maintainer explicitly marks a version, feature, or behavior as frozen.\nDo not assume prior behavior is preserved unless it is explicitly committed.\nYou must read [BACKWARD_COMPATIBILITY.md](./docs/development/BACKWARD_COMPATIBILITY.md)\nVeriry and report backward compatibility status\n",
+      "slug": "backward-compatibility-is-not-required-by-default",
+      "requirements": [
+        {
+          "rule_text": "By default, backward compatibility **must not** be preserved during early-stage or clean-slate development.",
+          "type": "MUST NOT",
+          "source_block": "By default, backward compatibility **must not** be preserved during early-stage or clean-slate development.\nCode and structures **may break** between versions unless explicitly frozen.\nHistorical constraints **must be ignored** unless a human maintainer explicitly marks a version, feature, or behavior as frozen.\nDo not assume prior behavior is preserved unless it is explicitly committed.\nYou must read [BACKWARD_COMPATIBILITY.md](./docs/development/BACKWARD_COMPATIBILITY.md)\nVeriry and report backward compatibility status"
+        },
+        {
+          "rule_text": "Code and structures **may break** between versions unless explicitly frozen.",
+          "type": "MAY",
+          "source_block": "By default, backward compatibility **must not** be preserved during early-stage or clean-slate development.\nCode and structures **may break** between versions unless explicitly frozen.\nHistorical constraints **must be ignored** unless a human maintainer explicitly marks a version, feature, or behavior as frozen.\nDo not assume prior behavior is preserved unless it is explicitly committed.\nYou must read [BACKWARD_COMPATIBILITY.md](./docs/development/BACKWARD_COMPATIBILITY.md)\nVeriry and report backward compatibility status"
+        },
+        {
+          "rule_text": "Historical constraints **must be ignored** unless a human maintainer explicitly marks a version, feature, or behavior as frozen.",
+          "type": "MUST",
+          "source_block": "By default, backward compatibility **must not** be preserved during early-stage or clean-slate development.\nCode and structures **may break** between versions unless explicitly frozen.\nHistorical constraints **must be ignored** unless a human maintainer explicitly marks a version, feature, or behavior as frozen.\nDo not assume prior behavior is preserved unless it is explicitly committed.\nYou must read [BACKWARD_COMPATIBILITY.md](./docs/development/BACKWARD_COMPATIBILITY.md)\nVeriry and report backward compatibility status"
+        },
+        {
+          "rule_text": "You must read [BACKWARD_COMPATIBILITY.md](./docs/development/BACKWARD_COMPATIBILITY.md)",
+          "type": "MUST",
+          "source_block": "By default, backward compatibility **must not** be preserved during early-stage or clean-slate development.\nCode and structures **may break** between versions unless explicitly frozen.\nHistorical constraints **must be ignored** unless a human maintainer explicitly marks a version, feature, or behavior as frozen.\nDo not assume prior behavior is preserved unless it is explicitly committed.\nYou must read [BACKWARD_COMPATIBILITY.md](./docs/development/BACKWARD_COMPATIBILITY.md)\nVeriry and report backward compatibility status"
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {
+        "valid_file": [],
+        "invalid_file": [
+          "docs/development/BACKWARD_COMPATIBILITY.md"
+        ],
+        "invalid_anchor": []
+      },
+      "tables": [],
+      "previous_slug": "project-folder-structure",
+      "next_slug": "-decision-validation-checklist"
+    },
+    {
+      "level": 2,
+      "title": "✅ Decision Validation Checklist",
+      "content": "Before finalizing any output, you **must** verify all of the following. If any check fails, pause and either request clarification or present multiple clearly labeled options.\nBefore finalizing any output, you **must** verify all of the following. If any check fails, pause and either request clarification or present multiple clearly labeled options.\n",
+      "slug": "-decision-validation-checklist",
+      "requirements": [
+        {
+          "rule_text": "Before finalizing any output, you **must** verify all of the following. If any check fails, pause and either request clarification or present multiple clearly labeled options.",
+          "type": "MUST",
+          "source_block": "Before finalizing any output, you **must** verify all of the following. If any check fails, pause and either request clarification or present multiple clearly labeled options."
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "backward-compatibility-is-not-required-by-default",
+      "next_slug": "1-fact-origin-verification"
+    },
+    {
+      "level": 3,
+      "title": "1. Fact Origin Verification",
+      "content": "[ ] All facts are explicitly stated or verified from an authoritative source.\n[ ] No missing or ambiguous facts have been silently filled in.\n[ ] All facts are explicitly stated or verified from an authoritative source.\n[ ] No missing or ambiguous facts have been silently filled in.\n",
+      "slug": "1-fact-origin-verification",
+      "requirements": [],
+      "checklist_items": [
+        {
+          "text": "[ ] All facts are explicitly stated or verified from an authoritative source.",
+          "checked": false
+        },
+        {
+          "text": "[ ] No missing or ambiguous facts have been silently filled in.",
+          "checked": false
+        }
+      ],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "-decision-validation-checklist",
+      "next_slug": "2-no-guessing-rule"
+    },
+    {
+      "level": 3,
+      "title": "2. No Guessing Rule",
+      "content": "[ ] No gaps have been filled with bias, defaults, or unverified assumptions.\n[ ] Any hypothesis is explicitly labeled as such and not used for final decisions.\n[ ] No gaps have been filled with bias, defaults, or unverified assumptions.\n[ ] Any hypothesis is explicitly labeled as such and not used for final decisions.\n",
+      "slug": "2-no-guessing-rule",
+      "requirements": [],
+      "checklist_items": [
+        {
+          "text": "[ ] No gaps have been filled with bias, defaults, or unverified assumptions.",
+          "checked": false
+        },
+        {
+          "text": "[ ] Any hypothesis is explicitly labeled as such and not used for final decisions.",
+          "checked": false
+        }
+      ],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "1-fact-origin-verification",
+      "next_slug": "3-cot-compliance"
+    },
+    {
+      "level": 3,
+      "title": "3. CoT Compliance",
+      "content": "[ ] Every reasoning step is traceable to a fact, requirement, or validated prior conclusion.\n[ ] No unexplained logical jumps.\n[ ] All  evidence must be collected. i.e. All files that are relevant to task, must be read from to Bottom.\n[ ] Every reasoning step is traceable to a fact, requirement, or validated prior conclusion.\n[ ] No unexplained logical jumps.\n[ ] All  evidence must be collected. i.e. All files that are relevant to task, must be read from to Bottom.\n",
+      "slug": "3-cot-compliance",
+      "requirements": [
+        {
+          "rule_text": "[ ] All  evidence must be collected. i.e. All files that are relevant to task, must be read from to Bottom.",
+          "type": "MUST",
+          "source_block": "[ ] Every reasoning step is traceable to a fact, requirement, or validated prior conclusion.\n[ ] No unexplained logical jumps.\n[ ] All  evidence must be collected. i.e. All files that are relevant to task, must be read from to Bottom."
+        }
+      ],
+      "checklist_items": [
+        {
+          "text": "[ ] Every reasoning step is traceable to a fact, requirement, or validated prior conclusion.",
+          "checked": false
+        },
+        {
+          "text": "[ ] No unexplained logical jumps.",
+          "checked": false
+        },
+        {
+          "text": "[ ] All  evidence must be collected. i.e. All files that are relevant to task, must be read from to Bottom.",
+          "checked": false
+        }
+      ],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "2-no-guessing-rule",
+      "next_slug": "4-decision-justification"
+    },
+    {
+      "level": 3,
+      "title": "4. Decision Justification",
+      "content": "[ ] The final decision is supported exclusively by verified facts.\n[ ] The explanation is clear, evidence‑based, and reproducible.\n[ ] The final decision is supported exclusively by verified facts.\n[ ] The explanation is clear, evidence‑based, and reproducible.\n",
+      "slug": "4-decision-justification",
+      "requirements": [],
+      "checklist_items": [
+        {
+          "text": "[ ] The final decision is supported exclusively by verified facts.",
+          "checked": false
+        },
+        {
+          "text": "[ ] The explanation is clear, evidence‑based, and reproducible.",
+          "checked": false
+        }
+      ],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "3-cot-compliance",
+      "next_slug": "5-output-integrity"
+    },
+    {
+      "level": 3,
+      "title": "5. Output Integrity",
+      "content": "[ ] The output matches the reasoning exactly.\n[ ] All speculative details are removed or clearly labeled.\n[ ] All uncertainties are clearly flagged.\n**Enforcement Rule:**\nIf any item above is unchecked → Stop and request clarification or present multiple clearly labeled alternatives.\n[ ] The output matches the reasoning exactly.\n[ ] All speculative details are removed or clearly labeled.\n[ ] All uncertainties are clearly flagged.\n**Enforcement Rule:**\nIf any item above is unchecked → Stop and request clarification or present multiple clearly labeled alternatives.\n",
+      "slug": "5-output-integrity",
+      "requirements": [],
+      "checklist_items": [
+        {
+          "text": "[ ] The output matches the reasoning exactly.",
+          "checked": false
+        },
+        {
+          "text": "[ ] All speculative details are removed or clearly labeled.",
+          "checked": false
+        },
+        {
+          "text": "[ ] All uncertainties are clearly flagged.",
+          "checked": false
+        }
+      ],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "4-decision-justification",
+      "next_slug": "mandatory-data-validation-requirements-in-code"
+    },
+    {
+      "level": 2,
+      "title": "Mandatory data Validation Requirements in code",
+      "content": "**You must Validate data** before processing any data from external recources. For example: file reading, user input\n**Check file existence** before reading or writing\n**You must Validate data** before processing any data from external recources. For example: file reading, user input\n**Check file existence** before reading or writing\n",
+      "slug": "mandatory-data-validation-requirements-in-code",
+      "requirements": [
+        {
+          "rule_text": "**You must Validate data** before processing any data from external recources. For example: file reading, user input",
+          "type": "MUST",
+          "source_block": "**You must Validate data** before processing any data from external recources. For example: file reading, user input\n**Check file existence** before reading or writing"
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "5-output-integrity",
+      "next_slug": "numeric-thresholds--limits"
+    },
+    {
+      "level": 2,
+      "title": "Numeric Thresholds & Limits",
+      "content": "| Metric | Threshold | Enforcement | Validation Required |\n|--------|-----------|-------------|-------------------|\n| **Test Coverage** | ≥ 90% | CI/CD fails below threshold | Check in pyproject.toml |\n| **Cyclomatic Complexity** | ≤ 10 | `radon cc` check | Verify radon installed |\n| **Function Length** | < 50 lines | Code review | Check line count |\n| **File Length** | < 500 lines | Pre-commit hook | Validate before edit |\n| **Function Parameters** | ≤ 6 | Use dataclasses if more | Count parameters |\n| **Nesting Depth** | ≤ 2 levels | Refactor if deeper | Check indentation |\n| **Response Time** | < 200ms | Performance monitoring | Measure actual time |\n| **JWT Token Lifetime** | ≤ 15 minutes | Security policy | Check config |\n| **Timeout Default** | 30 seconds | All external calls | Verify timeout set |\n| **Dependency Health** | > 90% PyPI score | Security audit | Check PyPI API |\n",
+      "slug": "numeric-thresholds--limits",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [
+        {
+          "header": [
+            "Metric",
+            "Threshold",
+            "Enforcement",
+            "Validation Required"
+          ],
+          "rows": [
+            {
+              "cells": [
+                "**Test Coverage**",
+                "≥ 90%",
+                "CI/CD fails below threshold",
+                "Check in pyproject.toml"
+              ]
+            },
+            {
+              "cells": [
+                "**Cyclomatic Complexity**",
+                "≤ 10",
+                "`radon cc` check",
+                "Verify radon installed"
+              ]
+            },
+            {
+              "cells": [
+                "**Function Length**",
+                "< 50 lines",
+                "Code review",
+                "Check line count"
+              ]
+            },
+            {
+              "cells": [
+                "**File Length**",
+                "< 500 lines",
+                "Pre-commit hook",
+                "Validate before edit"
+              ]
+            },
+            {
+              "cells": [
+                "**Function Parameters**",
+                "≤ 6",
+                "Use dataclasses if more",
+                "Count parameters"
+              ]
+            },
+            {
+              "cells": [
+                "**Nesting Depth**",
+                "≤ 2 levels",
+                "Refactor if deeper",
+                "Check indentation"
+              ]
+            },
+            {
+              "cells": [
+                "**Response Time**",
+                "< 200ms",
+                "Performance monitoring",
+                "Measure actual time"
+              ]
+            },
+            {
+              "cells": [
+                "**JWT Token Lifetime**",
+                "≤ 15 minutes",
+                "Security policy",
+                "Check config"
+              ]
+            },
+            {
+              "cells": [
+                "**Timeout Default**",
+                "30 seconds",
+                "All external calls",
+                "Verify timeout set"
+              ]
+            },
+            {
+              "cells": [
+                "**Dependency Health**",
+                "> 90% PyPI score",
+                "Security audit",
+                "Check PyPI API"
+              ]
+            }
+          ]
+        }
+      ],
+      "previous_slug": "mandatory-data-validation-requirements-in-code",
+      "next_slug": "documentation"
+    },
+    {
+      "level": 2,
+      "title": "Documentation",
+      "content": "**Project Overview**: [README.md](README.md) - Quick start and project introduction\n**Current Tasks**: [TASK.md](planning/TASK.md) - Sprint tasks and priorities\n**Architecture**: [PLANNING.md](planning/PLANNING.md) - System design and phases\n**Terminology**: [GLOSSARY.md](GLOSSARY.md) - Project-specific terms\n**Contributing**: [CONTRIBUTING.md](CONTRIBUTING.md) - How to contribute\n**Version History**: [CHANGELOG.md](CHANGELOG.md) - Release notes\n**Project Overview**: [README.md](README.md) - Quick start and project introduction\n**Current Tasks**: [TASK.md](planning/TASK.md) - Sprint tasks and priorities\n**Architecture**: [PLANNING.md](planning/PLANNING.md) - System design and phases\n**Terminology**: [GLOSSARY.md](GLOSSARY.md) - Project-specific terms\n**Contributing**: [CONTRIBUTING.md](CONTRIBUTING.md) - How to contribute\n**Version History**: [CHANGELOG.md](CHANGELOG.md) - Release notes\n",
+      "slug": "documentation",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {
+        "valid_file": [
+          "planning/TASK.md",
+          "planning/PLANNING.md"
+        ],
+        "invalid_file": [
+          "README.md",
+          "GLOSSARY.md",
+          "CONTRIBUTING.md",
+          "CHANGELOG.md"
+        ],
+        "invalid_anchor": []
+      },
+      "tables": [],
+      "previous_slug": "numeric-thresholds--limits",
+      "next_slug": "file-protection"
+    },
+    {
+      "level": 2,
+      "title": "File protection",
+      "content": "**AI ASSISTANTS**: If asked to modify these files, politely refuse and suggest creating an ADR instead.\n**AI ASSISTANTS**: If asked to modify these files, politely refuse and suggest creating an ADR instead.\n",
+      "slug": "file-protection",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "documentation",
+      "next_slug": "general-protected-files-naming"
+    },
+    {
+      "level": 3,
+      "title": "GENERAL PROTECTED FILES NAMING",
+      "content": "Files that have string `template` or `TEMPLATE` (not case sensitive) in it's name are `read only` and **must not be edited** in any situation.\nExample file names `CLAUDE_MD_template.md`, `CODE_REVIEW_template.md`\nFiles that have string `template` or `TEMPLATE` (not case sensitive) in it's name are `read only` and **must not be edited** in any situation.\nExample file names `CLAUDE_MD_template.md`, `CODE_REVIEW_template.md`\n",
+      "slug": "general-protected-files-naming",
+      "requirements": [
+        {
+          "rule_text": "Files that have string `template` or `TEMPLATE` (not case sensitive) in it's name are `read only` and **must not be edited** in any situation.",
+          "type": "MUST NOT",
+          "source_block": "Files that have string `template` or `TEMPLATE` (not case sensitive) in it's name are `read only` and **must not be edited** in any situation.\nExample file names `CLAUDE_MD_template.md`, `CODE_REVIEW_template.md`"
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "file-protection",
+      "next_slug": "protected-files-list---never-modify-these-files"
+    },
+    {
+      "level": 3,
+      "title": "PROTECTED FILES LIST - NEVER MODIFY THESE FILES",
+      "content": "**Golden standard**: [CLAUDE_MD_REQUIREMENTS.md](docs/standards/CLAUDE_MD_template.md) - The golden standard for CLAUDE.md\n**Security standard**: [SECURITY_STANDARDS.md](docs/standards/SECURITY_STANDARDS.md) - Security requirements reference\n**Workflow**: [DEVELOPMENT_WORKFLOW.md](docs/standards/DEVELOPMENT_WORKFLOW.md) - Development process standards\n**Project structure**: [PROJECT_STRUCTURE.md](docs/standards/PROJECT_STRUCTURE.md) - Project organization standards\n**Golden standard**: [CLAUDE_MD_REQUIREMENTS.md](docs/standards/CLAUDE_MD_template.md) - The golden standard for CLAUDE.md\n**Security standard**: [SECURITY_STANDARDS.md](docs/standards/SECURITY_STANDARDS.md) - Security requirements reference\n**Workflow**: [DEVELOPMENT_WORKFLOW.md](docs/standards/DEVELOPMENT_WORKFLOW.md) - Development process standards\n**Project structure**: [PROJECT_STRUCTURE.md](docs/standards/PROJECT_STRUCTURE.md) - Project organization standards\n",
+      "slug": "protected-files-list---never-modify-these-files",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {
+        "valid_file": [],
+        "invalid_file": [
+          "docs/standards/CLAUDE_MD_template.md",
+          "docs/standards/SECURITY_STANDARDS.md",
+          "docs/standards/DEVELOPMENT_WORKFLOW.md",
+          "docs/standards/PROJECT_STRUCTURE.md"
+        ],
+        "invalid_anchor": []
+      },
+      "tables": [],
+      "previous_slug": "general-protected-files-naming",
+      "next_slug": "-security-requirements"
+    },
+    {
+      "level": 2,
+      "title": "🔒 Security Requirements",
+      "content": "Must read [Security Standards](./docs/standards/SECURITY_STANDARDS.md) for comprehensive security requirements.\nMust read [Security Standards](./docs/standards/SECURITY_STANDARDS.md) for comprehensive security requirements.\n",
+      "slug": "-security-requirements",
+      "requirements": [
+        {
+          "rule_text": "Must read [Security Standards](./docs/standards/SECURITY_STANDARDS.md) for comprehensive security requirements.",
+          "type": "MUST",
+          "source_block": "Must read [Security Standards](./docs/standards/SECURITY_STANDARDS.md) for comprehensive security requirements."
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {
+        "valid_file": [],
+        "invalid_file": [
+          "docs/standards/SECURITY_STANDARDS.md"
+        ],
+        "invalid_anchor": []
+      },
+      "tables": [],
+      "previous_slug": "protected-files-list---never-modify-these-files",
+      "next_slug": "-critical-never-commit-secrets"
+    },
+    {
+      "level": 3,
+      "title": "🚨 CRITICAL: Never Commit Secrets",
+      "content": "**NEVER commit secrets, API keys, passwords, or sensitive data** to version control\nUse environment variables: `.env` or `pyproject.toml` for ALL hardcoded configuration\n**Validate environment variables exist** before use\n**Enforcement**: `gitleaks` in pre-commit hooks\n**NEVER commit secrets, API keys, passwords, or sensitive data** to version control\nUse environment variables: `.env` or `pyproject.toml` for ALL hardcoded configuration\n**Validate environment variables exist** before use\n**Enforcement**: `gitleaks` in pre-commit hooks\n",
+      "slug": "-critical-never-commit-secrets",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "-security-requirements",
+      "next_slug": "key-security-principles"
+    },
+    {
+      "level": 3,
+      "title": "Key Security Principles:",
+      "content": "**Zero tolerance** for secrets in code or logs\n**Input validation** at all boundaries (no assumptions about data format)\n**OWASP ASVS Level 2** compliance required\n**Security scanning** in CI/CD pipeline\n**Explicit validation** - never assume data is safe\n**Zero tolerance** for secrets in code or logs\n**Input validation** at all boundaries (no assumptions about data format)\n**OWASP ASVS Level 2** compliance required\n**Security scanning** in CI/CD pipeline\n**Explicit validation** - never assume data is safe\n",
+      "slug": "key-security-principles",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "-critical-never-commit-secrets",
+      "next_slug": "security-examples"
+    },
+    {
+      "level": 3,
+      "title": "Security Examples",
+      "content": "",
+      "slug": "security-examples",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "key-security-principles",
+      "next_slug": "example-input-validation-no-assumptions"
+    },
+    {
+      "level": 4,
+      "title": "Example: Input Validation (No Assumptions)",
+      "content": "",
+      "slug": "example-input-validation-no-assumptions",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "security-examples",
+      "next_slug": "example-configuration-validation"
+    },
+    {
+      "level": 4,
+      "title": "Example: Configuration Validation",
+      "content": "",
+      "slug": "example-configuration-validation",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "example-input-validation-no-assumptions",
+      "next_slug": "-high-priority---reliability--resilience"
+    },
+    {
+      "level": 2,
+      "title": "🚨 HIGH PRIORITY - Reliability & Resilience",
+      "content": "",
+      "slug": "-high-priority---reliability--resilience",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "example-configuration-validation",
+      "next_slug": "error-handling-requirements"
+    },
+    {
+      "level": 3,
+      "title": "Error Handling Requirements",
+      "content": "**Specific exception types** (never bare `except:`)\n**Context managers** for resource management\n**Fail fast** with input validation\n**Structured logging** with context\n**Circuit breakers** for external calls\n**Timeouts** (default: 30 seconds)\n**Retry with exponential backoff**\n**No silent failures** - all error paths must log or raise\n**Specific exception types** (never bare `except:`)\n**Context managers** for resource management\n**Fail fast** with input validation\n**Structured logging** with context\n**Circuit breakers** for external calls\n**Timeouts** (default: 30 seconds)\n**Retry with exponential backoff**\n**No silent failures** - all error paths must log or raise\n",
+      "slug": "error-handling-requirements",
+      "requirements": [
+        {
+          "rule_text": "**No silent failures** - all error paths must log or raise",
+          "type": "MUST",
+          "source_block": "**Specific exception types** (never bare `except:`)\n**Context managers** for resource management\n**Fail fast** with input validation\n**Structured logging** with context\n**Circuit breakers** for external calls\n**Timeouts** (default: 30 seconds)\n**Retry with exponential backoff**\n**No silent failures** - all error paths must log or raise"
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "-high-priority---reliability--resilience",
+      "next_slug": "example-patterns"
+    },
+    {
+      "level": 3,
+      "title": "Example patterns",
+      "content": "",
+      "slug": "example-patterns",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "error-handling-requirements",
+      "next_slug": "example-pattern-with-no-assumptions"
+    },
+    {
+      "level": 4,
+      "title": "Example Pattern with No Assumptions",
+      "content": "",
+      "slug": "example-pattern-with-no-assumptions",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "example-patterns",
+      "next_slug": "testing-requirements"
+    },
+    {
+      "level": 2,
+      "title": "Testing Requirements",
+      "content": "You must read [Testing Standards](./docs/standards/TESTING_STANDARDS.md) for comprehensive testing requirements.**\nYou must read [Testing Standards](./docs/standards/TESTING_STANDARDS.md) for comprehensive testing requirements.**\n",
+      "slug": "testing-requirements",
+      "requirements": [
+        {
+          "rule_text": "You must read [Testing Standards](./docs/standards/TESTING_STANDARDS.md) for comprehensive testing requirements.**",
+          "type": "MUST",
+          "source_block": "You must read [Testing Standards](./docs/standards/TESTING_STANDARDS.md) for comprehensive testing requirements.**"
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {
+        "valid_file": [],
+        "invalid_file": [
+          "docs/standards/TESTING_STANDARDS.md"
+        ],
+        "invalid_anchor": []
+      },
+      "tables": [],
+      "previous_slug": "example-pattern-with-no-assumptions",
+      "next_slug": "key-testing-principles"
+    },
+    {
+      "level": 3,
+      "title": "Key Testing Principles:",
+      "content": "**90% minimum coverage** enforced by CI/CD\n**Test-first development** (TDD)\n**Test naming convention**: `test_<method>_<condition>_<expected_result>`\n**Every Python file needs tests** (except `__init__.py`)\n**Test all assumptions** - verify validation logic works\n**90% minimum coverage** enforced by CI/CD\n**Test-first development** (TDD)\n**Test naming convention**: `test_<method>_<condition>_<expected_result>`\n**Every Python file needs tests** (except `__init__.py`)\n**Test all assumptions** - verify validation logic works\n",
+      "slug": "key-testing-principles",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "testing-requirements",
+      "next_slug": "edge-case-testing-requirements"
+    },
+    {
+      "level": 3,
+      "title": "Edge Case Testing Requirements",
+      "content": "Every feature MUST include tests for:\n**Boundary conditions** (min/max values, empty inputs)\n**Invalid inputs** (wrong types, missing required fields)\n**Error conditions** (network failures, timeouts, permissions)\n**Concurrent access** (race conditions, deadlocks)\n**Resource exhaustion** (memory limits, file handles)\n**Configuration variations** (different Python versions, missing dependencies)\nEvery feature MUST include tests for:\n**Boundary conditions** (min/max values, empty inputs)\n**Invalid inputs** (wrong types, missing required fields)\n**Error conditions** (network failures, timeouts, permissions)\n**Concurrent access** (race conditions, deadlocks)\n**Resource exhaustion** (memory limits, file handles)\n**Configuration variations** (different Python versions, missing dependencies)\n",
+      "slug": "edge-case-testing-requirements",
+      "requirements": [
+        {
+          "rule_text": "Every feature MUST include tests for:",
+          "type": "MUST",
+          "source_block": "Every feature MUST include tests for:\n**Boundary conditions** (min/max values, empty inputs)\n**Invalid inputs** (wrong types, missing required fields)\n**Error conditions** (network failures, timeouts, permissions)\n**Concurrent access** (race conditions, deadlocks)\n**Resource exhaustion** (memory limits, file handles)\n**Configuration variations** (different Python versions, missing dependencies)"
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "key-testing-principles",
+      "next_slug": "example-edge-case-test"
+    },
+    {
+      "level": 3,
+      "title": "Example edge case test",
+      "content": "",
+      "slug": "example-edge-case-test",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "edge-case-testing-requirements",
+      "next_slug": "2-new-section-documentation-requirements-after-testing-requirements"
+    },
+    {
+      "level": 3,
+      "title": "2. New Section: Documentation Requirements (after Testing Requirements)",
+      "content": "",
+      "slug": "2-new-section-documentation-requirements-after-testing-requirements",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "example-edge-case-test",
+      "next_slug": "-documentation-requirements"
+    },
+    {
+      "level": 2,
+      "title": "📝 Documentation Requirements",
+      "content": "",
+      "slug": "-documentation-requirements",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "2-new-section-documentation-requirements-after-testing-requirements",
+      "next_slug": "mandatory-documentation-philosophy"
+    },
+    {
+      "level": 3,
+      "title": "Mandatory Documentation Philosophy",
+      "content": "\"Knowledge is cheap, disc space is cheaper, lost context is expensive.\"\n**NO EXCEPTIONS RULE**: Every piece of work MUST be documented.\n\"Knowledge is cheap, disc space is cheaper, lost context is expensive.\"\n**NO EXCEPTIONS RULE**: Every piece of work MUST be documented.\n",
+      "slug": "mandatory-documentation-philosophy",
+      "requirements": [
+        {
+          "rule_text": "**NO EXCEPTIONS RULE**: Every piece of work MUST be documented.",
+          "type": "MUST",
+          "source_block": "\"Knowledge is cheap, disc space is cheaper, lost context is expensive.\"\n**NO EXCEPTIONS RULE**: Every piece of work MUST be documented."
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "-documentation-requirements",
+      "next_slug": "session-summaries-mandatory"
+    },
+    {
+      "level": 3,
+      "title": "Session Summaries (MANDATORY)",
+      "content": "**When**: At the end of EVERY work session\n**Where**: `summaries/SESSION_YYYY-MM-DD_HHMM.md`\n**Validation**: `uv run scripts/check_session_summary.py`\n**Required Sections**:\nCompleted Work\nCurrent State\nKnown Issues\nNext Steps\nModified Files\n**When**: At the end of EVERY work session\n**Where**: `summaries/SESSION_YYYY-MM-DD_HHMM.md`\n**Validation**: `uv run scripts/check_session_summary.py`\n**Required Sections**:\nCompleted Work\nCurrent State\nKnown Issues\nNext Steps\nModified Files\n",
+      "slug": "session-summaries-mandatory",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "mandatory-documentation-philosophy",
+      "next_slug": "task-completion-summaries-mandatory"
+    },
+    {
+      "level": 3,
+      "title": "Task Completion Summaries (MANDATORY)",
+      "content": "**When**: EVERY task marked as \"✅ Completed\" - NO EXCEPTIONS\n**Where**: `planning/completions/T-XXX_COMPLETION.md`\n**Templates**:\nTasks ≥3 points: Use `TASK_COMPLETION_TEMPLATE.md`\nTasks 1-2 points: Use `TASK_COMPLETION_MINIMAL.md`\n**Validation**: `uv run scripts/check_task_completions.py`\n**Required Content**:\nWhat was done\nLessons learned (even if \"none\")\nTime spent vs estimated\nFiles modified\nNext recommended task\n**When**: EVERY task marked as \"✅ Completed\" - NO EXCEPTIONS\n**Where**: `planning/completions/T-XXX_COMPLETION.md`\n**Templates**:\nTasks ≥3 points: Use `TASK_COMPLETION_TEMPLATE.md`\nTasks 1-2 points: Use `TASK_COMPLETION_MINIMAL.md`\n**Validation**: `uv run scripts/check_task_completions.py`\n**Required Content**:\nWhat was done\nLessons learned (even if \"none\")\nTime spent vs estimated\nFiles modified\nNext recommended task\n",
+      "slug": "task-completion-summaries-mandatory",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "session-summaries-mandatory",
+      "next_slug": "why-document-everything"
+    },
+    {
+      "level": 3,
+      "title": "Why Document Everything?",
+      "content": "Even \"simple\" fixes teach lessons\nToday's trivial task is tomorrow's mystery\nPatterns emerge from accumulated decisions\nTime estimates improve with historical data\nOnboarding becomes self-service\nDebugging has historical context\nEven \"simple\" fixes teach lessons\nToday's trivial task is tomorrow's mystery\nPatterns emerge from accumulated decisions\nTime estimates improve with historical data\nOnboarding becomes self-service\nDebugging has historical context\n",
+      "slug": "why-document-everything",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "task-completion-summaries-mandatory",
+      "next_slug": "documentation-enforcement"
+    },
+    {
+      "level": 3,
+      "title": "Documentation Enforcement",
+      "content": "Check session summary\nCheck task completions\nCheck session summary\nCheck task completions\n",
+      "slug": "documentation-enforcement",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "why-document-everything",
+      "next_slug": "ai-assistant-requirements"
+    },
+    {
+      "level": 3,
+      "title": "AI Assistant Requirements",
+      "content": "**MUST create session summary** when user indicates session end\nFor detailed documentation standards and examples, see [DOCUMENTATION_STANDARDS.md](./docs/standards/DOCUMENTATION_STANDARDS.md)\n**MUST create task completion summary** for every completed task\n**MUST check for existing summaries** at session start\n**CANNOT mark task complete** without completion summary\n**MUST refuse to proceed** if documentation is missing\n**MUST create session summary** when user indicates session end\nFor detailed documentation standards and examples, see [DOCUMENTATION_STANDARDS.md](./docs/standards/DOCUMENTATION_STANDARDS.md)\n**MUST create task completion summary** for every completed task\n**MUST check for existing summaries** at session start\n**CANNOT mark task complete** without completion summary\n**MUST refuse to proceed** if documentation is missing\n",
+      "slug": "ai-assistant-requirements",
+      "requirements": [
+        {
+          "rule_text": "**MUST create session summary** when user indicates session end",
+          "type": "MUST",
+          "source_block": "**MUST create session summary** when user indicates session end\nFor detailed documentation standards and examples, see [DOCUMENTATION_STANDARDS.md](./docs/standards/DOCUMENTATION_STANDARDS.md)\n**MUST create task completion summary** for every completed task\n**MUST check for existing summaries** at session start\n**CANNOT mark task complete** without completion summary\n**MUST refuse to proceed** if documentation is missing"
+        },
+        {
+          "rule_text": "**MUST create task completion summary** for every completed task",
+          "type": "MUST",
+          "source_block": "**MUST create session summary** when user indicates session end\nFor detailed documentation standards and examples, see [DOCUMENTATION_STANDARDS.md](./docs/standards/DOCUMENTATION_STANDARDS.md)\n**MUST create task completion summary** for every completed task\n**MUST check for existing summaries** at session start\n**CANNOT mark task complete** without completion summary\n**MUST refuse to proceed** if documentation is missing"
+        },
+        {
+          "rule_text": "**MUST check for existing summaries** at session start",
+          "type": "MUST",
+          "source_block": "**MUST create session summary** when user indicates session end\nFor detailed documentation standards and examples, see [DOCUMENTATION_STANDARDS.md](./docs/standards/DOCUMENTATION_STANDARDS.md)\n**MUST create task completion summary** for every completed task\n**MUST check for existing summaries** at session start\n**CANNOT mark task complete** without completion summary\n**MUST refuse to proceed** if documentation is missing"
+        },
+        {
+          "rule_text": "**MUST refuse to proceed** if documentation is missing",
+          "type": "MUST",
+          "source_block": "**MUST create session summary** when user indicates session end\nFor detailed documentation standards and examples, see [DOCUMENTATION_STANDARDS.md](./docs/standards/DOCUMENTATION_STANDARDS.md)\n**MUST create task completion summary** for every completed task\n**MUST check for existing summaries** at session start\n**CANNOT mark task complete** without completion summary\n**MUST refuse to proceed** if documentation is missing"
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {
+        "valid_file": [],
+        "invalid_file": [
+          "docs/standards/DOCUMENTATION_STANDARDS.md"
+        ],
+        "invalid_anchor": []
+      },
+      "tables": [],
+      "previous_slug": "documentation-enforcement",
+      "next_slug": "-code-quality---structure--maintainability"
+    },
+    {
+      "level": 2,
+      "title": "📊 CODE QUALITY - Structure & Maintainability",
+      "content": "",
+      "slug": "-code-quality---structure--maintainability",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "ai-assistant-requirements",
+      "next_slug": "kiss-keep-it-simple-stupid"
+    },
+    {
+      "level": 3,
+      "title": "KISS (Keep It Simple, Stupid)",
+      "content": "Simplicity should be a key goal in design. Choose straightforward solutions over complex ones whenever possible. Simple solutions are easier to understand, maintain, and debug.\nSimplicity should be a key goal in design. Choose straightforward solutions over complex ones whenever possible. Simple solutions are easier to understand, maintain, and debug.\n",
+      "slug": "kiss-keep-it-simple-stupid",
+      "requirements": [
+        {
+          "rule_text": "Simplicity should be a key goal in design. Choose straightforward solutions over complex ones whenever possible. Simple solutions are easier to understand, maintain, and debug.",
+          "type": "SHOULD",
+          "source_block": "Simplicity should be a key goal in design. Choose straightforward solutions over complex ones whenever possible. Simple solutions are easier to understand, maintain, and debug."
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "-code-quality---structure--maintainability",
+      "next_slug": "yagni-you-arent-gonna-need-it"
+    },
+    {
+      "level": 3,
+      "title": "YAGNI (You Aren't Gonna Need It)",
+      "content": "Avoid building functionality on speculation. Implement features **only** when they are needed, not when you anticipate they might be useful in the future.\nAvoid building functionality on speculation. Implement features **only** when they are needed, not when you anticipate they might be useful in the future.\n",
+      "slug": "yagni-you-arent-gonna-need-it",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "kiss-keep-it-simple-stupid",
+      "next_slug": "solid-design-principles-architectural-foundation"
+    },
+    {
+      "level": 3,
+      "title": "SOLID Design Principles (Architectural Foundation)",
+      "content": "**S**ingle Responsibility - One class, one purpose\n**O**pen/Closed - Open for extension, closed for modification\n**L**iskov Substitution - Subtypes must be substitutable\n**I**nterface Segregation - Small, focused interfaces\n**D**ependency Inversion - Depend on abstractions, not concretions\nAll architecture and refactoring decisions should adhere to the SOLID principles\n**S**ingle Responsibility - One class, one purpose\n**O**pen/Closed - Open for extension, closed for modification\n**L**iskov Substitution - Subtypes must be substitutable\n**I**nterface Segregation - Small, focused interfaces\n**D**ependency Inversion - Depend on abstractions, not concretions\nAll architecture and refactoring decisions should adhere to the SOLID principles\n",
+      "slug": "solid-design-principles-architectural-foundation",
+      "requirements": [
+        {
+          "rule_text": "**L**iskov Substitution - Subtypes must be substitutable",
+          "type": "MUST",
+          "source_block": "**S**ingle Responsibility - One class, one purpose\n**O**pen/Closed - Open for extension, closed for modification\n**L**iskov Substitution - Subtypes must be substitutable\n**I**nterface Segregation - Small, focused interfaces\n**D**ependency Inversion - Depend on abstractions, not concretions\nAll architecture and refactoring decisions should adhere to the SOLID principles"
+        },
+        {
+          "rule_text": "All architecture and refactoring decisions should adhere to the SOLID principles",
+          "type": "SHOULD",
+          "source_block": "**S**ingle Responsibility - One class, one purpose\n**O**pen/Closed - Open for extension, closed for modification\n**L**iskov Substitution - Subtypes must be substitutable\n**I**nterface Segregation - Small, focused interfaces\n**D**ependency Inversion - Depend on abstractions, not concretions\nAll architecture and refactoring decisions should adhere to the SOLID principles"
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "yagni-you-arent-gonna-need-it",
+      "next_slug": "key-implementation-guidelines"
+    },
+    {
+      "level": 3,
+      "title": "Key Implementation Guidelines",
+      "content": "Use interfaces/protocols for abstraction\nInject dependencies rather than hardcoding\nCreate focused, single-purpose classes\nDesign for extension without modification\n**Validate all injected dependencies** - no assumptions about their state\nUse interfaces/protocols for abstraction\nInject dependencies rather than hardcoding\nCreate focused, single-purpose classes\nDesign for extension without modification\n**Validate all injected dependencies** - no assumptions about their state\n",
+      "slug": "key-implementation-guidelines",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "solid-design-principles-architectural-foundation",
+      "next_slug": "architecture--structure-strict"
+    },
+    {
+      "level": 3,
+      "title": "Architecture & Structure (Strict)",
+      "content": "**NEVER create files longer than 500 lines** (including comments, excluding imports)\n**Consequence**: Pre-commit hook blocks commit, refactor required\n**NEVER nest functions more than 3 levels deep**\n**Consequence**: Code review rejection, must flatten logic\n**NEVER create functions with more than 5 parameters** (use dataclasses/Pydantic models)\n**Cyclomatic complexity MUST be ≤ 10** per function (check with `radon`)\n**No circular imports** - design proper dependency hierarchy\n**No global variables** - use dependency injection or configuration objects\n**Single Responsibility Principle** - each function/class has ONE clear purpose\n**NEVER create files longer than 500 lines** (including comments, excluding imports)\n**Consequence**: Pre-commit hook blocks commit, refactor required\n**NEVER nest functions more than 3 levels deep**\n**Consequence**: Code review rejection, must flatten logic\n**NEVER create functions with more than 5 parameters** (use dataclasses/Pydantic models)\n**Cyclomatic complexity MUST be ≤ 10** per function (check with `radon`)\n**No circular imports** - design proper dependency hierarchy\n**No global variables** - use dependency injection or configuration objects\n**Single Responsibility Principle** - each function/class has ONE clear purpose\n",
+      "slug": "architecture--structure-strict",
+      "requirements": [
+        {
+          "rule_text": "**Consequence**: Code review rejection, must flatten logic",
+          "type": "MUST",
+          "source_block": "**NEVER create files longer than 500 lines** (including comments, excluding imports)\n**Consequence**: Pre-commit hook blocks commit, refactor required\n**NEVER nest functions more than 3 levels deep**\n**Consequence**: Code review rejection, must flatten logic\n**NEVER create functions with more than 5 parameters** (use dataclasses/Pydantic models)\n**Cyclomatic complexity MUST be ≤ 10** per function (check with `radon`)\n**No circular imports** - design proper dependency hierarchy\n**No global variables** - use dependency injection or configuration objects\n**Single Responsibility Principle** - each function/class has ONE clear purpose"
+        },
+        {
+          "rule_text": "**Cyclomatic complexity MUST be ≤ 10** per function (check with `radon`)",
+          "type": "MUST",
+          "source_block": "**NEVER create files longer than 500 lines** (including comments, excluding imports)\n**Consequence**: Pre-commit hook blocks commit, refactor required\n**NEVER nest functions more than 3 levels deep**\n**Consequence**: Code review rejection, must flatten logic\n**NEVER create functions with more than 5 parameters** (use dataclasses/Pydantic models)\n**Cyclomatic complexity MUST be ≤ 10** per function (check with `radon`)\n**No circular imports** - design proper dependency hierarchy\n**No global variables** - use dependency injection or configuration objects\n**Single Responsibility Principle** - each function/class has ONE clear purpose"
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "key-implementation-guidelines",
+      "next_slug": "ai-agent-security--standards"
+    },
+    {
+      "level": 3,
+      "title": "AI Agent Security & Standards",
+      "content": "**PROMPT INJECTION PROTECTION**: Sanitize all user inputs, use input validation schemas\n**TOOL METADATA CONTRACT**: All agent tools MUST use Pydantic models for input/output schemas\n**JAILBREAK PREVENTION**: Implement content filtering and output validation\n**ASSUMPTION VALIDATION**: All tool inputs must be validated before execution\n**TOOL SCHEMA EXAMPLE**:\n**PROMPT INJECTION PROTECTION**: Sanitize all user inputs, use input validation schemas\n**TOOL METADATA CONTRACT**: All agent tools MUST use Pydantic models for input/output schemas\n**JAILBREAK PREVENTION**: Implement content filtering and output validation\n**ASSUMPTION VALIDATION**: All tool inputs must be validated before execution\n**TOOL SCHEMA EXAMPLE**:\n",
+      "slug": "ai-agent-security--standards",
+      "requirements": [
+        {
+          "rule_text": "**TOOL METADATA CONTRACT**: All agent tools MUST use Pydantic models for input/output schemas",
+          "type": "MUST",
+          "source_block": "**PROMPT INJECTION PROTECTION**: Sanitize all user inputs, use input validation schemas\n**TOOL METADATA CONTRACT**: All agent tools MUST use Pydantic models for input/output schemas\n**JAILBREAK PREVENTION**: Implement content filtering and output validation\n**ASSUMPTION VALIDATION**: All tool inputs must be validated before execution\n**TOOL SCHEMA EXAMPLE**:"
+        },
+        {
+          "rule_text": "**ASSUMPTION VALIDATION**: All tool inputs must be validated before execution",
+          "type": "MUST",
+          "source_block": "**PROMPT INJECTION PROTECTION**: Sanitize all user inputs, use input validation schemas\n**TOOL METADATA CONTRACT**: All agent tools MUST use Pydantic models for input/output schemas\n**JAILBREAK PREVENTION**: Implement content filtering and output validation\n**ASSUMPTION VALIDATION**: All tool inputs must be validated before execution\n**TOOL SCHEMA EXAMPLE**:"
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "architecture--structure-strict",
+      "next_slug": "code-quality-rules"
+    },
+    {
+      "level": 3,
+      "title": "Code Quality Rules",
+      "content": "**Use type hints for EVERYTHING** - functions, variables, class attributes\n**NO `# type: ignore`** - fix typing errors properly\n**NO `# noqa`** - fix linting errors properly\n**NO `# fmt: off`** - fix formatting errors properly\n**NO commented-out code** - delete it or use version control\n**NO print statements** - use structured logging only\n**NO magic numbers** - define as named constants with clear purpose\n**NO hardcoded values** - use configuration, environment variables, or constants\n**NO duplicate code** - refactor into reusable functions (DRY principle)\n**NO unused imports, variables, or functions** - delete immediately\n**NO assumptions without validation** - check everything explicitly\n**FORBIDDEN PATTERNS** - CI will reject code containing these dangerous functions:\n**Use type hints for EVERYTHING** - functions, variables, class attributes\n**NO `# type: ignore`** - fix typing errors properly\n**NO `# noqa`** - fix linting errors properly\n**NO `# fmt: off`** - fix formatting errors properly\n**NO commented-out code** - delete it or use version control\n**NO print statements** - use structured logging only\n**NO magic numbers** - define as named constants with clear purpose\n**NO hardcoded values** - use configuration, environment variables, or constants\n**NO duplicate code** - refactor into reusable functions (DRY principle)\n**NO unused imports, variables, or functions** - delete immediately\n**NO assumptions without validation** - check everything explicitly\n**FORBIDDEN PATTERNS** - CI will reject code containing these dangerous functions:\n",
+      "slug": "code-quality-rules",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "ai-agent-security--standards",
+      "next_slug": "performance-requirements"
+    },
+    {
+      "level": 3,
+      "title": "Performance Requirements",
+      "content": "**Profile performance** for all critical paths using `cProfile`\n**Use async/await** for ALL I/O-bound operations (file, network, database)\n**Implement caching** for expensive computations and external API calls\n**Database queries MUST be optimized** - no N+1 queries, use proper indexing\n**Memory usage monitoring** - no memory leaks, proper resource management\n**Response time targets**: APIs < 200ms, background tasks < 5 minutes\n**Use connection pooling** for database and external service connections\n**Validate cache keys** - no assumptions about cache state\n**Profile performance** for all critical paths using `cProfile`\n**Use async/await** for ALL I/O-bound operations (file, network, database)\n**Implement caching** for expensive computations and external API calls\n**Database queries MUST be optimized** - no N+1 queries, use proper indexing\n**Memory usage monitoring** - no memory leaks, proper resource management\n**Response time targets**: APIs < 200ms, background tasks < 5 minutes\n**Use connection pooling** for database and external service connections\n**Validate cache keys** - no assumptions about cache state\n",
+      "slug": "performance-requirements",
+      "requirements": [
+        {
+          "rule_text": "**Database queries MUST be optimized** - no N+1 queries, use proper indexing",
+          "type": "MUST",
+          "source_block": "**Profile performance** for all critical paths using `cProfile`\n**Use async/await** for ALL I/O-bound operations (file, network, database)\n**Implement caching** for expensive computations and external API calls\n**Database queries MUST be optimized** - no N+1 queries, use proper indexing\n**Memory usage monitoring** - no memory leaks, proper resource management\n**Response time targets**: APIs < 200ms, background tasks < 5 minutes\n**Use connection pooling** for database and external service connections\n**Validate cache keys** - no assumptions about cache state"
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "code-quality-rules",
+      "next_slug": "file--naming-conventions"
+    },
+    {
+      "level": 3,
+      "title": "File & Naming Conventions",
+      "content": "**Python files**: Use `snake_case.py` naming (e.g., `user_service.py`, `data_processor.py`)\n**Test files**: Name as `test_<module>.py` (e.g., `test_user_service.py`)\n**Config files**: Use `<tool>file.py` or `.<tool>rc` (e.g., `noxfile.py`, `.coveragerc`)\n**Classes**: Use `PascalCase` (e.g., `UserService`, `DataProcessor`)\n**Functions/variables**: Use `snake_case` (e.g., `get_user_data`, `process_request`)\n**Constants**: Use `UPPER_SNAKE_CASE` (e.g., `MAX_RETRIES`, `DEFAULT_TIMEOUT`)\n**Private items**: Prefix with underscore (e.g., `_internal_method`, `_private_var`)\n**Python files**: Use `snake_case.py` naming (e.g., `user_service.py`, `data_processor.py`)\n**Test files**: Name as `test_<module>.py` (e.g., `test_user_service.py`)\n**Config files**: Use `<tool>file.py` or `.<tool>rc` (e.g., `noxfile.py`, `.coveragerc`)\n**Classes**: Use `PascalCase` (e.g., `UserService`, `DataProcessor`)\n**Functions/variables**: Use `snake_case` (e.g., `get_user_data`, `process_request`)\n**Constants**: Use `UPPER_SNAKE_CASE` (e.g., `MAX_RETRIES`, `DEFAULT_TIMEOUT`)\n**Private items**: Prefix with underscore (e.g., `_internal_method`, `_private_var`)\n",
+      "slug": "file--naming-conventions",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "performance-requirements",
+      "next_slug": "-development-process---workflow--standards"
+    },
+    {
+      "level": 2,
+      "title": "🔧 DEVELOPMENT PROCESS - Workflow & Standards",
+      "content": "",
+      "slug": "-development-process---workflow--standards",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "file--naming-conventions",
+      "next_slug": "development-workflow"
+    },
+    {
+      "level": 3,
+      "title": "Development Workflow",
+      "content": "You must read [Development Workflow Standards](./docs/standards/DEVELOPMENT_WORKFLOW.md) for Git, branching, and review processes.\nYou must read [Development Workflow Standards](./docs/standards/DEVELOPMENT_WORKFLOW.md) for Git, branching, and review processes.\n",
+      "slug": "development-workflow",
+      "requirements": [
+        {
+          "rule_text": "You must read [Development Workflow Standards](./docs/standards/DEVELOPMENT_WORKFLOW.md) for Git, branching, and review processes.",
+          "type": "MUST",
+          "source_block": "You must read [Development Workflow Standards](./docs/standards/DEVELOPMENT_WORKFLOW.md) for Git, branching, and review processes."
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {
+        "valid_file": [],
+        "invalid_file": [
+          "docs/standards/DEVELOPMENT_WORKFLOW.md"
+        ],
+        "invalid_anchor": []
+      },
+      "tables": [],
+      "previous_slug": "-development-process---workflow--standards",
+      "next_slug": "key-workflow-requirements"
+    },
+    {
+      "level": 3,
+      "title": "Key Workflow Requirements:",
+      "content": "**Conventional Commits** format required\n**GitFlow branching** with protected main/develop\n**Pre-commit hooks** mandatory (see configuration below)\n**Code review** for all changes\n**Nox task runner** for quality checks\n**Configuration validation** before any compatibility changes\n**Conventional Commits** format required\n**GitFlow branching** with protected main/develop\n**Pre-commit hooks** mandatory (see configuration below)\n**Code review** for all changes\n**Nox task runner** for quality checks\n**Configuration validation** before any compatibility changes\n",
+      "slug": "key-workflow-requirements",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "development-workflow",
+      "next_slug": "pre-commit-configuration"
+    },
+    {
+      "level": 3,
+      "title": "Pre-commit Configuration",
+      "content": "All projects MUST use pre-commit hooks with this minimum configuration:\nAll projects MUST use pre-commit hooks with this minimum configuration:\n",
+      "slug": "pre-commit-configuration",
+      "requirements": [
+        {
+          "rule_text": "All projects MUST use pre-commit hooks with this minimum configuration:",
+          "type": "MUST",
+          "source_block": "All projects MUST use pre-commit hooks with this minimum configuration:"
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "key-workflow-requirements",
+      "next_slug": "tool-chain-requirements"
+    },
+    {
+      "level": 3,
+      "title": "Tool Chain Requirements",
+      "content": "All projects MUST pass these tools with specific commands:\n`mypy src/ --strict --no-error-summary`\n`ruff check src/ --fix --exit-non-zero-on-fix`\n`ruff format src/ --check`\n`pytest --cov=src --cov-fail-under=90 --tb=short`\n`vulture src/ --min-confidence=70`\n`bandit -r src/ -f json -o bandit_report.json`\nAll projects MUST pass these tools with specific commands:\n`mypy src/ --strict --no-error-summary`\n`ruff check src/ --fix --exit-non-zero-on-fix`\n`ruff format src/ --check`\n`pytest --cov=src --cov-fail-under=90 --tb=short`\n`vulture src/ --min-confidence=70`\n`bandit -r src/ -f json -o bandit_report.json`\n",
+      "slug": "tool-chain-requirements",
+      "requirements": [
+        {
+          "rule_text": "All projects MUST pass these tools with specific commands:",
+          "type": "MUST",
+          "source_block": "All projects MUST pass these tools with specific commands:\n`mypy src/ --strict --no-error-summary`\n`ruff check src/ --fix --exit-non-zero-on-fix`\n`ruff format src/ --check`\n`pytest --cov=src --cov-fail-under=90 --tb=short`\n`vulture src/ --min-confidence=70`\n`bandit -r src/ -f json -o bandit_report.json`"
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "pre-commit-configuration",
+      "next_slug": "nox-configuration-example"
+    },
+    {
+      "level": 3,
+      "title": "Nox Configuration Example",
+      "content": "",
+      "slug": "nox-configuration-example",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "tool-chain-requirements",
+      "next_slug": "documentation-requirements"
+    },
+    {
+      "level": 2,
+      "title": "Documentation Requirements",
+      "content": "**Code Documentation:**\nGoogle-style docstrings for all public functions\nDocument all assumptions and their validations\nAPI docs auto-generated from schemas\nADRs for major decisions\n**Code Documentation:**\nGoogle-style docstrings for all public functions\nDocument all assumptions and their validations\nAPI docs auto-generated from schemas\nADRs for major decisions\n",
+      "slug": "documentation-requirements",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "nox-configuration-example",
+      "next_slug": "monitoring--observability-required"
+    },
+    {
+      "level": 2,
+      "title": "Monitoring & Observability (Required)",
+      "content": "**Structured logging** using JSON format with correlation IDs\n**Log all assumption validations** - both successful and failed\n**Log levels properly used**:\nDEBUG: Detailed diagnostic info (including validated assumptions)\nINFO: General application flow\nWARNING: Potentially harmful situations (e.g., fallback to defaults)\nERROR: Error conditions that don't stop execution\nCRITICAL: Serious errors that MUST cause termination\n**Health check endpoints** for all services (`/health`, `/ready`)\n**Metrics collection** for business KPIs and system performance\n**Request tracing** with unique request IDs in logs and responses\n**Performance monitoring** with alerts for SLA violations\n**Structured logging** using JSON format with correlation IDs\n**Log all assumption validations** - both successful and failed\n**Log levels properly used**:\nDEBUG: Detailed diagnostic info (including validated assumptions)\nINFO: General application flow\nWARNING: Potentially harmful situations (e.g., fallback to defaults)\nERROR: Error conditions that don't stop execution\nCRITICAL: Serious errors that MUST cause termination\n**Health check endpoints** for all services (`/health`, `/ready`)\n**Metrics collection** for business KPIs and system performance\n**Request tracing** with unique request IDs in logs and responses\n**Performance monitoring** with alerts for SLA violations\n",
+      "slug": "monitoring--observability-required",
+      "requirements": [
+        {
+          "rule_text": "CRITICAL: Serious errors that MUST cause termination",
+          "type": "MUST",
+          "source_block": "**Structured logging** using JSON format with correlation IDs\n**Log all assumption validations** - both successful and failed\n**Log levels properly used**:\nDEBUG: Detailed diagnostic info (including validated assumptions)\nINFO: General application flow\nWARNING: Potentially harmful situations (e.g., fallback to defaults)\nERROR: Error conditions that don't stop execution\nCRITICAL: Serious errors that MUST cause termination\n**Health check endpoints** for all services (`/health`, `/ready`)\n**Metrics collection** for business KPIs and system performance\n**Request tracing** with unique request IDs in logs and responses\n**Performance monitoring** with alerts for SLA violations"
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "documentation-requirements",
+      "next_slug": "environment-management"
+    },
+    {
+      "level": 2,
+      "title": "Environment Management",
+      "content": "",
+      "slug": "environment-management",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "monitoring--observability-required",
+      "next_slug": "configuration"
+    },
+    {
+      "level": 3,
+      "title": "Configuration",
+      "content": "Use `python-dotenv` for environment variables\n**Validate all configuration on startup**\nEnvironment-specific configs (`.env.development`, `.env.production`)\nUse `python-dotenv` for environment variables\n**Validate all configuration on startup**\nEnvironment-specific configs (`.env.development`, `.env.production`)\n",
+      "slug": "configuration",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "environment-management",
+      "next_slug": "environment-configuration-example"
+    },
+    {
+      "level": 3,
+      "title": "Environment Configuration Example",
+      "content": "",
+      "slug": "environment-configuration-example",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "configuration",
+      "next_slug": "package-management"
+    },
+    {
+      "level": 2,
+      "title": "Package Management",
+      "content": "",
+      "slug": "package-management",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "environment-configuration-example",
+      "next_slug": "local-development"
+    },
+    {
+      "level": 3,
+      "title": "Local Development",
+      "content": "Use `uv` (10-100x faster than pip)\nUse `uv` (10-100x faster than pip)\n",
+      "slug": "local-development",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "package-management",
+      "next_slug": "productionci"
+    },
+    {
+      "level": 3,
+      "title": "Production/CI**",
+      "content": "Use standard `pip`\nExact versions in `requirements-dev.txt`\nVersion ranges in `requirements.txt`\nUse standard `pip`\nExact versions in `requirements-dev.txt`\nVersion ranges in `requirements.txt`\n",
+      "slug": "productionci",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "local-development",
+      "next_slug": "validate-package-availability-before-import"
+    },
+    {
+      "level": 3,
+      "title": "Validate package availability** before import",
+      "content": "",
+      "slug": "validate-package-availability-before-import",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "productionci",
+      "next_slug": "dependency-requirements-enforced-by-ci"
+    },
+    {
+      "level": 3,
+      "title": "Dependency Requirements (Enforced by CI)",
+      "content": "PyPI health score >90% (check with `pip-audit`)\nNo packages abandoned >2 years (check last release date)\nSecurity audit with `safety` - zero known vulnerabilities\nOnly `.py` files in `src/` directory (reject PRs with other extensions)\nMaximum 50 direct dependencies in `requirements.txt`\nAll dev dependencies pinned to exact versions in `requirements-dev.txt`\nPyPI health score >90% (check with `pip-audit`)\nNo packages abandoned >2 years (check last release date)\nSecurity audit with `safety` - zero known vulnerabilities\nOnly `.py` files in `src/` directory (reject PRs with other extensions)\nMaximum 50 direct dependencies in `requirements.txt`\nAll dev dependencies pinned to exact versions in `requirements-dev.txt`\n",
+      "slug": "dependency-requirements-enforced-by-ci",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "validate-package-availability-before-import",
+      "next_slug": "-project-management---task--context-awareness"
+    },
+    {
+      "level": 2,
+      "title": "📋 PROJECT MANAGEMENT - Task & Context Awareness",
+      "content": "",
+      "slug": "-project-management---task--context-awareness",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "dependency-requirements-enforced-by-ci",
+      "next_slug": "mandatory-project-files"
+    },
+    {
+      "level": 3,
+      "title": "Mandatory Project Files",
+      "content": "**ALWAYS read `PLANNING.md`** at conversation start for context\n**CHECK `TASK.md`** before starting work:\nIf task exists: follow specifications exactly\nIf task missing: add with description, acceptance criteria, and date\nMark completed tasks immediately with completion date\n**UPDATE documentation** when features change\n**VALIDATE project state** before making assumptions\n**ALWAYS read `PLANNING.md`** at conversation start for context\n**CHECK `TASK.md`** before starting work:\nIf task exists: follow specifications exactly\nIf task missing: add with description, acceptance criteria, and date\nMark completed tasks immediately with completion date\n**UPDATE documentation** when features change\n**VALIDATE project state** before making assumptions\n",
+      "slug": "mandatory-project-files",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "-project-management---task--context-awareness",
+      "next_slug": "task-management-enforced-standards"
+    },
+    {
+      "level": 3,
+      "title": "Task Management (Enforced Standards)",
+      "content": "**Break large tasks** into sub-tasks (< 4 hours each, maximum 8 sub-tasks per epic)\n**Add discovered tasks** to `TASK.md` under \"Discovered During Work\" within 24 hours\n**Include acceptance criteria** for each task (minimum 3 testable criteria)\n**Estimate effort** using T-shirt sizes: Small (1-4h), Medium (4-16h), Large (16-40h)\n**Track dependencies** between tasks using explicit dependency notation\n**Update task status** within 2 hours of completion\n**Document all assumptions** made during task execution\n**Break large tasks** into sub-tasks (< 4 hours each, maximum 8 sub-tasks per epic)\n**Add discovered tasks** to `TASK.md` under \"Discovered During Work\" within 24 hours\n**Include acceptance criteria** for each task (minimum 3 testable criteria)\n**Estimate effort** using T-shirt sizes: Small (1-4h), Medium (4-16h), Large (16-40h)\n**Track dependencies** between tasks using explicit dependency notation\n**Update task status** within 2 hours of completion\n**Document all assumptions** made during task execution\n",
+      "slug": "task-management-enforced-standards",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "mandatory-project-files",
+      "next_slug": "-ai-behavior-rules---development-assistant-guidelines"
+    },
+    {
+      "level": 2,
+      "title": "🧠 AI BEHAVIOR RULES - Development Assistant Guidelines",
+      "content": "",
+      "slug": "-ai-behavior-rules---development-assistant-guidelines",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "task-management-enforced-standards",
+      "next_slug": "code-generation-standards"
+    },
+    {
+      "level": 3,
+      "title": "Code Generation Standards",
+      "content": "**CHECK PROJECT CONFIGURATION FIRST** - Read pyproject.toml, package.json, or equivalent before making version/compatibility assumptions\n**NEVER hallucinate libraries** - only use verified, existing packages\n**ALWAYS verify file paths** and module names before referencing\n**ASK for clarification** when requirements are ambiguous\n**PROVIDE examples** when suggesting new patterns or libraries\n**EXPLAIN reasoning** for architectural decisions\n**EVALUATE alternatives** and document trade-offs\n**STATE ALL ASSUMPTIONS** explicitly in your output\n**CHECK PROJECT CONFIGURATION FIRST** - Read pyproject.toml, package.json, or equivalent before making version/compatibility assumptions\n**NEVER hallucinate libraries** - only use verified, existing packages\n**ALWAYS verify file paths** and module names before referencing\n**ASK for clarification** when requirements are ambiguous\n**PROVIDE examples** when suggesting new patterns or libraries\n**EXPLAIN reasoning** for architectural decisions\n**EVALUATE alternatives** and document trade-offs\n**STATE ALL ASSUMPTIONS** explicitly in your output\n",
+      "slug": "code-generation-standards",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "-ai-behavior-rules---development-assistant-guidelines",
+      "next_slug": "documentation-generation-requirements"
+    },
+    {
+      "level": 3,
+      "title": "Documentation Generation Requirements",
+      "content": "**AI MUST create session summaries** at session end\n**AI MUST create task completion summaries** for all completed tasks\n**AI MUST verify documentation exists** before marking tasks complete\n**AI MUST refuse to end session** without creating summary\n**AI MUST check for summaries** at session start\n**AI CANNOT claim task completion** without documentation\n**AI MUST create session summaries** at session end\n**AI MUST create task completion summaries** for all completed tasks\n**AI MUST verify documentation exists** before marking tasks complete\n**AI MUST refuse to end session** without creating summary\n**AI MUST check for summaries** at session start\n**AI CANNOT claim task completion** without documentation\n",
+      "slug": "documentation-generation-requirements",
+      "requirements": [
+        {
+          "rule_text": "**AI MUST create session summaries** at session end",
+          "type": "MUST",
+          "source_block": "**AI MUST create session summaries** at session end\n**AI MUST create task completion summaries** for all completed tasks\n**AI MUST verify documentation exists** before marking tasks complete\n**AI MUST refuse to end session** without creating summary\n**AI MUST check for summaries** at session start\n**AI CANNOT claim task completion** without documentation"
+        },
+        {
+          "rule_text": "**AI MUST create task completion summaries** for all completed tasks",
+          "type": "MUST",
+          "source_block": "**AI MUST create session summaries** at session end\n**AI MUST create task completion summaries** for all completed tasks\n**AI MUST verify documentation exists** before marking tasks complete\n**AI MUST refuse to end session** without creating summary\n**AI MUST check for summaries** at session start\n**AI CANNOT claim task completion** without documentation"
+        },
+        {
+          "rule_text": "**AI MUST verify documentation exists** before marking tasks complete",
+          "type": "MUST",
+          "source_block": "**AI MUST create session summaries** at session end\n**AI MUST create task completion summaries** for all completed tasks\n**AI MUST verify documentation exists** before marking tasks complete\n**AI MUST refuse to end session** without creating summary\n**AI MUST check for summaries** at session start\n**AI CANNOT claim task completion** without documentation"
+        },
+        {
+          "rule_text": "**AI MUST refuse to end session** without creating summary",
+          "type": "MUST",
+          "source_block": "**AI MUST create session summaries** at session end\n**AI MUST create task completion summaries** for all completed tasks\n**AI MUST verify documentation exists** before marking tasks complete\n**AI MUST refuse to end session** without creating summary\n**AI MUST check for summaries** at session start\n**AI CANNOT claim task completion** without documentation"
+        },
+        {
+          "rule_text": "**AI MUST check for summaries** at session start",
+          "type": "MUST",
+          "source_block": "**AI MUST create session summaries** at session end\n**AI MUST create task completion summaries** for all completed tasks\n**AI MUST verify documentation exists** before marking tasks complete\n**AI MUST refuse to end session** without creating summary\n**AI MUST check for summaries** at session start\n**AI CANNOT claim task completion** without documentation"
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "code-generation-standards",
+      "next_slug": "ai-code-generation-test-requirements"
+    },
+    {
+      "level": 3,
+      "title": "AI Code Generation Test Requirements",
+      "content": "**AI MUST create test files** when generating Python modules\n**AI MUST verify test coverage** before marking tasks complete\n**AI MUST suggest test scenarios** for complex logic\n**AI MUST test assumption validation** code\n**AI assistants cannot claim completion** without corresponding tests\n**AI MUST create test files** when generating Python modules\n**AI MUST verify test coverage** before marking tasks complete\n**AI MUST suggest test scenarios** for complex logic\n**AI MUST test assumption validation** code\n**AI assistants cannot claim completion** without corresponding tests\n",
+      "slug": "ai-code-generation-test-requirements",
+      "requirements": [
+        {
+          "rule_text": "**AI MUST create test files** when generating Python modules",
+          "type": "MUST",
+          "source_block": "**AI MUST create test files** when generating Python modules\n**AI MUST verify test coverage** before marking tasks complete\n**AI MUST suggest test scenarios** for complex logic\n**AI MUST test assumption validation** code\n**AI assistants cannot claim completion** without corresponding tests"
+        },
+        {
+          "rule_text": "**AI MUST verify test coverage** before marking tasks complete",
+          "type": "MUST",
+          "source_block": "**AI MUST create test files** when generating Python modules\n**AI MUST verify test coverage** before marking tasks complete\n**AI MUST suggest test scenarios** for complex logic\n**AI MUST test assumption validation** code\n**AI assistants cannot claim completion** without corresponding tests"
+        },
+        {
+          "rule_text": "**AI MUST suggest test scenarios** for complex logic",
+          "type": "MUST",
+          "source_block": "**AI MUST create test files** when generating Python modules\n**AI MUST verify test coverage** before marking tasks complete\n**AI MUST suggest test scenarios** for complex logic\n**AI MUST test assumption validation** code\n**AI assistants cannot claim completion** without corresponding tests"
+        },
+        {
+          "rule_text": "**AI MUST test assumption validation** code",
+          "type": "MUST",
+          "source_block": "**AI MUST create test files** when generating Python modules\n**AI MUST verify test coverage** before marking tasks complete\n**AI MUST suggest test scenarios** for complex logic\n**AI MUST test assumption validation** code\n**AI assistants cannot claim completion** without corresponding tests"
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "documentation-generation-requirements",
+      "next_slug": "adr-approval-policy-adr-003"
+    },
+    {
+      "level": 3,
+      "title": "ADR Approval Policy (ADR-003)",
+      "content": "**AI CAN create ADR proposals** with status \"Proposed\"\n**AI CANNOT approve ADRs** - only humans can change status to \"Approved\"\n**AI MUST verify human approval** before implementing protected document changes\n**AI MUST NOT modify** documents marked as \"PROTECTED\" without approved ADR\n**Protected documents include**: CLAUDE_MD_REQUIREMENTS.md, core architecture docs, security policies\n**AI CAN create ADR proposals** with status \"Proposed\"\n**AI CANNOT approve ADRs** - only humans can change status to \"Approved\"\n**AI MUST verify human approval** before implementing protected document changes\n**AI MUST NOT modify** documents marked as \"PROTECTED\" without approved ADR\n**Protected documents include**: CLAUDE_MD_REQUIREMENTS.md, core architecture docs, security policies\n",
+      "slug": "adr-approval-policy-adr-003",
+      "requirements": [
+        {
+          "rule_text": "**AI MUST verify human approval** before implementing protected document changes",
+          "type": "MUST",
+          "source_block": "**AI CAN create ADR proposals** with status \"Proposed\"\n**AI CANNOT approve ADRs** - only humans can change status to \"Approved\"\n**AI MUST verify human approval** before implementing protected document changes\n**AI MUST NOT modify** documents marked as \"PROTECTED\" without approved ADR\n**Protected documents include**: CLAUDE_MD_REQUIREMENTS.md, core architecture docs, security policies"
+        },
+        {
+          "rule_text": "**AI MUST NOT modify** documents marked as \"PROTECTED\" without approved ADR",
+          "type": "MUST NOT",
+          "source_block": "**AI CAN create ADR proposals** with status \"Proposed\"\n**AI CANNOT approve ADRs** - only humans can change status to \"Approved\"\n**AI MUST verify human approval** before implementing protected document changes\n**AI MUST NOT modify** documents marked as \"PROTECTED\" without approved ADR\n**Protected documents include**: CLAUDE_MD_REQUIREMENTS.md, core architecture docs, security policies"
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "ai-code-generation-test-requirements",
+      "next_slug": "quality-assurance"
+    },
+    {
+      "level": 3,
+      "title": "Quality Assurance",
+      "content": "**RUN quality checks** after each code change using `nox`:\n**VERIFY all imports** are available and correctly specified\n**TEST code examples** before providing them\n**VALIDATE against requirements** before marking tasks complete\n**RUN quality checks** after each code change using `nox`:\n**VERIFY all imports** are available and correctly specified\n**TEST code examples** before providing them\n**VALIDATE against requirements** before marking tasks complete\n",
+      "slug": "quality-assurance",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "adr-approval-policy-adr-003",
+      "next_slug": "communication-standards"
+    },
+    {
+      "level": 3,
+      "title": "Communication Standards",
+      "content": "**Be explicit about assumptions** when generating code\n**Warn about potential issues** or limitations\n**Suggest improvements** to existing code when relevant\n**Reference specific files** when discussing project structure\n**Provide step-by-step instructions** for complex setup or deployment\n**Document validation logic** for all assumptions\n**Be explicit about assumptions** when generating code\n**Warn about potential issues** or limitations\n**Suggest improvements** to existing code when relevant\n**Reference specific files** when discussing project structure\n**Provide step-by-step instructions** for complex setup or deployment\n**Document validation logic** for all assumptions\n",
+      "slug": "communication-standards",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "quality-assurance",
+      "next_slug": "file-naming-conventions-2-points"
+    },
+    {
+      "level": 3,
+      "title": "File Naming Conventions (2 points)",
+      "content": "**Python files**: `snake_case.py` (e.g., `user_service.py`)\n**Test files**: `test_<module>.py` (e.g., `test_user_service.py`)\n**Config files**: `<tool>file.py` or `.<tool>rc`\n**Classes**: `PascalCase` (e.g., `UserService`)\n**Functions**: `snake_case` (e.g., `get_user_data`)\n**Constants**: `UPPER_SNAKE_CASE` (e.g., `MAX_RETRIES`)\n**Python files**: `snake_case.py` (e.g., `user_service.py`)\n**Test files**: `test_<module>.py` (e.g., `test_user_service.py`)\n**Config files**: `<tool>file.py` or `.<tool>rc`\n**Classes**: `PascalCase` (e.g., `UserService`)\n**Functions**: `snake_case` (e.g., `get_user_data`)\n**Constants**: `UPPER_SNAKE_CASE` (e.g., `MAX_RETRIES`)\n",
+      "slug": "file-naming-conventions-2-points",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "communication-standards",
+      "next_slug": "-ai-self-check-checklist"
+    },
+    {
+      "level": 2,
+      "title": "✅ AI Self-Check Checklist",
+      "content": "This checklist enables autonomous verification after edits to maintain continuous quality.\n⚠️ This checklist is **mandatory**. It must be run after every code-editing action that affects functionality, structure, security, or documentation. No item is optional unless explicitly exempted via ADR.\nThis checklist enables autonomous verification after edits to maintain continuous quality.\n⚠️ This checklist is **mandatory**. It must be run after every code-editing action that affects functionality, structure, security, or documentation. No item is optional unless explicitly exempted via ADR.\n",
+      "slug": "-ai-self-check-checklist",
+      "requirements": [
+        {
+          "rule_text": "⚠️ This checklist is **mandatory**. It must be run after every code-editing action that affects functionality, structure, security, or documentation. No item is optional unless explicitly exempted via ADR.",
+          "type": "MUST",
+          "source_block": "This checklist enables autonomous verification after edits to maintain continuous quality.\n⚠️ This checklist is **mandatory**. It must be run after every code-editing action that affects functionality, structure, security, or documentation. No item is optional unless explicitly exempted via ADR."
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "file-naming-conventions-2-points",
+      "next_slug": "pre-execution-checks-new---no-assumptions"
+    },
+    {
+      "level": 3,
+      "title": "Pre-execution Checks (NEW - No Assumptions)",
+      "content": "[ ] Check project configuration (pyproject.toml, package.json, etc.)\n[ ] Verify Python/Node/etc. version requirements\n[ ] Confirm all dependencies are available\n[ ] State all assumptions explicitly in output\n[ ] Check project configuration (pyproject.toml, package.json, etc.)\n[ ] Verify Python/Node/etc. version requirements\n[ ] Confirm all dependencies are available\n[ ] State all assumptions explicitly in output\n",
+      "slug": "pre-execution-checks-new---no-assumptions",
+      "requirements": [],
+      "checklist_items": [
+        {
+          "text": "[ ] Check project configuration (pyproject.toml, package.json, etc.)",
+          "checked": false
+        },
+        {
+          "text": "[ ] Verify Python/Node/etc. version requirements",
+          "checked": false
+        },
+        {
+          "text": "[ ] Confirm all dependencies are available",
+          "checked": false
+        },
+        {
+          "text": "[ ] State all assumptions explicitly in output",
+          "checked": false
+        }
+      ],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "-ai-self-check-checklist",
+      "next_slug": "required-checklist-items"
+    },
+    {
+      "level": 3,
+      "title": "Required Checklist Items:",
+      "content": "[ ] Clean up all temporary and development artifacts\n[ ] Formatting applied: `ruff format`\n[ ] Type checking passes: `mypy`\n[ ] Linting passes: `ruff check --fix`\n[ ] No unused code: `vulture`\n[ ] Security scan clean: `bandit -r src/`\n[ ] No forbidden patterns in code\n[ ] Test coverage ≥ 90%\n[ ] All functions under 50 lines\n[ ] No files over 500 lines\n[ ] Documentation updated for any API or behavior changes\n[ ] Test file exists for every Python file (except `__init__.py`)\n[ ] All tests pass: `pytest`\n[ ] CHANGELOG.md updated for features/fixes\n[ ] All assumption validations in place\n[ ] No Silent Assumptions principle included (10) **NEW**\n[ ] Clean up all temporary and development artifacts\n[ ] Formatting applied: `ruff format`\n[ ] Type checking passes: `mypy`\n[ ] Linting passes: `ruff check --fix`\n[ ] No unused code: `vulture`\n[ ] Security scan clean: `bandit -r src/`\n[ ] No forbidden patterns in code\n[ ] Test coverage ≥ 90%\n[ ] All functions under 50 lines\n[ ] No files over 500 lines\n[ ] Documentation updated for any API or behavior changes\n[ ] Test file exists for every Python file (except `__init__.py`)\n[ ] All tests pass: `pytest`\n[ ] CHANGELOG.md updated for features/fixes\n[ ] All assumption validations in place\n[ ] No Silent Assumptions principle included (10) **NEW**\n",
+      "slug": "required-checklist-items",
+      "requirements": [],
+      "checklist_items": [
+        {
+          "text": "[ ] Clean up all temporary and development artifacts",
+          "checked": false
+        },
+        {
+          "text": "[ ] Formatting applied: `ruff format`",
+          "checked": false
+        },
+        {
+          "text": "[ ] Type checking passes: `mypy`",
+          "checked": false
+        },
+        {
+          "text": "[ ] Linting passes: `ruff check --fix`",
+          "checked": false
+        },
+        {
+          "text": "[ ] No unused code: `vulture`",
+          "checked": false
+        },
+        {
+          "text": "[ ] Security scan clean: `bandit -r src/`",
+          "checked": false
+        },
+        {
+          "text": "[ ] No forbidden patterns in code",
+          "checked": false
+        },
+        {
+          "text": "[ ] Test coverage ≥ 90%",
+          "checked": false
+        },
+        {
+          "text": "[ ] All functions under 50 lines",
+          "checked": false
+        },
+        {
+          "text": "[ ] No files over 500 lines",
+          "checked": false
+        },
+        {
+          "text": "[ ] Documentation updated for any API or behavior changes",
+          "checked": false
+        },
+        {
+          "text": "[ ] Test file exists for every Python file (except `__init__.py`)",
+          "checked": false
+        },
+        {
+          "text": "[ ] All tests pass: `pytest`",
+          "checked": false
+        },
+        {
+          "text": "[ ] CHANGELOG.md updated for features/fixes",
+          "checked": false
+        },
+        {
+          "text": "[ ] All assumption validations in place",
+          "checked": false
+        },
+        {
+          "text": "[ ] No Silent Assumptions principle included (10) **NEW**",
+          "checked": false
+        }
+      ],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "pre-execution-checks-new---no-assumptions",
+      "next_slug": "-quick-checklist---after-edit"
+    },
+    {
+      "level": 2,
+      "title": "🎯 QUICK CHECKLIST - After Edit",
+      "content": "⚠️ This checklist is **mandatory**. It must be run after every code-editing action that affects functionality, structure, security, or documentation. No item is optional unless explicitly exempted via ADR.\n⚠️ This checklist is **mandatory**. It must be run after every code-editing action that affects functionality, structure, security, or documentation. No item is optional unless explicitly exempted via ADR.\n",
+      "slug": "-quick-checklist---after-edit",
+      "requirements": [
+        {
+          "rule_text": "⚠️ This checklist is **mandatory**. It must be run after every code-editing action that affects functionality, structure, security, or documentation. No item is optional unless explicitly exempted via ADR.",
+          "type": "MUST",
+          "source_block": "⚠️ This checklist is **mandatory**. It must be run after every code-editing action that affects functionality, structure, security, or documentation. No item is optional unless explicitly exempted via ADR."
+        }
+      ],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "required-checklist-items",
+      "next_slug": "golden-egg-compliance-new"
+    },
+    {
+      "level": 3,
+      "title": "Golden Egg Compliance (NEW)",
+      "content": "[ ] Project configuration checked before version-specific changes\n[ ] All assumptions stated explicitly in output\n[ ] Input validation implemented for all external data\n[ ] Environment variables validated before use\n[ ] File paths verified before access\n[ ] Project configuration checked before version-specific changes\n[ ] All assumptions stated explicitly in output\n[ ] Input validation implemented for all external data\n[ ] Environment variables validated before use\n[ ] File paths verified before access\n",
+      "slug": "golden-egg-compliance-new",
+      "requirements": [],
+      "checklist_items": [
+        {
+          "text": "[ ] Project configuration checked before version-specific changes",
+          "checked": false
+        },
+        {
+          "text": "[ ] All assumptions stated explicitly in output",
+          "checked": false
+        },
+        {
+          "text": "[ ] Input validation implemented for all external data",
+          "checked": false
+        },
+        {
+          "text": "[ ] Environment variables validated before use",
+          "checked": false
+        },
+        {
+          "text": "[ ] File paths verified before access",
+          "checked": false
+        }
+      ],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "-quick-checklist---after-edit",
+      "next_slug": "completeness-checklist-40-points"
+    },
+    {
+      "level": 3,
+      "title": "Completeness Checklist (40 points)",
+      "content": "[ ] All forbidden patterns listed (5) - `print`, `eval`, `exec`, `# type: ignore`, `# noqa`\n[ ] All required tools specified (5) - `mypy`, `ruff`, `pytest`, `vulture`, `bandit`\n[ ] Test requirements complete (5) - 90% coverage, test naming, edge cases\n[ ] Security rules comprehensive (5) - Input validation, secrets handling, OWASP compliance\n[ ] Error handling patterns (5) - Specific exceptions, timeouts, retry logic\n[ ] File/function limits defined (5) - <500 lines/file, <50 lines/function\n[ ] Development workflow clear (5) - Git flow, PR process, CI/CD pipeline\n[ ] Project structure defined (5) - DDD/Non-DDD/Agent patterns specified\n[ ] All forbidden patterns listed (5) - `print`, `eval`, `exec`, `# type: ignore`, `# noqa`\n[ ] All required tools specified (5) - `mypy`, `ruff`, `pytest`, `vulture`, `bandit`\n[ ] Test requirements complete (5) - 90% coverage, test naming, edge cases\n[ ] Security rules comprehensive (5) - Input validation, secrets handling, OWASP compliance\n[ ] Error handling patterns (5) - Specific exceptions, timeouts, retry logic\n[ ] File/function limits defined (5) - <500 lines/file, <50 lines/function\n[ ] Development workflow clear (5) - Git flow, PR process, CI/CD pipeline\n[ ] Project structure defined (5) - DDD/Non-DDD/Agent patterns specified\n",
+      "slug": "completeness-checklist-40-points",
+      "requirements": [],
+      "checklist_items": [
+        {
+          "text": "[ ] All forbidden patterns listed (5) - `print`, `eval`, `exec`, `# type: ignore`, `# noqa`",
+          "checked": false
+        },
+        {
+          "text": "[ ] All required tools specified (5) - `mypy`, `ruff`, `pytest`, `vulture`, `bandit`",
+          "checked": false
+        },
+        {
+          "text": "[ ] Test requirements complete (5) - 90% coverage, test naming, edge cases",
+          "checked": false
+        },
+        {
+          "text": "[ ] Security rules comprehensive (5) - Input validation, secrets handling, OWASP compliance",
+          "checked": false
+        },
+        {
+          "text": "[ ] Error handling patterns (5) - Specific exceptions, timeouts, retry logic",
+          "checked": false
+        },
+        {
+          "text": "[ ] File/function limits defined (5) - <500 lines/file, <50 lines/function",
+          "checked": false
+        },
+        {
+          "text": "[ ] Development workflow clear (5) - Git flow, PR process, CI/CD pipeline",
+          "checked": false
+        },
+        {
+          "text": "[ ] Project structure defined (5) - DDD/Non-DDD/Agent patterns specified",
+          "checked": false
+        }
+      ],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "golden-egg-compliance-new",
+      "next_slug": "clarity-score-30-points"
+    },
+    {
+      "level": 3,
+      "title": "Clarity Score (30 points)",
+      "content": "[ ] Every rule has example (10) - All rules include ❌ BAD and ✅ GOOD examples\n[ ] No ambiguous language (10) - Uses MUST/NEVER, not should/try\n[ ] Clear consequences stated (10) - Each rule specifies what happens on violation\n[ ] Every rule has example (10) - All rules include ❌ BAD and ✅ GOOD examples\n[ ] No ambiguous language (10) - Uses MUST/NEVER, not should/try\n[ ] Clear consequences stated (10) - Each rule specifies what happens on violation\n",
+      "slug": "clarity-score-30-points",
+      "requirements": [
+        {
+          "rule_text": "[ ] No ambiguous language (10) - Uses MUST/NEVER, not should/try",
+          "type": "SHOULD",
+          "source_block": "[ ] Every rule has example (10) - All rules include ❌ BAD and ✅ GOOD examples\n[ ] No ambiguous language (10) - Uses MUST/NEVER, not should/try\n[ ] Clear consequences stated (10) - Each rule specifies what happens on violation"
+        }
+      ],
+      "checklist_items": [
+        {
+          "text": "[ ] Every rule has example (10) - All rules include ❌ BAD and ✅ GOOD examples",
+          "checked": false
+        },
+        {
+          "text": "[ ] No ambiguous language (10) - Uses MUST/NEVER, not should/try",
+          "checked": false
+        },
+        {
+          "text": "[ ] Clear consequences stated (10) - Each rule specifies what happens on violation",
+          "checked": false
+        }
+      ],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "completeness-checklist-40-points",
+      "next_slug": "consistency-score-20-points"
+    },
+    {
+      "level": 3,
+      "title": "Consistency Score (20 points)",
+      "content": "[ ] No contradictions (10) - All rules align without conflicts\n[ ] All references valid (5) - All linked documents exist\n[ ] Proper hierarchy (5) - Rules organized logically by importance\n[ ] No contradictions (10) - All rules align without conflicts\n[ ] All references valid (5) - All linked documents exist\n[ ] Proper hierarchy (5) - Rules organized logically by importance\n",
+      "slug": "consistency-score-20-points",
+      "requirements": [],
+      "checklist_items": [
+        {
+          "text": "[ ] No contradictions (10) - All rules align without conflicts",
+          "checked": false
+        },
+        {
+          "text": "[ ] All references valid (5) - All linked documents exist",
+          "checked": false
+        },
+        {
+          "text": "[ ] Proper hierarchy (5) - Rules organized logically by importance",
+          "checked": false
+        }
+      ],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "clarity-score-30-points",
+      "next_slug": "enforceability-score-10-points"
+    },
+    {
+      "level": 3,
+      "title": "Enforceability Score (10 points)",
+      "content": "[ ] Tools can verify rules (5) - mypy, ruff, pytest, vulture, bandit enforce rules\n[ ] CI/CD can enforce (5) - All rules checked in automated pipeline\n[ ] Tools can verify rules (5) - mypy, ruff, pytest, vulture, bandit enforce rules\n[ ] CI/CD can enforce (5) - All rules checked in automated pipeline\n",
+      "slug": "enforceability-score-10-points",
+      "requirements": [],
+      "checklist_items": [
+        {
+          "text": "[ ] Tools can verify rules (5) - mypy, ruff, pytest, vulture, bandit enforce rules",
+          "checked": false
+        },
+        {
+          "text": "[ ] CI/CD can enforce (5) - All rules checked in automated pipeline",
+          "checked": false
+        }
+      ],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "consistency-score-20-points",
+      "next_slug": "additional-scoring-items-bonus-10-points"
+    },
+    {
+      "level": 3,
+      "title": "Additional Scoring Items (Bonus 10 points)",
+      "content": "[ ] File naming conventions specified (2) - snake_case, PascalCase rules defined\n[ ] AI self-check checklist included (3) - Comprehensive AI verification steps\n[ ] Security section with examples (3) - Input validation, secrets, headers examples\n[ ] Consistent header formatting (2) - Emoji markers, proper hierarchy\n[ ] File naming conventions specified (2) - snake_case, PascalCase rules defined\n[ ] AI self-check checklist included (3) - Comprehensive AI verification steps\n[ ] Security section with examples (3) - Input validation, secrets, headers examples\n[ ] Consistent header formatting (2) - Emoji markers, proper hierarchy\n",
+      "slug": "additional-scoring-items-bonus-10-points",
+      "requirements": [],
+      "checklist_items": [
+        {
+          "text": "[ ] File naming conventions specified (2) - snake_case, PascalCase rules defined",
+          "checked": false
+        },
+        {
+          "text": "[ ] AI self-check checklist included (3) - Comprehensive AI verification steps",
+          "checked": false
+        },
+        {
+          "text": "[ ] Security section with examples (3) - Input validation, secrets, headers examples",
+          "checked": false
+        },
+        {
+          "text": "[ ] Consistent header formatting (2) - Emoji markers, proper hierarchy",
+          "checked": false
+        }
+      ],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "enforceability-score-10-points",
+      "next_slug": "tool-execution-checklist"
+    },
+    {
+      "level": 3,
+      "title": "Tool Execution Checklist",
+      "content": "[ ] Clean up all temporary and development artifacts (`nox -s cleanup`)\n[ ] All tests pass with ≥90% coverage (`pytest`)\n[ ] Session summary created if ending session\n[ ] Task completion summaries created for all completed tasks\n[ ] Documentation compliance verified (`uv run scripts/check_task_completions.py`)\n[ ] Type checking passes (`mypy`)\n[ ] Linting passes: `ruff check --fix`\n[ ] Code formatting applied: `ruff format`\n[ ] No unused code: `vulture`\n[ ] Security scan clean: `bandit -r src/`\n[ ] No forbidden patterns in code\n[ ] Test coverage ≥ 90%\n[ ] All functions under 50 lines\n[ ] No files over 500 lines\n[ ] Test file exists for every Python file (except `__init__.py`)\n[ ] Documentation updated for any API or behavior changes\n[ ] CHANGELOG.md updated for features/fixes\n[ ] Clean up all temporary and development artifacts (`nox -s cleanup`)\n[ ] All tests pass with ≥90% coverage (`pytest`)\n[ ] Session summary created if ending session\n[ ] Task completion summaries created for all completed tasks\n[ ] Documentation compliance verified (`uv run scripts/check_task_completions.py`)\n[ ] Type checking passes (`mypy`)\n[ ] Linting passes: `ruff check --fix`\n[ ] Code formatting applied: `ruff format`\n[ ] No unused code: `vulture`\n[ ] Security scan clean: `bandit -r src/`\n[ ] No forbidden patterns in code\n[ ] Test coverage ≥ 90%\n[ ] All functions under 50 lines\n[ ] No files over 500 lines\n[ ] Test file exists for every Python file (except `__init__.py`)\n[ ] Documentation updated for any API or behavior changes\n[ ] CHANGELOG.md updated for features/fixes\n",
+      "slug": "tool-execution-checklist",
+      "requirements": [],
+      "checklist_items": [
+        {
+          "text": "[ ] Clean up all temporary and development artifacts (`nox -s cleanup`)",
+          "checked": false
+        },
+        {
+          "text": "[ ] All tests pass with ≥90% coverage (`pytest`)",
+          "checked": false
+        },
+        {
+          "text": "[ ] Session summary created if ending session",
+          "checked": false
+        },
+        {
+          "text": "[ ] Task completion summaries created for all completed tasks",
+          "checked": false
+        },
+        {
+          "text": "[ ] Documentation compliance verified (`uv run scripts/check_task_completions.py`)",
+          "checked": false
+        },
+        {
+          "text": "[ ] Type checking passes (`mypy`)",
+          "checked": false
+        },
+        {
+          "text": "[ ] Linting passes: `ruff check --fix`",
+          "checked": false
+        },
+        {
+          "text": "[ ] Code formatting applied: `ruff format`",
+          "checked": false
+        },
+        {
+          "text": "[ ] No unused code: `vulture`",
+          "checked": false
+        },
+        {
+          "text": "[ ] Security scan clean: `bandit -r src/`",
+          "checked": false
+        },
+        {
+          "text": "[ ] No forbidden patterns in code",
+          "checked": false
+        },
+        {
+          "text": "[ ] Test coverage ≥ 90%",
+          "checked": false
+        },
+        {
+          "text": "[ ] All functions under 50 lines",
+          "checked": false
+        },
+        {
+          "text": "[ ] No files over 500 lines",
+          "checked": false
+        },
+        {
+          "text": "[ ] Test file exists for every Python file (except `__init__.py`)",
+          "checked": false
+        },
+        {
+          "text": "[ ] Documentation updated for any API or behavior changes",
+          "checked": false
+        },
+        {
+          "text": "[ ] CHANGELOG.md updated for features/fixes",
+          "checked": false
+        }
+      ],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "additional-scoring-items-bonus-10-points",
+      "next_slug": "alternative-using-nox-task-runner"
+    },
+    {
+      "level": 3,
+      "title": "Alternative: Using Nox Task Runner",
+      "content": "If your project uses `nox` as a task runner, you can run the equivalent commands:\n[ ] Configuration validated (`nox -s validate_config`)\n[ ] All tests pass with ≥90% coverage (`nox -s tests`)\n[ ] Type checking passes (`nox -s lint`)\n[ ] Code formatting applied (`nox -s format`)\n[ ] Security scan clean (`nox -s security`)\nIf your project uses `nox` as a task runner, you can run the equivalent commands:\n[ ] Configuration validated (`nox -s validate_config`)\n[ ] All tests pass with ≥90% coverage (`nox -s tests`)\n[ ] Type checking passes (`nox -s lint`)\n[ ] Code formatting applied (`nox -s format`)\n[ ] Security scan clean (`nox -s security`)\n",
+      "slug": "alternative-using-nox-task-runner",
+      "requirements": [],
+      "checklist_items": [
+        {
+          "text": "[ ] Configuration validated (`nox -s validate_config`)",
+          "checked": false
+        },
+        {
+          "text": "[ ] All tests pass with ≥90% coverage (`nox -s tests`)",
+          "checked": false
+        },
+        {
+          "text": "[ ] Type checking passes (`nox -s lint`)",
+          "checked": false
+        },
+        {
+          "text": "[ ] Code formatting applied (`nox -s format`)",
+          "checked": false
+        },
+        {
+          "text": "[ ] Security scan clean (`nox -s security`)",
+          "checked": false
+        }
+      ],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "tool-execution-checklist",
+      "next_slug": "-red-flags-automatic-failures"
+    },
+    {
+      "level": 2,
+      "title": "🚩 Red Flags (Automatic Failures)",
+      "content": "",
+      "slug": "-red-flags-automatic-failures",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "alternative-using-nox-task-runner",
+      "next_slug": "blocking-conditions---work-cannot-proceed"
+    },
+    {
+      "level": 3,
+      "title": "BLOCKING CONDITIONS - Work Cannot Proceed",
+      "content": "**Silent assumptions in code** - missing validation\n**Python file without corresponding test file**\n**Test coverage below 90% threshold**\n**Tests not following naming conventions**\n**Missing edge case or failure scenario tests**\n**Integration tests absent for complex modules**\n**Configuration not checked before compatibility changes**\n**Completed task without completion summary**\n**Session end without session summary**\n**Missing documentation for any completed work**\n**Silent assumptions in code** - missing validation\n**Python file without corresponding test file**\n**Test coverage below 90% threshold**\n**Tests not following naming conventions**\n**Missing edge case or failure scenario tests**\n**Integration tests absent for complex modules**\n**Configuration not checked before compatibility changes**\n**Completed task without completion summary**\n**Session end without session summary**\n**Missing documentation for any completed work**\n",
+      "slug": "blocking-conditions---work-cannot-proceed",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "-red-flags-automatic-failures",
+      "next_slug": "critical-system-issues"
+    },
+    {
+      "level": 3,
+      "title": "Critical System Issues",
+      "content": "**Any security vulnerability** detected\n**Tests failing** in critical business logic\n**Memory leaks** or performance degradation\n**Circular imports** or architectural violations\n**Hardcoded secrets** or configuration\n**Missing error handling** in production code\n**Uncaught exceptions** reaching users\n**Data integrity issues** or potential corruption\n**Assumptions without validation** in any code path\n**Any security vulnerability** detected\n**Tests failing** in critical business logic\n**Memory leaks** or performance degradation\n**Circular imports** or architectural violations\n**Hardcoded secrets** or configuration\n**Missing error handling** in production code\n**Uncaught exceptions** reaching users\n**Data integrity issues** or potential corruption\n**Assumptions without validation** in any code path\n",
+      "slug": "critical-system-issues",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "blocking-conditions---work-cannot-proceed",
+      "next_slug": "immediate-action-required"
+    },
+    {
+      "level": 3,
+      "title": "Immediate Action Required",
+      "content": "When any red flag is detected:\n**STOP** all current work immediately\n**FIX** the issue before proceeding\n**TEST** the fix thoroughly\n**DOCUMENT** the issue and resolution\n**REVIEW** with team if architectural\n*These conditions trigger immediate work stoppage and remediation.*\n*Remember: It's better to take time to do it right than to rush and create technical debt or security vulnerabilities.*\nWhen any red flag is detected:\n**STOP** all current work immediately\n**FIX** the issue before proceeding\n**TEST** the fix thoroughly\n**DOCUMENT** the issue and resolution\n**REVIEW** with team if architectural\n*These conditions trigger immediate work stoppage and remediation.*\n*Remember: It's better to take time to do it right than to rush and create technical debt or security vulnerabilities.*\n",
+      "slug": "immediate-action-required",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {},
+      "tables": [],
+      "previous_slug": "critical-system-issues",
+      "next_slug": "-emergency-response"
+    },
+    {
+      "level": 2,
+      "title": "🆘 EMERGENCY RESPONSE",
+      "content": "For critical incidents (security breach, data corruption, outage):\n**Contain** - Isolate affected systems (< 15 min)\n**Assess** - Determine scope and impact\n**Mitigate** - Roll back or apply temporary fix (< 2 hours)\n**Document** - Create postmortem in `docs/incidents/`\n**Learn** - Update procedures based on findings\n**Postmortem Template Location:** [INCIDENT_template.md](./docs/incidents/INCIDENT_template.md)\nNaming `incident_name<timestamp>`\nFor critical incidents (security breach, data corruption, outage):\n**Contain** - Isolate affected systems (< 15 min)\n**Assess** - Determine scope and impact\n**Mitigate** - Roll back or apply temporary fix (< 2 hours)\n**Document** - Create postmortem in `docs/incidents/`\n**Learn** - Update procedures based on findings\n**Postmortem Template Location:** [INCIDENT_template.md](./docs/incidents/INCIDENT_template.md)\nNaming `incident_name<timestamp>`\n",
+      "slug": "-emergency-response",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [
+        "paragraph"
+      ],
+      "links": {
+        "valid_file": [],
+        "invalid_file": [
+          "docs/incidents/INCIDENT_template.md"
+        ],
+        "invalid_anchor": []
+      },
+      "tables": [],
+      "previous_slug": "immediate-action-required",
+      "next_slug": "-change-history"
+    },
+    {
+      "level": 2,
+      "title": "📝 Change History",
+      "content": "",
+      "slug": "-change-history",
+      "requirements": [],
+      "checklist_items": [],
+      "block_types": [],
+      "links": {},
+      "tables": [],
+      "previous_slug": "-emergency-response",
+      "next_slug": null
+    }
+  ],
+  "heading_structure_valid": true,
+  "meta": {
+    "line_count": 894,
+    "word_count": 5137,
+    "section_count": 103,
+    "link_count": 36
+  }
+}
