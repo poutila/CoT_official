@@ -1,0 +1,222 @@
+{
+  "$schema": "https://cot-standard.org/schemas/runtime-contract/v1.0.0.json",
+  "version": "2.0.0",
+  "name": "Chain-of-Thought Runtime Contract",
+  "description": "Machine-readable contract for CoT compliance enforcement with recursive reasoning and envelope support",
+  "references": [
+    "RFC-002: Recursive Reasoning Contract",
+    "CoT Reasoning Envelope Specification"
+  ],
+  
+  "contract": {
+    "requires": {
+      "specification": "chain_of_thought >= 6.0.0",
+      "schema": "https://cot-standard.org/schemas/cot/v6.0.0.json",
+      "validator": "cot-validator >= 1.2.0"
+    },
+    
+    "capabilities": {
+      "context_levels": ["full_file_access", "summary_only", "chat_context", "mixed", "undefined"],
+      "risk_levels": ["low", "medium", "high", "critical"],
+      "output_formats": ["markdown", "json", "yaml"],
+      "validation_modes": ["strict", "permissive", "audit"],
+      "reasoning_compound_type": ["flat", "layered"],
+      "fallback_strategies": ["summarize", "defer_partial", "split_trace"]
+    },
+    
+    "constraints": {
+      "max_reasoning_chains": 5,
+      "max_evidence_sources": 10,
+      "max_analysis_depth": 3,
+      "recursion_allowed": true,
+      "recursion_depth_max": 2,
+      "token_budget": {
+        "soft_limit": 0.6,
+        "hard_limit": 0.8,
+        "reserve": 0.2
+      },
+      "timeout_seconds": 300,
+      "max_retries": 0
+    },
+    
+    "reasoning_envelope": {
+      "token_budget_soft": 3000,
+      "token_budget_hard": 4000,
+      "fallback_strategy": "summarize"
+    },
+    
+    "enforcement": {
+      "pre_execution": {
+        "validate_context": true,
+        "estimate_tokens": true,
+        "check_capabilities": true
+      },
+      "during_execution": {
+        "monitor_token_usage": true,
+        "enforce_bounds": true,
+        "track_reasoning_depth": true,
+        "check_recursion_depth": true,
+        "halt_on_recursion_limit": true
+      },
+      "post_execution": {
+        "validate_output": true,
+        "verify_schema": true,
+        "audit_trail": true
+      }
+    },
+    
+    "escalation": {
+      "deferral_policy": {
+        "max_deferrals": 3,
+        "escalation_chain": [
+          "retry_with_context",
+          "senior_agent",
+          "human_review",
+          "committee_decision"
+        ],
+        "timeout_per_level": [60, 300, 3600, 86400]
+      },
+      "notification": {
+        "channels": ["log", "webhook", "email"],
+        "include_trace": true,
+        "privacy_mode": "redact_sensitive"
+      }
+    },
+    
+    "quality_metrics": {
+      "required": {
+        "evidence_sources_min": 2,
+        "citation_accuracy": 1.0,
+        "schema_compliance": 1.0
+      },
+      "recommended": {
+        "reasoning_clarity": 0.8,
+        "decision_confidence": 0.7,
+        "token_efficiency": 0.6
+      }
+    }
+  },
+  
+  "prompt_metadata": {
+    "template": {
+      "header": "---\ncot_contract:\n  version: ${contract_version}\n  mode: ${validation_mode}\n  context: ${context_level}\n---\n",
+      "footer": "\n---\ncot_validation:\n  schema: ${schema_version}\n  hash: ${output_hash}\n---"
+    },
+    "variables": {
+      "contract_version": "string",
+      "validation_mode": ["strict", "permissive", "audit"],
+      "context_level": ["full_file_access", "summary_only", "chat_context", "mixed", "undefined"],
+      "schema_version": "string",
+      "output_hash": "string"
+    }
+  },
+  
+  "runtime_api": {
+    "endpoints": {
+      "validate": {
+        "method": "POST",
+        "path": "/api/v1/cot/validate",
+        "input": {
+          "reasoning_trace": "string",
+          "contract": "object",
+          "options": "object"
+        },
+        "output": {
+          "valid": "boolean",
+          "errors": "array",
+          "warnings": "array",
+          "metrics": "object"
+        }
+      },
+      "estimate": {
+        "method": "POST",
+        "path": "/api/v1/cot/estimate",
+        "input": {
+          "task": "string",
+          "context": "object"
+        },
+        "output": {
+          "token_estimate": "number",
+          "complexity_score": "number",
+          "recommended_decomposition": "boolean"
+        }
+      },
+      "escalate": {
+        "method": "POST",
+        "path": "/api/v1/cot/escalate",
+        "input": {
+          "deferred_trace": "string",
+          "escalation_level": "number",
+          "context": "object"
+        },
+        "output": {
+          "escalation_id": "string",
+          "next_action": "string",
+          "eta_seconds": "number"
+        }
+      }
+    }
+  },
+  
+  "implementation_requirements": {
+    "must_implement": [
+      "schema_validation",
+      "token_monitoring",
+      "deferral_handling",
+      "error_reporting"
+    ],
+    "should_implement": [
+      "complexity_estimation",
+      "automatic_decomposition",
+      "escalation_management",
+      "audit_logging"
+    ],
+    "may_implement": [
+      "custom_risk_scoring",
+      "enhanced_monitoring",
+      "ml_based_validation",
+      "predictive_token_usage"
+    ]
+  },
+  
+  "examples": {
+    "minimal_prompt": "---\ncot_contract:\n  version: 1.0.0\n  mode: strict\n  context: full_file_access\n---\n\n[Your prompt here]\n\n---\ncot_validation:\n  schema: 6.0.0\n  hash: ${compute_after_generation}\n---",
+    
+    "validation_request": {
+      "reasoning_trace": "## 🧠 Reasoning Trace...",
+      "contract": {
+        "version": "1.0.0",
+        "mode": "strict"
+      },
+      "options": {
+        "include_warnings": true,
+        "detailed_metrics": true
+      }
+    }
+  },
+  
+  "registry": {
+    "official_implementations": [
+      {
+        "name": "cot-validator-python",
+        "version": "1.2.0",
+        "language": "python",
+        "url": "https://pypi.org/project/cot-validator/"
+      },
+      {
+        "name": "cot-validator-js",
+        "version": "1.2.0",
+        "language": "javascript",
+        "url": "https://www.npmjs.com/package/@cot-standard/validator"
+      }
+    ],
+    "certified_runners": [
+      {
+        "name": "OpenAI GPT Runtime",
+        "version": "2.0.0",
+        "compliance_level": "standard",
+        "certificate_id": "COT-2024-001"
+      }
+    ]
+  }
+}

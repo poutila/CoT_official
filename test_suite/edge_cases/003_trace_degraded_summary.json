@@ -1,0 +1,102 @@
+{
+  "test_metadata": {
+    "id": "003_trace_degraded_summary",
+    "category": "edge_cases",
+    "description": "Tests compression Level 2 (Semantic Compression) when approaching token limits",
+    "version": "7.0.0",
+    "expected_behavior": "graceful_degradation"
+  },
+  
+  "trace": {
+    "metadata": {
+      "schema": "chain_of_thought/v7.0.0",
+      "validation": "required",
+      "runtime_contract": "2.0.0",
+      "compression_level": 2,
+      "original_size": 4523,
+      "compressed_size": 487,
+      "compression_ratio": 0.89,
+      "fallback_strategy": "semantic_compress",
+      "token_usage": 3850,
+      "token_limit": 4000
+    },
+    
+    "compressed_decision": {
+      "decision": "refactor_large_module",
+      "risk_level": "high",
+      "evidence_count": 5,
+      "confidence": 0.92,
+      "rationale": ["srp_violation", "cyclomatic_complexity", "test_coverage_low"],
+      "affected_files": ["user_auth.py", "session_manager.py", "token_handler.py"],
+      "action": "split_into_three_modules",
+      "reversibility": "moderate_effort",
+      "trace_hash": "sha256:a7b9c2d4e5f6789012345678901234567890abcdef123456"
+    },
+    
+    "compressed_evidence": [
+      {
+        "source": "auth_module.py:1523",
+        "summary": "class exceeds 1000 lines",
+        "relevance": "SRP violation"
+      },
+      {
+        "source": "metrics_report.md:45",
+        "summary": "complexity score: 47",
+        "relevance": "High complexity"
+      },
+      {
+        "source": "test_coverage.xml:112",
+        "summary": "coverage: 42%",
+        "relevance": "Below threshold"
+      },
+      {
+        "source": "architecture_review.md:89",
+        "summary": "split recommended",
+        "relevance": "Expert opinion"
+      },
+      {
+        "source": "performance_log.json:234",
+        "summary": "response time: 1.2s",
+        "relevance": "Performance impact"
+      }
+    ],
+    
+    "compressed_analysis": {
+      "primary": "module_too_large",
+      "alternative": "refactor_in_place",
+      "rejected_because": "does_not_address_root_cause",
+      "impact": "3_modules_affected",
+      "validation_status": "all_checks_passed",
+      "confidence_level": "high"
+    },
+    
+    "decompression_info": {
+      "full_trace_location": "traces/full/refactor_large_module_20240126_143022.md",
+      "retrieval_command": "cot-validate --decompress sha256:a7b9c2d4e5f6789012345678901234567890abcdef123456",
+      "compression_trigger": "token_limit_approached",
+      "information_loss": ["detailed_quotes", "intermediate_reasoning_steps"],
+      "preserved_elements": ["decision", "risk_level", "evidence_count", "action"]
+    }
+  },
+  
+  "validation_result": {
+    "valid": true,
+    "compression_applied": true,
+    "compression_level": 2,
+    "information_completeness": 0.75,
+    "decision_preserved": true,
+    "evidence_preserved": true,
+    "action_preserved": true,
+    "decompression_available": true,
+    "semantic_integrity": "maintained",
+    "schema_compliance": "v7.0.0_compressed"
+  },
+  
+  "test_assertions": {
+    "compression_triggered_correctly": true,
+    "essential_information_preserved": true,
+    "decompression_path_valid": true,
+    "compressed_format_parseable": true,
+    "validation_passes": true
+  }
+}

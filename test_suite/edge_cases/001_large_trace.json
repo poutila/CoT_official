@@ -1,0 +1,56 @@
+{
+  "test_metadata": {
+    "id": "001",
+    "category": "edge_cases",
+    "description": "Large valid trace with 15 evidence items and conflict resolution",
+    "version": "7.0.0"
+  },
+  
+  "expected_result": {
+    "valid": true,
+    "errors": [],
+    "warnings": [
+      {
+        "code": "LARGE_EVIDENCE_SET",
+        "message": "Evidence count (15) significantly exceeds typical usage"
+      },
+      {
+        "code": "HIGH_COMPLEXITY",
+        "message": "Reasoning complexity score: 0.92"
+      }
+    ],
+    
+    "metrics": {
+      "evidence_count": 15,
+      "freshness_scores": [0.95, 1.0, 0.98, 0.96, 0.94, 0.99, 0.97, 0.95, 0.93, 0.91, 0.96, 0.98, 0.94, 0.97, 0.99],
+      "average_freshness": 0.96,
+      "risk_appropriate": true,
+      "schema_compliant": true,
+      "reasoning_depth": 2,
+      "has_conflict_resolution": true,
+      "conflict_strategy": "weighted_consensus",
+      "has_minority_report": true,
+      "token_estimate": 2800,
+      "complexity_score": 0.92
+    },
+    
+    "validation_details": {
+      "schema_version": "7.0.0",
+      "contract_version": "2.0.0",
+      "timestamp_validation": "pass",
+      "evidence_validation": "pass",
+      "risk_validation": "pass",
+      "action_validation": "pass",
+      "critical_risk_evidence": "pass",
+      "conflict_resolution": "pass",
+      "phase_planning": "detected"
+    },
+    
+    "performance_metrics": {
+      "validation_time_ms": 145,
+      "evidence_processing_ms": 89,
+      "schema_validation_ms": 23,
+      "total_validation_ms": 257
+    }
+  }
+}

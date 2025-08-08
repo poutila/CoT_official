@@ -1,0 +1,37 @@
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+mQINBGXXXXXXXXXXXBEACqRlVGFyb3RoZXIgU3RhbmRhcmRzIENvbW1pdHRlZQ==
+EXAMPLE PUBLIC KEY - REPLACE WITH ACTUAL COMMITTEE KEY
+
+This key would be generated using:
+gpg --armor --export committee@cot-standard.org
+
+Key Details:
+- Key ID: 0xABCDEF123456789
+- Fingerprint: 1234 5678 9ABC DEF0 1234 5678 9ABC DEF0 1234 5678
+- Algorithm: RSA 4096
+- Created: 2024-01-01
+- Expires: 2026-01-01
+- Usage: Signing, Certification
+
+User IDs:
+- CoT Standards Committee <committee@cot-standard.org>
+- CoT Release Signing Key <releases@cot-standard.org>
+
+To import this key:
+gpg --import cot-committee.pubkey
+
+To verify signatures:
+gpg --verify chain_of_thought.bundle.json.sig chain_of_thought.bundle.json
+
+Trust this key:
+gpg --edit-key committee@cot-standard.org
+> trust
+> 5 (ultimate trust)
+> quit
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+=XXXX
+-----END PGP PUBLIC KEY BLOCK-----

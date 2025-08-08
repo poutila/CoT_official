@@ -1,0 +1,14 @@
+{
+  "schema_present": true,
+  "risk_level": "medium",
+  "evidence_count": 3,
+  "has_analysis": true,
+  "has_validation": true,
+  "has_action": true,
+  "structure_hash": "a1b2c3d4e5f6789012345678901234567",
+  "metadata": {
+    "generated_at": "2024-01-26T14:00:00Z",
+    "tool_version": "7.0.0",
+    "test_case": "example"
+  }
+}

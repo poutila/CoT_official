@@ -1,0 +1,78 @@
+{
+  "$schema": "https://cot-standard.org/schemas/key-registry/v1.0.0.json",
+  "registry_version": "1.0.0",
+  "last_updated": "2024-01-26T12:00:00Z",
+  
+  "signing_keys": [
+    {
+      "key_id": "0xABCDEF123456789",
+      "fingerprint": "1234 5678 9ABC DEF0 1234 5678 9ABC DEF0 1234 5678",
+      "algorithm": "RSA-4096",
+      "created": "2024-01-01T00:00:00Z",
+      "expires": "2026-01-01T00:00:00Z",
+      "status": "active",
+      "usage": ["signing", "certification"],
+      "owner": {
+        "name": "CoT Standards Committee",
+        "email": "committee@cot-standard.org",
+        "role": "Release Signing Authority"
+      },
+      "public_key_url": "https://cot-standard.org/keys/cot-committee.pubkey",
+      "key_server_urls": [
+        "hkps://keys.openpgp.org",
+        "hkps://keyserver.ubuntu.com"
+      ],
+      "revocation_url": "https://cot-standard.org/keys/revocations/",
+      "trust_signatures": [
+        {
+          "signer": "Previous Committee Chair",
+          "key_id": "0x987654321FEDCBA",
+          "date": "2024-01-01T00:00:00Z"
+        }
+      ]
+    },
+    {
+      "key_id": "0x987654321FEDCBA",
+      "fingerprint": "9876 5432 1FED CBA0 9876 5432 1FED CBA0 9876 5432",
+      "algorithm": "RSA-4096",
+      "created": "2022-01-01T00:00:00Z",
+      "expires": "2024-12-31T23:59:59Z",
+      "status": "rotating",
+      "usage": ["signing"],
+      "owner": {
+        "name": "Previous CoT Committee",
+        "email": "old-committee@cot-standard.org",
+        "role": "Previous Release Authority"
+      },
+      "public_key_url": "https://cot-standard.org/keys/old-committee.pubkey",
+      "transition": {
+        "new_key_id": "0xABCDEF123456789",
+        "transition_date": "2024-01-01T00:00:00Z",
+        "announcement_url": "https://cot-standard.org/announcements/key-rotation-2024"
+      }
+    }
+  ],
+  
+  "key_policies": {
+    "rotation_interval_days": 730,
+    "algorithm_requirements": {
+      "minimum_bits": 4096,
+      "allowed_algorithms": ["RSA", "Ed25519"]
+    },
+    "expiry_warning_days": 90,
+    "multi_signature_required": false,
+    "backup_key_required": true
+  },
+  
+  "verification": {
+    "instructions_url": "https://cot-standard.org/docs/verify-signatures",
+    "automated_verification": {
+      "endpoint": "https://api.cot-standard.org/v1/verify",
+      "method": "POST",
+      "example": {
+        "file": "base64-encoded-file-content",
+        "signature": "base64-encoded-signature"
+      }
+    }
+  }
+}

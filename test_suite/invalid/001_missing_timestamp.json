@@ -1,0 +1,49 @@
+{
+  "test_metadata": {
+    "id": "001",
+    "category": "invalid",
+    "description": "Missing required timestamp fields in evidence",
+    "version": "7.0.0"
+  },
+  
+  "expected_result": {
+    "valid": false,
+    "errors": [
+      {
+        "code": "MISSING_REQUIRED_FIELD",
+        "field": "evidence[0].timestamp",
+        "message": "Evidence item missing required 'timestamp' field"
+      },
+      {
+        "code": "MISSING_REQUIRED_FIELD",
+        "field": "evidence[1].timestamp",
+        "message": "Evidence item missing required 'timestamp' field"
+      }
+    ],
+    "warnings": [
+      {
+        "code": "NO_FRESHNESS_SCORE",
+        "message": "Cannot calculate freshness without timestamps"
+      }
+    ],
+    
+    "metrics": {
+      "evidence_count": 2,
+      "freshness_scores": [],
+      "average_freshness": null,
+      "risk_appropriate": true,
+      "schema_compliant": false,
+      "reasoning_depth": 1,
+      "token_estimate": 380
+    },
+    
+    "validation_details": {
+      "schema_version": "7.0.0",
+      "contract_version": "2.0.0",
+      "timestamp_validation": "fail",
+      "evidence_validation": "fail",
+      "risk_validation": "pass",
+      "action_validation": "pass"
+    }
+  }
+}

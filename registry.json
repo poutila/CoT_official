@@ -1,0 +1,158 @@
+{
+  "$schema": "https://cot-standard.org/schemas/registry/v1.0.0.json",
+  "registry_version": "1.0.0",
+  "last_updated": "2024-01-26T12:00:00Z",
+  "update_frequency": "daily",
+  "changelog_url": "https://github.com/cot-standard/spec/blob/main/CHANGELOG.md",
+  "release_notes_url": "https://github.com/cot-standard/spec/blob/main/CHANGELOG.md",
+  
+  "mirrors": [
+    {
+      "name": "GitHub Mirror",
+      "url": "https://raw.githubusercontent.com/cot-standard/spec/main/registry.json",
+      "type": "primary",
+      "location": "global"
+    },
+    {
+      "name": "CDN Mirror",
+      "url": "https://cdn.jsdelivr.net/gh/cot-standard/spec@main/registry.json",
+      "type": "secondary",
+      "location": "global"
+    },
+    {
+      "name": "GitLab Mirror",
+      "url": "https://gitlab.com/cot-standard/spec/-/raw/main/registry.json",
+      "type": "backup",
+      "location": "europe"
+    }
+  ],
+  
+  "latest": {
+    "version": "7.0.0",
+    "released": "2024-01-26",
+    "stability": "stable",
+    "download_url": "https://github.com/cot-standard/spec/releases/tag/v7.0.0",
+    "bundle_url": "https://cot-standard.org/bundles/v7.0.0/chain_of_thought.bundle.json",
+    "release_notes_url": "CHANGELOG.md",
+    "checksum": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha512": "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce"
+    }
+  },
+  
+  "versions": [
+    {
+      "version": "7.0.0",
+      "released": "2024-01-26",
+      "stability": "stable",
+      "min_validator": "2.0.0",
+      "breaking_changes": true,
+      "deprecated": false,
+      "sunset_date": null,
+      "changelog_url": "https://cot-standard.org/changelog/v7.0.0",
+      "release_notes_url": "https://github.com/cot-standard/spec/blob/main/CHANGELOG.md#700---2024-01-26",
+      "features": [
+        "timestamp_requirements",
+        "recursive_reasoning",
+        "token_management",
+        "freshness_scoring"
+      ]
+    },
+    {
+      "version": "6.0.0",
+      "released": "2024-01-20",
+      "stability": "stable",
+      "min_validator": "1.2.0",
+      "breaking_changes": false,
+      "deprecated": false,
+      "sunset_date": "2025-01-26",
+      "changelog_url": "https://cot-standard.org/changelog/v6.0.0",
+      "release_notes_url": "https://github.com/cot-standard/spec/blob/main/CHANGELOG.md#600---2024-01-20"
+    },
+    {
+      "version": "5.0.0",
+      "released": "2023-12-01",
+      "stability": "deprecated",
+      "min_validator": "1.1.0",
+      "breaking_changes": false,
+      "deprecated": true,
+      "sunset_date": "2024-12-01",
+      "migration_guide": "https://cot-standard.org/migrate/v5-to-v6",
+      "release_notes_url": "https://github.com/cot-standard/spec/blob/main/CHANGELOG.md#500---2023-12-01"
+    }
+  ],
+  
+  "validators": {
+    "latest": "2.0.0",
+    "implementations": [
+      {
+        "language": "python",
+        "package": "cot-validator",
+        "version": "2.0.0",
+        "repository": "https://pypi.org/project/cot-validator/",
+        "install": "pip install cot-validator>=2.0.0"
+      },
+      {
+        "language": "javascript",
+        "package": "@cot-standard/validator",
+        "version": "2.0.0",
+        "repository": "https://www.npmjs.com/package/@cot-standard/validator",
+        "install": "npm install @cot-standard/validator@^2.0.0"
+      },
+      {
+        "language": "rust",
+        "package": "cot_validator",
+        "version": "2.0.0",
+        "repository": "https://crates.io/crates/cot_validator",
+        "install": "cargo add cot_validator@2.0.0"
+      }
+    ]
+  },
+  
+  "api": {
+    "version_check": {
+      "endpoint": "https://api.cot-standard.org/v1/version/check",
+      "method": "GET",
+      "parameters": {
+        "current": "string (version)",
+        "channel": "string (stable|beta|nightly)"
+      },
+      "response": {
+        "current_version": "string",
+        "latest_version": "string",
+        "update_available": "boolean",
+        "update_urgency": "string (low|medium|high|critical)",
+        "breaking_changes": "boolean"
+      }
+    },
+    
+    "validate": {
+      "endpoint": "https://api.cot-standard.org/v1/validate",
+      "method": "POST",
+      "rate_limit": "100 requests per minute",
+      "authentication": "optional (API key for higher limits)"
+    }
+  },
+  
+  "announcements": [
+    {
+      "date": "2024-01-26",
+      "type": "release",
+      "title": "CoT v7.0.0 Released",
+      "url": "https://cot-standard.org/blog/v7-release",
+      "release_notes_url": "https://github.com/cot-standard/spec/blob/main/CHANGELOG.md#700---2024-01-26"
+    },
+    {
+      "date": "2024-01-20",
+      "type": "security",
+      "title": "Important: Timestamp validation now required",
+      "url": "https://cot-standard.org/security/timestamp-requirement"
+    }
+  ],
+  
+  "quick_check": {
+    "description": "Use curl to check latest version",
+    "command": "curl -s https://cot-standard.org/registry.json | jq .latest.version",
+    "alternate": "wget -qO- https://cot-standard.org/registry.json | python -c \"import sys,json; print(json.load(sys.stdin)['latest']['version'])\""
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "test_metadata": {
+    "id": "003",
+    "category": "valid",
+    "description": "Valid reasoning with token limit fallback applied",
+    "version": "7.0.0"
+  },
+  
+  "expected_result": {
+    "valid": true,
+    "errors": [],
+    "warnings": [
+      {
+        "code": "TOKEN_LIMIT_APPROACHED",
+        "message": "Token usage at 87.5%, fallback strategy applied"
+      },
+      {
+        "code": "EVIDENCE_TRUNCATED", 
+        "message": "5 evidence items omitted due to token limit"
+      }
+    ],
+    
+    "metrics": {
+      "evidence_count": 8,
+      "evidence_shown": 3,
+      "freshness_scores": [0.99, 1.0, 0.95],
+      "average_freshness": 0.98,
+      "risk_appropriate": true,
+      "schema_compliant": true,
+      "reasoning_depth": 1,
+      "token_estimate": 3500,
+      "token_limit": 4000,
+      "token_percentage": 87.5,
+      "fallback_applied": true
+    },
+    
+    "validation_details": {
+      "schema_version": "7.0.0",
+      "contract_version": "2.0.0",
+      "timestamp_validation": "pass",
+      "evidence_validation": "pass",
+      "risk_validation": "pass",
+      "action_validation": "pass",
+      "envelope_validation": "pass",
+      "fallback_strategy": "summarize"
+    }
+  }
+}

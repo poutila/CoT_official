@@ -1,0 +1,33 @@
+{
+  "test_metadata": {
+    "id": "001",
+    "category": "valid",
+    "description": "Basic valid reasoning trace with all required fields",
+    "version": "7.0.0"
+  },
+  
+  "expected_result": {
+    "valid": true,
+    "errors": [],
+    "warnings": [],
+    
+    "metrics": {
+      "evidence_count": 2,
+      "freshness_scores": [0.82, 1.0],
+      "average_freshness": 0.91,
+      "risk_appropriate": true,
+      "schema_compliant": true,
+      "reasoning_depth": 1,
+      "token_estimate": 450
+    },
+    
+    "validation_details": {
+      "schema_version": "7.0.0",
+      "contract_version": "2.0.0",
+      "timestamp_validation": "pass",
+      "evidence_validation": "pass",
+      "risk_validation": "pass",
+      "action_validation": "pass"
+    }
+  }
+}

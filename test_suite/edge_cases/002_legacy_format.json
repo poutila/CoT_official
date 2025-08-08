@@ -1,0 +1,62 @@
+{
+  "test_metadata": {
+    "id": "002",
+    "category": "edge_cases",
+    "description": "Legacy format trace that should be converted to v7.0.0",
+    "version": "legacy",
+    "target_version": "7.0.0"
+  },
+  
+  "expected_result": {
+    "valid": true,
+    "errors": [],
+    "warnings": [
+      {
+        "code": "LEGACY_FORMAT_DETECTED",
+        "message": "Trace uses legacy format, converted to v7.0.0"
+      },
+      {
+        "code": "MISSING_SCHEMA_HEADER",
+        "message": "No schema declaration found, assumed legacy"
+      },
+      {
+        "code": "TIMESTAMP_APPROXIMATED",
+        "message": "Timestamps extracted from text, may be approximate"
+      }
+    ],
+    
+    "metrics": {
+      "evidence_count": 2,
+      "freshness_scores": [0.95, 1.0],
+      "average_freshness": 0.975,
+      "risk_appropriate": true,
+      "schema_compliant": false,
+      "format_converted": true,
+      "reasoning_depth": 1,
+      "token_estimate": 320
+    },
+    
+    "conversion_details": {
+      "source_format": "legacy_text",
+      "target_format": "chain_of_thought/v7.0.0",
+      "conversion_success": true,
+      "fields_mapped": {
+        "context": "extracted",
+        "risk": "extracted", 
+        "evidence": "parsed",
+        "analysis": "converted",
+        "decision": "extracted",
+        "validation": "converted"
+      }
+    },
+    
+    "validation_details": {
+      "schema_version": "legacy",
+      "converted_to": "7.0.0",
+      "timestamp_validation": "approximated",
+      "evidence_validation": "pass",
+      "risk_validation": "pass",
+      "action_validation": "pass"
+    }
+  }
+}

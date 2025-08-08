@@ -1,0 +1,157 @@
+{
+  "$schema": "https://cot-standard.org/schemas/bundle/v1.0.0.json",
+  "name": "chain-of-thought-specification",
+  "version": "7.0.0",
+  "description": "Official Chain-of-Thought reasoning specification bundle",
+  "released": "2024-01-26",
+  "license": "CC BY 4.0",
+  
+  "integrity": {
+    "bundle_hash": "sha256:[pending-calculate-after-finalization]",
+    "signature": {
+      "gpg_signature": "[pending-sign-with-committee-key]",
+      "signing_key": "0xABCDEF123456789",
+      "signer": "CoT Standards Committee <committee@cot-standard.org>",
+      "sig_issued_at": "2024-01-26T12:00:00Z",
+      "sig_expires_at": "2025-01-26T12:00:00Z",
+      "timestamp": "2024-01-26T12:00:00Z"
+    },
+    "verification_command": "gpg --verify chain_of_thought.bundle.json.sig chain_of_thought.bundle.json"
+  },
+  
+  "bundle": {
+    "core": {
+      "specification": {
+        "file": "CHAIN_OF_THOUGHT.md",
+        "version": "7.0.0",
+        "hash": "sha256:[pending]",
+        "required": true
+      },
+      "runtime_contract": {
+        "file": "COT_RUNTIME_CONTRACT.json",
+        "version": "2.0.0",
+        "hash": "sha256:[pending]",
+        "required": true
+      }
+    },
+    
+    "rfcs": {
+      "applicability": {
+        "file": "RFC-001_CoT_Applicability.md",
+        "version": "1.0.0",
+        "hash": "sha256:[pending]",
+        "required": false
+      },
+      "recursive_reasoning": {
+        "file": "RFC-002_Recursive_Reasoning.md",
+        "version": "1.0.0",
+        "hash": "sha256:[pending]",
+        "required": false
+      }
+    },
+    
+    "supporting": {
+      "reasoning_envelope": {
+        "file": "CoT_REASONING_ENVELOPE.md",
+        "version": "1.0.0",
+        "hash": "sha256:[pending]",
+        "required": false
+      },
+      "interoperability": {
+        "file": "COT_INTEROPERABILITY.md",
+        "version": "1.0.0",
+        "hash": "sha256:[pending]",
+        "required": false
+      },
+      "legacy_fallback": {
+        "file": "COT_LEGACY_FALLBACK_PROMPT.md",
+        "version": "1.0.0",
+        "hash": "sha256:[pending]",
+        "required": false
+      },
+      "standard_authority": {
+        "file": "COT_STANDARD_AUTHORITY.md",
+        "version": "1.0.0",
+        "hash": "sha256:[pending]",
+        "required": false
+      }
+    }
+  },
+  
+  "dependencies": {
+    "validators": {
+      "python": {
+        "package": "cot-validator",
+        "version": ">=2.0.0",
+        "repository": "https://pypi.org/project/cot-validator/"
+      },
+      "javascript": {
+        "package": "@cot-standard/validator",
+        "version": ">=2.0.0",
+        "repository": "https://www.npmjs.com/package/@cot-standard/validator"
+      }
+    },
+    
+    "schemas": {
+      "reasoning_trace": "https://cot-standard.org/schemas/cot/v7.0.0.json",
+      "runtime_contract": "https://cot-standard.org/schemas/runtime-contract/v2.0.0.json",
+      "bundle": "https://cot-standard.org/schemas/bundle/v1.0.0.json"
+    }
+  },
+  
+  "compatibility": {
+    "minimum_version": "5.0.0",
+    "maximum_version": "7.0.0",
+    "breaking_changes": [
+      {
+        "version": "7.0.0",
+        "description": "Added timestamp requirements to evidence schema",
+        "migration": "Add timestamp object with at least 'created' field to all evidence items"
+      },
+      {
+        "version": "7.0.0",
+        "description": "Added recursion support to runtime contract",
+        "migration": "Set recursion_allowed=false for backward compatibility"
+      }
+    ]
+  },
+  
+  "validation": {
+    "commands": {
+      "validate_bundle": "cot-validate --bundle chain_of_thought.bundle.json",
+      "validate_trace": "cot-validate --trace <file> --contract COT_RUNTIME_CONTRACT.json",
+      "check_version": "cot-validate --check-version <trace_file>"
+    },
+    
+    "cli_usage": [
+      {
+        "description": "Validate a reasoning trace",
+        "command": "cot-validate --trace reasoning.md --contract COT_RUNTIME_CONTRACT.json --version 7.0.0"
+      },
+      {
+        "description": "Validate with specific freshness threshold",
+        "command": "cot-validate --trace reasoning.md --freshness-threshold 0.8"
+      },
+      {
+        "description": "Validate bundle integrity",
+        "command": "cot-validate --verify-bundle chain_of_thought.bundle.json"
+      }
+    ]
+  },
+  
+  "manifest": {
+    "total_files": 8,
+    "total_size_kb": "[pending]",
+    "languages": ["markdown", "json"],
+    "categories": ["specification", "contract", "rfc", "guide"],
+    "tags": ["reasoning", "ai", "chain-of-thought", "validation", "standard"]
+  },
+  
+  "metadata": {
+    "authors": ["CoT Standards Committee"],
+    "contact": "info@cot-standard.org",
+    "repository": "https://github.com/cot-standard/chain-of-thought-spec",
+    "issues": "https://github.com/cot-standard/chain-of-thought-spec/issues",
+    "changelog": "https://github.com/cot-standard/chain-of-thought-spec/blob/main/CHANGELOG.md"
+  }
+}

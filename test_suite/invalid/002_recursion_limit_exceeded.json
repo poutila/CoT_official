@@ -1,0 +1,44 @@
+{
+  "test_metadata": {
+    "id": "002",
+    "category": "invalid", 
+    "description": "Invalid reasoning - recursion depth exceeds limit",
+    "version": "7.0.0"
+  },
+  
+  "expected_result": {
+    "valid": false,
+    "errors": [
+      {
+        "code": "RECURSION_LIMIT_EXCEEDED",
+        "field": "recursion_depth",
+        "message": "Recursion depth 3 exceeds maximum allowed depth of 2",
+        "severity": "critical"
+      }
+    ],
+    "warnings": [],
+    
+    "metrics": {
+      "evidence_count": 1,
+      "freshness_scores": [1.0],
+      "average_freshness": 1.0,
+      "risk_appropriate": true,
+      "schema_compliant": false,
+      "reasoning_depth": 1,
+      "recursion_depth": 3,
+      "recursion_limit": 2,
+      "token_estimate": 380
+    },
+    
+    "validation_details": {
+      "schema_version": "7.0.0",
+      "contract_version": "2.0.0",
+      "timestamp_validation": "pass",
+      "evidence_validation": "pass",
+      "risk_validation": "pass",
+      "action_validation": "fail",
+      "recursion_validation": "fail",
+      "termination_reason": "RECURSION_LIMIT_EXCEEDED"
+    }
+  }
+}
