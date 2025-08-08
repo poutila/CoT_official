@@ -9,9 +9,10 @@ from typing import Any
 from chunker import ChunkingConfig, SemanticChunker
 
 # Import our custom components
+# Will be updated after enrichers are moved
 from context_fixed_enricher import ContextFixedEnricher
 from embeddings import EmbeddingProviderConfig, SentenceTransformerProvider
-from rag_models import (
+from .models import (
     Document,
     IndexingResult,
     RAGConfig,

@@ -7,7 +7,7 @@ They're designed as a bridge for future integration without modifying our core c
 from abc import ABC
 from typing import Any
 
-from rag_models import Document
+from .models import Document
 
 
 class BaseTextSplitterAdapter(ABC):
