@@ -1,0 +1,42 @@
+Metadata-Version: 2.4
+Name: CoT-official
+Version: 0.1.0
+Summary: Ultimate standard for Chain of thought
+Home-page: https://github.com/cot-standard/chain-of-thought-spec
+Author: CoT Standards Committee
+Author-email: committee@cot-standard.org
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: click
+Requires-Dist: pydantic
+Requires-Dist: rapidfuzz
+Requires-Dist: sentence-transformers
+Requires-Dist: scikit-learn
+Requires-Dist: typing-extensions
+Requires-Dist: types-pyyaml>=6.0.12.20250516
+Requires-Dist: pyyaml>=6.0.2
+Requires-Dist: markdown-it-py>=3.0.0
+Requires-Dist: tiktoken>=0.10.0
+Requires-Dist: faiss-cpu>=1.11.0.post1
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Requires-Dist: pytest-asyncio; extra == "dev"
+Requires-Dist: pytest-mock; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: bandit; extra == "dev"
+Requires-Dist: safety; extra == "dev"
+Requires-Dist: mkdocs; extra == "dev"
+Requires-Dist: mkdocs-material; extra == "dev"
+Requires-Dist: mkdocstrings[python]; extra == "dev"
+Requires-Dist: nox; extra == "dev"
+Requires-Dist: vulture; extra == "dev"
+Requires-Dist: pipreqs; extra == "dev"
+Dynamic: author
+Dynamic: author-email
+Dynamic: home-page
+Dynamic: requires-python
+
+# My Python Project

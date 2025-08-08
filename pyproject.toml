@@ -126,3 +126,10 @@ exclude = ["*/test_*.py", "tests/"]
 min_confidence = 60
 ignore_names = ["model_config", "metadata", "field_validator"]
 
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+    "pytest-cov>=6.2.1",
+    "pytest-mock>=3.14.1",
+]
+

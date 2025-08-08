@@ -2,7 +2,6 @@
 
 import sys
 from pathlib import Path
-from typing import List, Optional
 
 from markdown_validator_enricher import MarkdownDocEnricher
 
@@ -22,7 +21,6 @@ def markdown_doc_enricher_test(
     json_path.write_text(md_enricher_doc.model_dump_json(indent=2), encoding="utf-8")
 
 
-
 def main():
     print(sys.argv)
     document_path = sys.argv[1]
@@ -30,6 +28,7 @@ def main():
         print("Please provide a path to the markdown document.")
         return
     markdown_doc_enricher_test(document_path)
+
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,3 @@
+cot_validate_wrapper
+cot_version_check
+validate_bundle

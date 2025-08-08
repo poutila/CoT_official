@@ -1,10 +1,8 @@
 from pathlib import Path
+
 from markdown_it import MarkdownIt
 from markdown_it.tree import SyntaxTreeNode
-from typing import List, Dict, Optional, Any, Tuple, Union
-import re
 from markdown_pydantic_model import MarkdownDoc, MarkdownSection
-from pprint import pprint
 from sluggify_util import slugify
 
 
@@ -12,21 +10,17 @@ class MarkdownDocumentValidator:
     def __init__(self, path: Path):
         self.md = MarkdownIt()
         self.path = path
-        self.content = path.read_text(encoding='utf-8')
+        self.content = path.read_text(encoding="utf-8")
         self.tree = SyntaxTreeNode(self.md.parse(self.content))
         self.walk = self.tree.walk(include_self=False)
         self.doc_cache: dict[Path, MarkdownDoc] = {}
 
-    def validate_links(self, links: List[Tuple[str, Optional[str]]]) -> dict[str, list[str]]:
+    def validate_links(self, links: list[tuple[str, str | None]]) -> dict[str, list[str]]:
         """
         Validate that all links in the MarkdownDoc point to existing files and anchors.
         Returns a dict with keys: 'valid_file', 'invalid_file', 'invalid_anchor'
         """
-        results = {
-            "valid_file": [],
-            "invalid_file": [],
-            "invalid_anchor": []
-        }
+        results: dict[str, list[str | Path]] = {"valid_file": [], "invalid_file": [], "invalid_anchor": []}
         current_path = self.path.resolve().parent
         # print(f"Validating links in: {current_path} {self.path}")
         links_cleaned = [x for x in links if x not in [None]]
@@ -42,7 +36,9 @@ class MarkdownDocumentValidator:
 
             if anchor:
                 if target_path not in self.doc_cache:
-                    self.doc_cache[target_path] = MarkdownDocumentValidator(target_path).build_validated_doc()
+                    self.doc_cache[target_path] = MarkdownDocumentValidator(
+                        target_path
+                    ).parse_md()
                 if not self.validate_anchor(anchor, self.doc_cache[target_path]):
                     results["invalid_anchor"].append(f"{file_part}#{anchor}")
                     continue
@@ -53,48 +49,48 @@ class MarkdownDocumentValidator:
     def validate_anchor(self, anchor: str, md: MarkdownDoc) -> bool:
         return anchor in {s.slug for s in md.sections}
 
-    def process_node(self, node: SyntaxTreeNode) -> Tuple[str, str|None] | None:
+    def process_node(self, node: SyntaxTreeNode) -> tuple[str, str | None] | None:
         """
         Process a single node to extract section information.
         """
-        if node.type == 'link' and node.children:
-            href = node.attrs.get('href')
-            if href and not href.startswith(('http:', 'https:')):
-                file, anchor = href.split('#', 1) if '#' in href else (href, None)
+        if node.type == "link" and node.children:
+            href = node.attrs.get("href")  # type: ignore[attr-defined]
+            if href and isinstance(href, str) and not href.startswith(("http:", "https:")):
+                file, anchor = href.split("#", 1) if "#" in href else (href, None)
                 return (file.strip(), anchor.strip() if anchor else None)
-            return None
+        return None
 
     def parse_md(self) -> MarkdownDoc:
         """Extract sections from markdown file using AST."""
 
         sections = []
         links = []
-        current_section: Optional[MarkdownSection] = None
+        current_section: MarkdownSection | None = None
 
         for node in self.walk:
-            if node.type == 'link':
+            if node.type == "link":
                 links.append(self.process_node(node))
 
-            if node.type == 'heading' and node.children:
+            if node.type == "heading" and node.children:
                 # Save previous section
                 if current_section:
                     sections.append(current_section)
 
-                heading_text = ''.join(child.content for child in node.children).strip()
-                level = int(node.markup.count('#'))
+                heading_text = "".join(child.content for child in node.children).strip()
+                level = int(node.markup.count("#"))
                 current_section = MarkdownSection(
                     level=level,
                     title=heading_text,
-                    content='',
+                    content="",
                     slug=slugify(heading_text),
                 )
-            elif current_section and node.type == 'paragraph':
-                para = ''.join(child.content for child in node.children or [])
-                current_section.content += para + '\n'
+            elif current_section and node.type == "paragraph":
+                para = "".join(child.content for child in node.children or [])
+                current_section.content += para + "\n"
 
         if current_section:
             sections.append(current_section)
-        validated_links = self.validate_links(links)
+        validated_links = self.validate_links([link for link in links if link is not None])
         headings_structure_valid = True
         headings_levels = [x.level for x in sections]
         for index in range(1, len(headings_levels)):
@@ -103,10 +99,13 @@ class MarkdownDocumentValidator:
             if curr > prev + 1:
                 headings_structure_valid = False
                 break
-        values = {"path": self.path, "content": self.content,
-                "sections": sections, "links": validated_links,
-                "heading_structure_valid": headings_structure_valid}
-        return MarkdownDoc(**values)
+        return MarkdownDoc(
+            path=self.path,
+            content=self.content,
+            sections=sections,
+            links=validated_links,  # type: ignore[arg-type]
+            heading_structure_valid=headings_structure_valid,
+        )
 
 
 if __name__ == "__main__":

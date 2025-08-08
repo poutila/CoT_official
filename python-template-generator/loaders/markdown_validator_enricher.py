@@ -1,13 +1,21 @@
+import re
 from pathlib import Path
-from platform import node
+
+from markdown_base_validator import MarkdownDocumentValidator
 from markdown_it import MarkdownIt
 from markdown_it.tree import SyntaxTreeNode
-from typing import List
-import re
-from markdown_pydantic_model import MarkdownSection, MarkdownSectionRich
-from markdown_pydantic_model import Requirement, ChecklistItem, MarkdownDocExtendedRich, MarkdownDoc, MarkdownTable, MarkdownTableRow
-from markdown_base_validator import MarkdownDocumentValidator
+from markdown_pydantic_model import (
+    ChecklistItem,
+    MarkdownDoc,
+    MarkdownDocExtendedRich,
+    MarkdownSection,
+    MarkdownSectionRich,
+    MarkdownTable,
+    MarkdownTableRow,
+    Requirement,
+)
 from pydantic import ValidationError
+
 
 class MarkdownDocEnricher(MarkdownDocumentValidator):
     def __init__(self, path: Path):
@@ -45,27 +53,27 @@ class MarkdownDocEnricher(MarkdownDocumentValidator):
 
     def extract_rich_doc(self) -> MarkdownDocExtendedRich:
         """Extracts rich MarkdownDoc with additional metadata and structured sections."""
-        base_sections: List[MarkdownSection] = self.base_md_doc.sections
-        sections_rich: List[MarkdownSectionRich] = []
+        base_sections: list[MarkdownSection] = self.base_md_doc.sections
+        sections_rich: list[MarkdownSectionRich] = []
         current: MarkdownSectionRich | None = None
         md = MarkdownIt().enable("table")
         requirement_pattern = re.compile(r".*(MUST NOT|MUST|SHOULD|MAY).*", re.IGNORECASE)
         check_list_pattern = re.compile(r".*(\[-\]|\[( |x)\])", re.IGNORECASE)
 
-        print(f'Total sections: {len(base_sections)}')
+        print(f"Total sections: {len(base_sections)}")
         for section in base_sections:
             content = section.content.strip()
             tree = SyntaxTreeNode(md.parse(content))
             current = MarkdownSectionRich(
-                    level=section.level,
-                    title=section.title,
-                    slug=section.slug,
-                    content=section.content,
-                    requirements=[],
-                    checklist_items=[],
-                    block_types=[],
-                    links={},
-                )
+                level=section.level,
+                title=section.title,
+                slug=section.slug,
+                content=section.content,
+                requirements=[],
+                checklist_items=[],
+                block_types=[],
+                links={},
+            )
 
             for node in tree.walk(include_self=False):
                 # Extract tables
@@ -114,9 +122,7 @@ class MarkdownDocEnricher(MarkdownDocumentValidator):
                                 checked = True
                             current.checklist_items.append(
                                 ChecklistItem(text=line.strip(), checked=checked)
-                                )
-
-
+                            )
 
             sections_rich.append(current)
 
@@ -137,8 +143,9 @@ class MarkdownDocEnricher(MarkdownDocumentValidator):
                 },
             )
         except ValidationError as exc:
-            print(repr(exc.errors()[0]['type']))
+            print(repr(exc.errors()[0]["type"]))
             # raise exc
+
 
 if __name__ == "__main__":
     print("MarkdownDocEnricher module is not intended to be run directly.")

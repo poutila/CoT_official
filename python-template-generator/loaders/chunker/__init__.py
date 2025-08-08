@@ -4,14 +4,14 @@ This module provides intelligent document chunking for RAG applications.
 It ensures code examples are never split and maintains semantic boundaries.
 """
 
-from .models import Chunk, ChunkMetadata, ChunkType, ChunkingConfig
 from .base_chunker import BaseChunker
+from .models import Chunk, ChunkingConfig, ChunkMetadata, ChunkType
 from .semantic_chunker import SemanticChunker
 from .token_counter import TokenCounter
 
 __all__ = [
     "Chunk",
-    "ChunkMetadata", 
+    "ChunkMetadata",
     "ChunkType",
     "ChunkingConfig",
     "BaseChunker",

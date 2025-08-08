@@ -24,28 +24,33 @@ test_file.write_text(test_content)
 try:
     print("\n1. Creating enricher...")
     enricher = ContextFixedEnricher(test_file)
-    
+
     print("\n2. Extracting document...")
     doc = enricher.extract_rich_doc()
-    
+
     print(f"\n3. Document has {len(doc.sections)} sections")
-    
+
     print("\n4. Testing str() on each section...")
     for i, section in enumerate(doc.sections):
         print(f"\n   Section {i}:")
         print(f"   - Type: {type(section)}")
         print(f"   - Has __str__: {hasattr(section, '__str__')}")
-        
+
         # Try to convert to string
         try:
             section_str = str(section)
             print(f"   - str() length: {len(section_str)}")
-            print(f"   - Preview: {section_str[:100]}..." if len(section_str) > 100 else f"   - Content: {section_str}")
+            print(
+                f"   - Preview: {section_str[:100]}..."
+                if len(section_str) > 100
+                else f"   - Content: {section_str}"
+            )
         except Exception as e:
             print(f"   - str() failed: {e}")
             import traceback
+
             traceback.print_exc()
-            
+
 finally:
     # Clean up
     test_file.unlink()

@@ -1,0 +1,11 @@
+README.md
+cot_validate_wrapper.py
+cot_version_check.py
+pyproject.toml
+setup.py
+validate_bundle.py
+CoT_official.egg-info/PKG-INFO
+CoT_official.egg-info/SOURCES.txt
+CoT_official.egg-info/dependency_links.txt
+CoT_official.egg-info/requires.txt
+CoT_official.egg-info/top_level.txt

@@ -4,14 +4,14 @@ This module provides embedding generation capabilities for the RAG system.
 It supports multiple embedding providers with a unified interface.
 """
 
+from .base_provider import BaseEmbeddingProvider
 from .models import (
-    EmbeddingResult,
     EmbeddingBatch,
     EmbeddingMetadata,
     EmbeddingProviderConfig,
     EmbeddingProviderType,
+    EmbeddingResult,
 )
-from .base_provider import BaseEmbeddingProvider
 from .sentence_transformer_provider import SentenceTransformerProvider
 
 __all__ = [

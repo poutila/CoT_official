@@ -9,11 +9,12 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from chunker.token_counter import TokenCounter
 
+
 def test_split_at_token_limit():
     """Test the split_at_token_limit method for infinite loops."""
-    
+
     counter = TokenCounter()
-    
+
     # Test normal case
     print("Test 1: Normal case (max=50, overlap=10)")
     text = "This is a test sentence. " * 20
@@ -22,7 +23,7 @@ def test_split_at_token_limit():
         print(f"  ✓ Success: {len(pieces)} pieces")
     except Exception as e:
         print(f"  ✗ Failed: {e}")
-    
+
     # Test edge case: overlap >= max_tokens
     print("\nTest 2: Edge case (max=50, overlap=50)")
     try:
@@ -30,7 +31,7 @@ def test_split_at_token_limit():
         print(f"  ✓ Success: {len(pieces)} pieces")
     except Exception as e:
         print(f"  ✗ Failed: {e}")
-    
+
     # Test edge case: overlap > max_tokens
     print("\nTest 3: Bad case (max=50, overlap=60)")
     try:
@@ -38,6 +39,7 @@ def test_split_at_token_limit():
         print(f"  ✓ Success: {len(pieces)} pieces")
     except Exception as e:
         print(f"  ✗ Failed: {e}")
+
 
 if __name__ == "__main__":
     test_split_at_token_limit()

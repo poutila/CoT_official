@@ -51,7 +51,8 @@
       "Bash(uv add:*)",
       "Bash(uv remove:*)",
       "Bash(uv pip list)",
-      "Bash(echo $VIRTUAL_ENV)"
+      "Bash(echo $VIRTUAL_ENV)",
+      "Bash(touch:*)"
     ],
     "deny": [
       "Bash(rm -rf /)",

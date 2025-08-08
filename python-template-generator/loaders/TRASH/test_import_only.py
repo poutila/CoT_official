@@ -11,7 +11,6 @@ print("Testing imports one by one...")
 
 print("\n1. Import ChunkingConfig...")
 try:
-    from chunker.models import ChunkingConfig
     print("   ✓ Success")
 except Exception as e:
     print(f"   ✗ Failed: {e}")
@@ -19,7 +18,6 @@ except Exception as e:
 
 print("\n2. Import TokenCounter...")
 try:
-    from chunker.token_counter import TokenCounter
     print("   ✓ Success")
 except Exception as e:
     print(f"   ✗ Failed: {e}")
@@ -27,7 +25,6 @@ except Exception as e:
 
 print("\n3. Import BaseChunker...")
 try:
-    from chunker.base_chunker import BaseChunker
     print("   ✓ Success")
 except Exception as e:
     print(f"   ✗ Failed: {e}")
@@ -35,7 +32,6 @@ except Exception as e:
 
 print("\n4. Import SemanticChunker...")
 try:
-    from chunker.semantic_chunker import SemanticChunker
     print("   ✓ Success")
 except Exception as e:
     print(f"   ✗ Failed: {e}")

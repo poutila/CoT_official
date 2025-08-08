@@ -22,7 +22,7 @@ test_file.write_text(test_content)
 try:
     enricher = ContextFixedEnricher(test_file)
     doc = enricher.extract_rich_doc()
-    
+
     if doc.sections:
         section = doc.sections[0]
         print("Section properties:")
@@ -30,11 +30,11 @@ try:
         print(f"  - title: {getattr(section, 'title', 'N/A')}")
         print(f"  - content: {getattr(section, 'content', 'N/A')}")
         print(f"  - slug: {getattr(section, 'slug', 'N/A')}")
-        
+
         # Check for text content
-        if hasattr(section, 'content'):
+        if hasattr(section, "content"):
             print(f"\nSection content type: {type(section.content)}")
             print(f"Section content: '{section.content}'")
-            
+
 finally:
     test_file.unlink()

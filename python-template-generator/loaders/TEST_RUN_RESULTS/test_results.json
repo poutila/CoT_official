@@ -1,0 +1,1908 @@
+{
+  "timestamp": "2025-08-09T00:24:22.666450",
+  "configuration": {
+    "chunker": "SemanticChunker",
+    "max_tokens": 200,
+    "overlap_tokens": 50,
+    "embedding_model": "all-MiniLM-L6-v2",
+    "vector_dimensions": 384,
+    "vector_store": "FAISS"
+  },
+  "files_processed": [
+    {
+      "file": "ASSUMPTION/ASSUMPTION_DEFINITION.md",
+      "size_bytes": 1262,
+      "chunks_created": 2,
+      "processing_time": 0.030049562454223633
+    },
+    {
+      "file": "ASSUMPTION/README.md",
+      "size_bytes": 1902,
+      "chunks_created": 3,
+      "processing_time": 0.040308237075805664
+    },
+    {
+      "file": "CHAIN_OF_THOUGHT.md",
+      "size_bytes": 46293,
+      "chunks_created": 76,
+      "processing_time": 1.0895442962646484
+    },
+    {
+      "file": "CHAIN_OF_THOUGHT_LIGHT.md",
+      "size_bytes": 8413,
+      "chunks_created": 13,
+      "processing_time": 0.17751312255859375
+    },
+    {
+      "file": "CHANGELOG.md",
+      "size_bytes": 5063,
+      "chunks_created": 8,
+      "processing_time": 0.14094829559326172
+    },
+    {
+      "file": "CLAIM/CLAIM_DEFINITION.md",
+      "size_bytes": 1522,
+      "chunks_created": 2,
+      "processing_time": 0.02591538429260254
+    },
+    {
+      "file": "CLAIM/README.md",
+      "size_bytes": 2036,
+      "chunks_created": 3,
+      "processing_time": 0.0404820442199707
+    },
+    {
+      "file": "CLAUDE.md",
+      "size_bytes": 38289,
+      "chunks_created": 59,
+      "processing_time": 0.8202345371246338
+    },
+    {
+      "file": "CLI_INSTALL.md",
+      "size_bytes": 2772,
+      "chunks_created": 5,
+      "processing_time": 0.06297016143798828
+    },
+    {
+      "file": "CONTRIBUTING.md",
+      "size_bytes": 6420,
+      "chunks_created": 10,
+      "processing_time": 0.13542819023132324
+    },
+    {
+      "file": "COT_DEEP_FIXES_REPORT.md",
+      "size_bytes": 7536,
+      "chunks_created": 12,
+      "processing_time": 0.16437244415283203
+    },
+    {
+      "file": "COT_FIXES_REPORT.md",
+      "size_bytes": 5307,
+      "chunks_created": 9,
+      "processing_time": 0.12027931213378906
+    },
+    {
+      "file": "COT_INTEROPERABILITY.md",
+      "size_bytes": 27375,
+      "chunks_created": 43,
+      "processing_time": 0.5791487693786621
+    },
+    {
+      "file": "COT_LEGACY_FALLBACK_PROMPT.md",
+      "size_bytes": 6066,
+      "chunks_created": 10,
+      "processing_time": 0.1282966136932373
+    },
+    {
+      "file": "COT_PRECISE_FIXES_REPORT.md",
+      "size_bytes": 5927,
+      "chunks_created": 11,
+      "processing_time": 0.1458423137664795
+    },
+    {
+      "file": "COT_SELECTION_GUIDE.md",
+      "size_bytes": 9021,
+      "chunks_created": 17,
+      "processing_time": 0.2273862361907959
+    },
+    {
+      "file": "COT_STANDARD_AUTHORITY.md",
+      "size_bytes": 5908,
+      "chunks_created": 11,
+      "processing_time": 0.15521788597106934
+    },
+    {
+      "file": "CoT_REASONING_ENVELOPE.md",
+      "size_bytes": 808,
+      "chunks_created": 1,
+      "processing_time": 0.012140035629272461
+    },
+    {
+      "file": "FACT/FACT_DEFINITION.md",
+      "size_bytes": 1827,
+      "chunks_created": 3,
+      "processing_time": 0.037290334701538086
+    },
+    {
+      "file": "FACT/README.md",
+      "size_bytes": 2227,
+      "chunks_created": 3,
+      "processing_time": 0.04135847091674805
+    },
+    {
+      "file": "FEEDBACK.md",
+      "size_bytes": 35516,
+      "chunks_created": 50,
+      "processing_time": 0.7041857242584229
+    },
+    {
+      "file": "IMPROVEMENTS_REFACTOR.md",
+      "size_bytes": 8137,
+      "chunks_created": 13,
+      "processing_time": 0.1729891300201416
+    },
+    {
+      "file": "README.md",
+      "size_bytes": 20,
+      "chunks_created": 1,
+      "processing_time": 0.005001068115234375
+    },
+    {
+      "file": "RFC-001_CoT_Applicability.md",
+      "size_bytes": 1046,
+      "chunks_created": 2,
+      "processing_time": 0.025139331817626953
+    },
+    {
+      "file": "RFC-002_Recursive_Reasoning.md",
+      "size_bytes": 898,
+      "chunks_created": 2,
+      "processing_time": 0.021898269653320312
+    },
+    {
+      "file": "TASK_template.md",
+      "size_bytes": 8960,
+      "chunks_created": 16,
+      "processing_time": 0.22539448738098145
+    },
+    {
+      "file": "USER_MANUAL.md",
+      "size_bytes": 20920,
+      "chunks_created": 35,
+      "processing_time": 0.483121395111084
+    },
+    {
+      "file": "USER_MANUAL_SHORT.md",
+      "size_bytes": 3595,
+      "chunks_created": 6,
+      "processing_time": 0.08555960655212402
+    },
+    {
+      "file": "USE_CASES.md",
+      "size_bytes": 27853,
+      "chunks_created": 45,
+      "processing_time": 0.6281750202178955
+    },
+    {
+      "file": "cot-semantic-enhancer/README.md",
+      "size_bytes": 8510,
+      "chunks_created": 14,
+      "processing_time": 0.19313907623291016
+    },
+    {
+      "file": "examples/example_llm_output.md",
+      "size_bytes": 3599,
+      "chunks_created": 7,
+      "processing_time": 0.09488248825073242
+    },
+    {
+      "file": "examples/golden_output_trace.md",
+      "size_bytes": 1921,
+      "chunks_created": 3,
+      "processing_time": 0.040631771087646484
+    },
+    {
+      "file": "python-template-generator/.claude/commands/execute-template-prp.md",
+      "size_bytes": 7352,
+      "chunks_created": 10,
+      "processing_time": 0.13104486465454102
+    },
+    {
+      "file": "python-template-generator/.claude/commands/generate-template-prp.md",
+      "size_bytes": 4404,
+      "chunks_created": 6,
+      "processing_time": 0.07611680030822754
+    },
+    {
+      "file": "python-template-generator/CLAUDE.md",
+      "size_bytes": 3714,
+      "chunks_created": 5,
+      "processing_time": 0.06552553176879883
+    },
+    {
+      "file": "python-template-generator/PRPs/INITIAL.md",
+      "size_bytes": 7791,
+      "chunks_created": 11,
+      "processing_time": 0.1471407413482666
+    },
+    {
+      "file": "python-template-generator/PRPs/cot_semantic_enhancement_PRP.md",
+      "size_bytes": 37521,
+      "chunks_created": 57,
+      "processing_time": 0.7812106609344482
+    },
+    {
+      "file": "python-template-generator/PRPs/semantic_enhancement_INITIAL.md",
+      "size_bytes": 12394,
+      "chunks_created": 17,
+      "processing_time": 0.2344214916229248
+    },
+    {
+      "file": "python-template-generator/PRPs/templates/prp_template_base.md",
+      "size_bytes": 21299,
+      "chunks_created": 29,
+      "processing_time": 0.402371883392334
+    },
+    {
+      "file": "python-template-generator/PTOOL/CHAIN_OF_THOUGHT_LIGHT.md",
+      "size_bytes": 8413,
+      "chunks_created": 13,
+      "processing_time": 0.004363536834716797
+    },
+    {
+      "file": "python-template-generator/PTOOL/CHANGELOG.md",
+      "size_bytes": 1378,
+      "chunks_created": 2,
+      "processing_time": 0.028506994247436523
+    },
+    {
+      "file": "python-template-generator/PTOOL/CLAUDE.md",
+      "size_bytes": 33917,
+      "chunks_created": 52,
+      "processing_time": 0.7173550128936768
+    },
+    {
+      "file": "python-template-generator/PTOOL/CLAUDE_MD_COMPLIANCE_MATRIX.md",
+      "size_bytes": 6941,
+      "chunks_created": 13,
+      "processing_time": 0.17141199111938477
+    },
+    {
+      "file": "python-template-generator/PTOOL/CONTRIBUTING.md",
+      "size_bytes": 4046,
+      "chunks_created": 6,
+      "processing_time": 0.08060526847839355
+    },
+    {
+      "file": "python-template-generator/PTOOL/DOCPIPE_SPECIFICATION.md",
+      "size_bytes": 9935,
+      "chunks_created": 16,
+      "processing_time": 0.21529936790466309
+    },
+    {
+      "file": "python-template-generator/PTOOL/GLOSSARY.md",
+      "size_bytes": 10396,
+      "chunks_created": 14,
+      "processing_time": 0.19862604141235352
+    },
+    {
+      "file": "python-template-generator/PTOOL/PROMPT_FROM_PROMPT/GENERATED_PROMPT.md",
+      "size_bytes": 8585,
+      "chunks_created": 14,
+      "processing_time": 0.19376659393310547
+    },
+    {
+      "file": "python-template-generator/PTOOL/PROMPT_FROM_PROMPT/POSSIBILITIES.md",
+      "size_bytes": 4415,
+      "chunks_created": 8,
+      "processing_time": 0.09802627563476562
+    },
+    {
+      "file": "python-template-generator/PTOOL/PROMPT_FROM_PROMPT/PROMPT_FOR_PROMPT_GENERATION.md",
+      "size_bytes": 13050,
+      "chunks_created": 21,
+      "processing_time": 0.29497194290161133
+    },
+    {
+      "file": "python-template-generator/PTOOL/PROMPT_FROM_PROMPT/PROMPT_UNUSED_FILES.md",
+      "size_bytes": 2012,
+      "chunks_created": 3,
+      "processing_time": 0.041704654693603516
+    },
+    {
+      "file": "python-template-generator/PTOOL/PROMPT_FROM_PROMPT/SUB_TASK.md",
+      "size_bytes": 710,
+      "chunks_created": 1,
+      "processing_time": 0.013665437698364258
+    },
+    {
+      "file": "python-template-generator/PTOOL/PROMPT_FROM_PROMPT/UNUSED.md",
+      "size_bytes": 114,
+      "chunks_created": 1,
+      "processing_time": 0.006801605224609375
+    },
+    {
+      "file": "python-template-generator/PTOOL/PROMPT_FROM_PROMPT/UNUSED_MOVE_TASK.md",
+      "size_bytes": 1613,
+      "chunks_created": 3,
+      "processing_time": 0.03793048858642578
+    },
+    {
+      "file": "python-template-generator/PTOOL/PROMPT_FROM_PROMPT/VALIDATION_TOOLS.md",
+      "size_bytes": 3177,
+      "chunks_created": 5,
+      "processing_time": 0.06821727752685547
+    },
+    {
+      "file": "python-template-generator/PTOOL/PROMPT_FROM_PROMPT/recursive_prompt_runner.md",
+      "size_bytes": 1342,
+      "chunks_created": 2,
+      "processing_time": 0.024135589599609375
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/examples/hello-world-api/PRPs/INITIAL.md",
+      "size_bytes": 1808,
+      "chunks_created": 3,
+      "processing_time": 0.038805246353149414
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/examples/hello-world-api/README.md",
+      "size_bytes": 2304,
+      "chunks_created": 4,
+      "processing_time": 0.05352354049682617
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/examples/hello-world-cli/PRPs/INITIAL.md",
+      "size_bytes": 2032,
+      "chunks_created": 4,
+      "processing_time": 0.04956793785095215
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/examples/hello-world-cli/README.md",
+      "size_bytes": 2468,
+      "chunks_created": 5,
+      "processing_time": 0.06415963172912598
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/examples/hello-world-web/PRPs/INITIAL.md",
+      "size_bytes": 2194,
+      "chunks_created": 4,
+      "processing_time": 0.04978299140930176
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/examples/hello-world-web/README.md",
+      "size_bytes": 2846,
+      "chunks_created": 5,
+      "processing_time": 0.06514477729797363
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/examples/python-fastapi-app/PRPs/API_SPEC.md",
+      "size_bytes": 3604,
+      "chunks_created": 8,
+      "processing_time": 0.10406351089477539
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/examples/python-fastapi-app/PRPs/INITIAL.md",
+      "size_bytes": 3167,
+      "chunks_created": 5,
+      "processing_time": 0.06547141075134277
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/examples/python-fastapi-app/README.md",
+      "size_bytes": 2552,
+      "chunks_created": 4,
+      "processing_time": 0.05163383483886719
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/README.md",
+      "size_bytes": 6658,
+      "chunks_created": 10,
+      "processing_time": 0.13282418251037598
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/mcp-server/.claude/commands/prp-mcp-create.md",
+      "size_bytes": 4696,
+      "chunks_created": 6,
+      "processing_time": 0.0809180736541748
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/mcp-server/.claude/commands/prp-mcp-execute.md",
+      "size_bytes": 1887,
+      "chunks_created": 3,
+      "processing_time": 0.03399372100830078
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/mcp-server/CLAUDE.md",
+      "size_bytes": 25154,
+      "chunks_created": 38,
+      "processing_time": 0.52423095703125
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/mcp-server/PRPs/INITIAL.md",
+      "size_bytes": 1388,
+      "chunks_created": 2,
+      "processing_time": 0.02764415740966797
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/mcp-server/PRPs/README.md",
+      "size_bytes": 2567,
+      "chunks_created": 4,
+      "processing_time": 0.052672386169433594
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/mcp-server/PRPs/ai_docs/claude_api_usage.md",
+      "size_bytes": 763,
+      "chunks_created": 1,
+      "processing_time": 0.013770580291748047
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/mcp-server/PRPs/ai_docs/mcp_patterns.md",
+      "size_bytes": 11112,
+      "chunks_created": 17,
+      "processing_time": 0.23028850555419922
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/mcp-server/PRPs/templates/prp_mcp_base.md",
+      "size_bytes": 18601,
+      "chunks_created": 28,
+      "processing_time": 0.39148998260498047
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/mcp-server/README.md",
+      "size_bytes": 8820,
+      "chunks_created": 13,
+      "processing_time": 0.17495203018188477
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-base-experimental/.claude/agents/prp-quality-agent.md",
+      "size_bytes": 9312,
+      "chunks_created": 14,
+      "processing_time": 0.1877739429473877
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-base-experimental/.claude/agents/prp-validation-gate-agent.md",
+      "size_bytes": 7686,
+      "chunks_created": 11,
+      "processing_time": 0.14959263801574707
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-base-experimental/.claude/commands/prp-create.md",
+      "size_bytes": 4784,
+      "chunks_created": 6,
+      "processing_time": 0.08081674575805664
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-base-experimental/.claude/commands/prp-execute.md",
+      "size_bytes": 2533,
+      "chunks_created": 4,
+      "processing_time": 0.04899024963378906
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-base-experimental/PRPs/prp-readme.md",
+      "size_bytes": 9314,
+      "chunks_created": 14,
+      "processing_time": 0.1874842643737793
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-base-experimental/PRPs/templates/prp_base.md",
+      "size_bytes": 10161,
+      "chunks_created": 16,
+      "processing_time": 0.22628283500671387
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-base-experimental/README.md",
+      "size_bytes": 10855,
+      "chunks_created": 14,
+      "processing_time": 0.19142746925354004
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-base-python/.claude/commands/execute-prp.md",
+      "size_bytes": 1264,
+      "chunks_created": 2,
+      "processing_time": 0.022725820541381836
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-base-python/.claude/commands/generate-prp.md",
+      "size_bytes": 2778,
+      "chunks_created": 4,
+      "processing_time": 0.051401376724243164
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-base-python/CLAUDE.md",
+      "size_bytes": 3051,
+      "chunks_created": 5,
+      "processing_time": 0.07057452201843262
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-base-python/PRPs/EXAMPLE_PRP_multi_agent_prp.md",
+      "size_bytes": 13304,
+      "chunks_created": 21,
+      "processing_time": 0.2906339168548584
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-base-python/PRPs/INITIAL.md",
+      "size_bytes": 465,
+      "chunks_created": 1,
+      "processing_time": 0.010244369506835938
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-base-python/PRPs/INITIAL_EXAMPLE.md",
+      "size_bytes": 1296,
+      "chunks_created": 2,
+      "processing_time": 0.027000904083251953
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-base-python/PRPs/prp-readme.md",
+      "size_bytes": 2567,
+      "chunks_created": 4,
+      "processing_time": 0.0013480186462402344
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-base-python/PRPs/templates/prp_base.md",
+      "size_bytes": 6124,
+      "chunks_created": 10,
+      "processing_time": 0.13482236862182617
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-base-python/README.md",
+      "size_bytes": 7742,
+      "chunks_created": 12,
+      "processing_time": 0.16309547424316406
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-typescript/.claude/commands/prp-ts-create.md",
+      "size_bytes": 6447,
+      "chunks_created": 8,
+      "processing_time": 0.10908055305480957
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-typescript/.claude/commands/prp-ts-execute.md",
+      "size_bytes": 3716,
+      "chunks_created": 5,
+      "processing_time": 0.06686067581176758
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-typescript/PRPs/INITIAL.md",
+      "size_bytes": 2336,
+      "chunks_created": 3,
+      "processing_time": 0.04067540168762207
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-typescript/PRPs/prp-readme.md",
+      "size_bytes": 2567,
+      "chunks_created": 4,
+      "processing_time": 0.00135040283203125
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-typescript/PRPs/templates/prp_base_typescript.md",
+      "size_bytes": 11514,
+      "chunks_created": 18,
+      "processing_time": 0.24431204795837402
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/prp-typescript/README.md",
+      "size_bytes": 9529,
+      "chunks_created": 14,
+      "processing_time": 0.20397090911865234
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/pydantic-ai/.claude/commands/execute-pydantic-ai-prp.md",
+      "size_bytes": 2380,
+      "chunks_created": 3,
+      "processing_time": 0.03931856155395508
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/pydantic-ai/.claude/commands/generate-pydantic-ai-prp.md",
+      "size_bytes": 4027,
+      "chunks_created": 6,
+      "processing_time": 0.07724332809448242
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/pydantic-ai/CLAUDE.md",
+      "size_bytes": 10073,
+      "chunks_created": 14,
+      "processing_time": 0.19266510009765625
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/pydantic-ai/PRPs/INITIAL.md",
+      "size_bytes": 2337,
+      "chunks_created": 3,
+      "processing_time": 0.028766155242919922
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/pydantic-ai/PRPs/templates/prp_pydantic_ai_base.md",
+      "size_bytes": 16202,
+      "chunks_created": 23,
+      "processing_time": 0.3176536560058594
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/pydantic-ai/README.md",
+      "size_bytes": 7865,
+      "chunks_created": 11,
+      "processing_time": 0.15265774726867676
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/python-template-generator/.claude/commands/execute-template-prp.md",
+      "size_bytes": 7352,
+      "chunks_created": 10,
+      "processing_time": 0.003187894821166992
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/python-template-generator/.claude/commands/generate-template-prp.md",
+      "size_bytes": 4404,
+      "chunks_created": 6,
+      "processing_time": 0.0019893646240234375
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/python-template-generator/CLAUDE.md",
+      "size_bytes": 3714,
+      "chunks_created": 5,
+      "processing_time": 0.0016453266143798828
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/python-template-generator/PRPs/INITIAL.md",
+      "size_bytes": 7791,
+      "chunks_created": 11,
+      "processing_time": 0.003304004669189453
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/python-template-generator/PRPs/templates/prp_template_base.md",
+      "size_bytes": 21299,
+      "chunks_created": 29,
+      "processing_time": 0.013637781143188477
+    },
+    {
+      "file": "python-template-generator/PTOOL/PRP/prp-templates/python-template-generator/README.md",
+      "size_bytes": 6800,
+      "chunks_created": 9,
+      "processing_time": 0.11992454528808594
+    },
+    {
+      "file": "python-template-generator/PTOOL/README.md",
+      "size_bytes": 48,
+      "chunks_created": 1,
+      "processing_time": 0.005281209945678711
+    },
+    {
+      "file": "python-template-generator/PTOOL/claude-hooks/README.md",
+      "size_bytes": 4372,
+      "chunks_created": 7,
+      "processing_time": 0.09926438331604004
+    },
+    {
+      "file": "python-template-generator/PTOOL/claude-hooks/log-claude-code-actions/README.md",
+      "size_bytes": 2823,
+      "chunks_created": 5,
+      "processing_time": 0.06560468673706055
+    },
+    {
+      "file": "python-template-generator/PTOOL/content_eng_manuals/CONCEPTS.md",
+      "size_bytes": 6510,
+      "chunks_created": 9,
+      "processing_time": 0.12020754814147949
+    },
+    {
+      "file": "python-template-generator/PTOOL/content_eng_manuals/QUICK_START.md",
+      "size_bytes": 3689,
+      "chunks_created": 6,
+      "processing_time": 0.0810549259185791
+    },
+    {
+      "file": "python-template-generator/PTOOL/content_eng_manuals/USER_MANUAL.md",
+      "size_bytes": 5851,
+      "chunks_created": 10,
+      "processing_time": 0.13115644454956055
+    },
+    {
+      "file": "python-template-generator/PTOOL/content_eng_manuals/components/COT_GUIDE.md",
+      "size_bytes": 18088,
+      "chunks_created": 30,
+      "processing_time": 0.40430355072021484
+    },
+    {
+      "file": "python-template-generator/PTOOL/content_eng_manuals/components/GLOBAL_RULES.md",
+      "size_bytes": 16363,
+      "chunks_created": 26,
+      "processing_time": 0.35204553604125977
+    },
+    {
+      "file": "python-template-generator/PTOOL/content_eng_manuals/components/HOOKS_GUIDE.md",
+      "size_bytes": 18784,
+      "chunks_created": 29,
+      "processing_time": 0.4016730785369873
+    },
+    {
+      "file": "python-template-generator/PTOOL/content_eng_manuals/components/PRP_GUIDE.md",
+      "size_bytes": 9144,
+      "chunks_created": 15,
+      "processing_time": 0.21057510375976562
+    },
+    {
+      "file": "python-template-generator/PTOOL/content_eng_manuals/components/SLASH_COMMANDS.md",
+      "size_bytes": 13670,
+      "chunks_created": 22,
+      "processing_time": 0.3091564178466797
+    },
+    {
+      "file": "python-template-generator/PTOOL/content_eng_manuals/components/SUBAGENTS.md",
+      "size_bytes": 19429,
+      "chunks_created": 31,
+      "processing_time": 0.41522836685180664
+    },
+    {
+      "file": "python-template-generator/PTOOL/content_eng_manuals/reference/FAQ.md",
+      "size_bytes": 13386,
+      "chunks_created": 21,
+      "processing_time": 0.28830456733703613
+    },
+    {
+      "file": "python-template-generator/PTOOL/content_eng_manuals/reference/GLOSSARY.md",
+      "size_bytes": 13344,
+      "chunks_created": 17,
+      "processing_time": 0.2317349910736084
+    },
+    {
+      "file": "python-template-generator/PTOOL/content_eng_manuals/reference/TROUBLESHOOTING.md",
+      "size_bytes": 15168,
+      "chunks_created": 26,
+      "processing_time": 0.3564646244049072
+    },
+    {
+      "file": "python-template-generator/PTOOL/content_eng_manuals/workflows/CODE_REVIEW.md",
+      "size_bytes": 17001,
+      "chunks_created": 27,
+      "processing_time": 0.38042187690734863
+    },
+    {
+      "file": "python-template-generator/PTOOL/content_eng_manuals/workflows/GIT_OPERATIONS.md",
+      "size_bytes": 15725,
+      "chunks_created": 28,
+      "processing_time": 0.4201018810272217
+    },
+    {
+      "file": "python-template-generator/PTOOL/content_eng_manuals/workflows/RAPID_PROTOTYPING.md",
+      "size_bytes": 13101,
+      "chunks_created": 21,
+      "processing_time": 0.3146040439605713
+    },
+    {
+      "file": "python-template-generator/PTOOL/docs/adr/template.md",
+      "size_bytes": 3078,
+      "chunks_created": 5,
+      "processing_time": 0.07049322128295898
+    },
+    {
+      "file": "python-template-generator/PTOOL/docs/architecture/README.md",
+      "size_bytes": 3727,
+      "chunks_created": 6,
+      "processing_time": 0.08277678489685059
+    },
+    {
+      "file": "python-template-generator/PTOOL/docs/automation/automation_recovery_plan.md",
+      "size_bytes": 98236,
+      "chunks_created": 131,
+      "processing_time": 2.024151086807251
+    },
+    {
+      "file": "python-template-generator/PTOOL/docs/automation/dependency_update_action_plan.md",
+      "size_bytes": 6409,
+      "chunks_created": 11,
+      "processing_time": 0.16196012496948242
+    },
+    {
+      "file": "python-template-generator/PTOOL/docs/automation/task_automation_plan.md",
+      "size_bytes": 69486,
+      "chunks_created": 110,
+      "processing_time": 1.7796845436096191
+    },
+    {
+      "file": "python-template-generator/PTOOL/docs/dependencies/decisions.md",
+      "size_bytes": 5252,
+      "chunks_created": 9,
+      "processing_time": 0.1381990909576416
+    },
+    {
+      "file": "python-template-generator/PTOOL/docs/deployment/README.md",
+      "size_bytes": 4712,
+      "chunks_created": 8,
+      "processing_time": 0.15697240829467773
+    },
+    {
+      "file": "python-template-generator/PTOOL/docs/development/DEVELOPMENT_ENVIRONMENT.md",
+      "size_bytes": 3039,
+      "chunks_created": 5,
+      "processing_time": 0.07890653610229492
+    },
+    {
+      "file": "python-template-generator/PTOOL/docs/development/git-strategy.md",
+      "size_bytes": 6203,
+      "chunks_created": 11,
+      "processing_time": 0.163651704788208
+    },
+    {
+      "file": "python-template-generator/PTOOL/docs/standards/CLAUDE_MD_template.md",
+      "size_bytes": 17632,
+      "chunks_created": 29,
+      "processing_time": 0.4316065311431885
+    },
+    {
+      "file": "python-template-generator/PTOOL/docs/standards/DEVELOPMENT_WORKFLOW.md",
+      "size_bytes": 7807,
+      "chunks_created": 13,
+      "processing_time": 0.1972644329071045
+    },
+    {
+      "file": "python-template-generator/PTOOL/docs/standards/ENCODING_ERROR_PREVENTION.md",
+      "size_bytes": 3011,
+      "chunks_created": 5,
+      "processing_time": 0.07299089431762695
+    },
+    {
+      "file": "python-template-generator/PTOOL/docs/standards/LINK_VALIDATION_RESULT_template.md",
+      "size_bytes": 2048,
+      "chunks_created": 3,
+      "processing_time": 0.04574465751647949
+    },
+    {
+      "file": "python-template-generator/PTOOL/docs/standards/PROJECT_STRUCTURE.md",
+      "size_bytes": 8967,
+      "chunks_created": 14,
+      "processing_time": 0.20740199089050293
+    },
+    {
+      "file": "python-template-generator/PTOOL/docs/standards/SECURITY_STANDARDS.md",
+      "size_bytes": 5634,
+      "chunks_created": 10,
+      "processing_time": 0.16504955291748047
+    },
+    {
+      "file": "python-template-generator/PTOOL/docs/standards/TESTING_STANDARDS.md",
+      "size_bytes": 6865,
+      "chunks_created": 10,
+      "processing_time": 0.15463566780090332
+    },
+    {
+      "file": "python-template-generator/PTOOL/docs/troubleshooting.md",
+      "size_bytes": 6556,
+      "chunks_created": 11,
+      "processing_time": 0.17311978340148926
+    },
+    {
+      "file": "python-template-generator/PTOOL/global-rules/README.md",
+      "size_bytes": 4739,
+      "chunks_created": 7,
+      "processing_time": 0.09499597549438477
+    },
+    {
+      "file": "python-template-generator/PTOOL/global-rules/archon/CLAUDE.md",
+      "size_bytes": 10109,
+      "chunks_created": 15,
+      "processing_time": 0.20939159393310547
+    },
+    {
+      "file": "python-template-generator/PTOOL/global-rules/archon/README.md",
+      "size_bytes": 4598,
+      "chunks_created": 7,
+      "processing_time": 0.09218764305114746
+    },
+    {
+      "file": "python-template-generator/PTOOL/global-rules/astro/rasmus--astro-rules.md",
+      "size_bytes": 25952,
+      "chunks_created": 42,
+      "processing_time": 0.5936963558197021
+    },
+    {
+      "file": "python-template-generator/PTOOL/global-rules/nextjs/rasmus--nextjs-rules.md",
+      "size_bytes": 21943,
+      "chunks_created": 36,
+      "processing_time": 0.5272667407989502
+    },
+    {
+      "file": "python-template-generator/PTOOL/global-rules/node/rasmus--node-rules.md",
+      "size_bytes": 15578,
+      "chunks_created": 26,
+      "processing_time": 0.3936629295349121
+    },
+    {
+      "file": "python-template-generator/PTOOL/global-rules/python/rasmus--python-rules.md",
+      "size_bytes": 19991,
+      "chunks_created": 31,
+      "processing_time": 0.4397873878479004
+    },
+    {
+      "file": "python-template-generator/PTOOL/global-rules/react/rasmus--react-rules.md",
+      "size_bytes": 29759,
+      "chunks_created": 47,
+      "processing_time": 0.6522459983825684
+    },
+    {
+      "file": "python-template-generator/PTOOL/planning/DOCUMENTS.md",
+      "size_bytes": 17258,
+      "chunks_created": 31,
+      "processing_time": 0.4477207660675049
+    },
+    {
+      "file": "python-template-generator/PTOOL/planning/PLANNING.md",
+      "size_bytes": 45613,
+      "chunks_created": 67,
+      "processing_time": 0.9381670951843262
+    },
+    {
+      "file": "python-template-generator/PTOOL/planning/TASK.md",
+      "size_bytes": 21672,
+      "chunks_created": 38,
+      "processing_time": 0.5262832641601562
+    },
+    {
+      "file": "python-template-generator/PTOOL/planning/TECHNICAL_REGISTRY.md",
+      "size_bytes": 15542,
+      "chunks_created": 28,
+      "processing_time": 0.3892667293548584
+    },
+    {
+      "file": "python-template-generator/PTOOL/planning/TRAVEL_PLAN.md",
+      "size_bytes": 2621,
+      "chunks_created": 5,
+      "processing_time": 0.0655972957611084
+    },
+    {
+      "file": "python-template-generator/PTOOL/planning/epics/E-001-user-authentication-system.md",
+      "size_bytes": 712,
+      "chunks_created": 1,
+      "processing_time": 0.011794567108154297
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/README.md",
+      "size_bytes": 5023,
+      "chunks_created": 7,
+      "processing_time": 0.09652304649353027
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/code-quality/refactor-simple.md",
+      "size_bytes": 849,
+      "chunks_created": 1,
+      "processing_time": 0.011279582977294922
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/code-quality/review-general.md",
+      "size_bytes": 2444,
+      "chunks_created": 4,
+      "processing_time": 0.050940513610839844
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/code-quality/review-staged-unstaged.md",
+      "size_bytes": 2242,
+      "chunks_created": 4,
+      "processing_time": 0.049509286880493164
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/development/create-pr.md",
+      "size_bytes": 1901,
+      "chunks_created": 3,
+      "processing_time": 0.03698420524597168
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/development/debug-RCA.md",
+      "size_bytes": 2554,
+      "chunks_created": 4,
+      "processing_time": 0.05120110511779785
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/development/new-dev-branch.md",
+      "size_bytes": 211,
+      "chunks_created": 1,
+      "processing_time": 0.008075237274169922
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/development/onboarding.md",
+      "size_bytes": 3070,
+      "chunks_created": 5,
+      "processing_time": 0.06221294403076172
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/development/prime-core.md",
+      "size_bytes": 614,
+      "chunks_created": 1,
+      "processing_time": 0.008528709411621094
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/development/smart-commit.md",
+      "size_bytes": 1193,
+      "chunks_created": 2,
+      "processing_time": 0.02515435218811035
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/git-operations/conflict-resolver-general.md",
+      "size_bytes": 1904,
+      "chunks_created": 3,
+      "processing_time": 0.041338205337524414
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/git-operations/conflict-resolver-specific.md",
+      "size_bytes": 1247,
+      "chunks_created": 2,
+      "processing_time": 0.022216081619262695
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/git-operations/smart-resolver.md",
+      "size_bytes": 1915,
+      "chunks_created": 3,
+      "processing_time": 0.03693103790283203
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/rapid-development/experimental/create-base-prp-parallel.md",
+      "size_bytes": 8069,
+      "chunks_created": 11,
+      "processing_time": 0.14461517333984375
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/rapid-development/experimental/create-planning-parallel.md",
+      "size_bytes": 6708,
+      "chunks_created": 9,
+      "processing_time": 0.11897873878479004
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/rapid-development/experimental/hackathon-prp-parallel.md",
+      "size_bytes": 11066,
+      "chunks_created": 17,
+      "processing_time": 0.23439455032348633
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/rapid-development/experimental/hackathon-research.md",
+      "size_bytes": 34629,
+      "chunks_created": 48,
+      "processing_time": 0.6631190776824951
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/rapid-development/experimental/parallel-prp-creation.md",
+      "size_bytes": 18017,
+      "chunks_created": 24,
+      "processing_time": 0.329815149307251
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/rapid-development/experimental/prp-analyze-run.md",
+      "size_bytes": 21628,
+      "chunks_created": 32,
+      "processing_time": 0.5060255527496338
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/rapid-development/experimental/prp-validate.md",
+      "size_bytes": 4901,
+      "chunks_created": 9,
+      "processing_time": 0.12686634063720703
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/rapid-development/experimental/user-story-rapid.md",
+      "size_bytes": 2907,
+      "chunks_created": 5,
+      "processing_time": 0.06738638877868652
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/typescript/TS-create-base-prp.md",
+      "size_bytes": 4031,
+      "chunks_created": 6,
+      "processing_time": 0.08222222328186035
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/typescript/TS-execute-base-prp.md",
+      "size_bytes": 1984,
+      "chunks_created": 3,
+      "processing_time": 0.03740859031677246
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/typescript/TS-review-general.md",
+      "size_bytes": 6814,
+      "chunks_created": 10,
+      "processing_time": 0.13973784446716309
+    },
+    {
+      "file": "python-template-generator/PTOOL/slash-commands/typescript/TS-review-staged-unstaged.md",
+      "size_bytes": 4046,
+      "chunks_created": 6,
+      "processing_time": 0.07868075370788574
+    },
+    {
+      "file": "python-template-generator/PTOOL/subagents/README.md",
+      "size_bytes": 3763,
+      "chunks_created": 6,
+      "processing_time": 0.08137822151184082
+    },
+    {
+      "file": "python-template-generator/PTOOL/subagents/prp-quality-agent/README.md",
+      "size_bytes": 4230,
+      "chunks_created": 6,
+      "processing_time": 0.08303427696228027
+    },
+    {
+      "file": "python-template-generator/PTOOL/subagents/prp-quality-agent/prp-quality-agent.md",
+      "size_bytes": 9312,
+      "chunks_created": 14,
+      "processing_time": 0.004859447479248047
+    },
+    {
+      "file": "python-template-generator/PTOOL/subagents/prp-validation-gate-agent/README.md",
+      "size_bytes": 5687,
+      "chunks_created": 7,
+      "processing_time": 0.10161828994750977
+    },
+    {
+      "file": "python-template-generator/PTOOL/subagents/prp-validation-gate-agent/prp-validation-gate-agent.md",
+      "size_bytes": 7686,
+      "chunks_created": 11,
+      "processing_time": 0.003422975540161133
+    },
+    {
+      "file": "python-template-generator/README.md",
+      "size_bytes": 6800,
+      "chunks_created": 9,
+      "processing_time": 0.0028295516967773438
+    },
+    {
+      "file": "python-template-generator/loaders/API_REFERENCE.md",
+      "size_bytes": 11810,
+      "chunks_created": 20,
+      "processing_time": 0.30478954315185547
+    },
+    {
+      "file": "python-template-generator/loaders/ARCHITECTURE.md",
+      "size_bytes": 17634,
+      "chunks_created": 20,
+      "processing_time": 0.22752928733825684
+    },
+    {
+      "file": "python-template-generator/loaders/CHAIN_OF_THOUGHT_LIGHT.md",
+      "size_bytes": 8413,
+      "chunks_created": 13,
+      "processing_time": 0.0040318965911865234
+    },
+    {
+      "file": "python-template-generator/loaders/CLAUDE.md",
+      "size_bytes": 38289,
+      "chunks_created": 59,
+      "processing_time": 0.029703378677368164
+    },
+    {
+      "file": "python-template-generator/loaders/ENCODING_ERROR_PREVENTION.md",
+      "size_bytes": 3011,
+      "chunks_created": 5,
+      "processing_time": 0.0021827220916748047
+    },
+    {
+      "file": "python-template-generator/loaders/ENRICHED_EXTENSION_PLAN.md",
+      "size_bytes": 32769,
+      "chunks_created": 52,
+      "processing_time": 0.7949435710906982
+    },
+    {
+      "file": "python-template-generator/loaders/ENRICHER_DOCUMENTATION.md",
+      "size_bytes": 17645,
+      "chunks_created": 28,
+      "processing_time": 0.41915440559387207
+    },
+    {
+      "file": "python-template-generator/loaders/FINALIZING_PLAN.md",
+      "size_bytes": 10077,
+      "chunks_created": 16,
+      "processing_time": 0.22956156730651855
+    },
+    {
+      "file": "python-template-generator/loaders/PYTHON_SCRIPT_RUNNING_INSTRUCTIONS.md",
+      "size_bytes": 1386,
+      "chunks_created": 3,
+      "processing_time": 0.03615617752075195
+    },
+    {
+      "file": "python-template-generator/loaders/QUICKSTART.md",
+      "size_bytes": 5498,
+      "chunks_created": 9,
+      "processing_time": 0.13245511054992676
+    },
+    {
+      "file": "python-template-generator/loaders/README.md",
+      "size_bytes": 10642,
+      "chunks_created": 17,
+      "processing_time": 0.2557985782623291
+    },
+    {
+      "file": "python-template-generator/loaders/docs/adr/ADR_template.md",
+      "size_bytes": 3078,
+      "chunks_created": 5,
+      "processing_time": 0.0017940998077392578
+    },
+    {
+      "file": "python-template-generator/loaders/docs/architecture/README.md",
+      "size_bytes": 3689,
+      "chunks_created": 6,
+      "processing_time": 0.056717634201049805
+    },
+    {
+      "file": "python-template-generator/loaders/docs/automation/automation_recovery_plan.md",
+      "size_bytes": 98236,
+      "chunks_created": 131,
+      "processing_time": 0.05089831352233887
+    },
+    {
+      "file": "python-template-generator/loaders/docs/automation/dependency_update_action_plan.md",
+      "size_bytes": 6409,
+      "chunks_created": 11,
+      "processing_time": 0.0032134056091308594
+    },
+    {
+      "file": "python-template-generator/loaders/docs/automation/task_automation_plan.md",
+      "size_bytes": 69486,
+      "chunks_created": 110,
+      "processing_time": 0.03572988510131836
+    },
+    {
+      "file": "python-template-generator/loaders/docs/dependencies/decisions.md",
+      "size_bytes": 5252,
+      "chunks_created": 9,
+      "processing_time": 0.0026793479919433594
+    },
+    {
+      "file": "python-template-generator/loaders/docs/deployment/README.md",
+      "size_bytes": 4712,
+      "chunks_created": 8,
+      "processing_time": 0.002259492874145508
+    },
+    {
+      "file": "python-template-generator/loaders/docs/development/BACKWARD_COMPATIBILITY.md",
+      "size_bytes": 79,
+      "chunks_created": 1,
+      "processing_time": 0.005874156951904297
+    },
+    {
+      "file": "python-template-generator/loaders/docs/development/DEVELOPMENT_ENVIRONMENT.md",
+      "size_bytes": 2780,
+      "chunks_created": 5,
+      "processing_time": 0.07339739799499512
+    },
+    {
+      "file": "python-template-generator/loaders/docs/development/git-strategy.md",
+      "size_bytes": 6203,
+      "chunks_created": 11,
+      "processing_time": 0.0036194324493408203
+    },
+    {
+      "file": "python-template-generator/loaders/docs/incidents/INCIDENT_template.md",
+      "size_bytes": 212,
+      "chunks_created": 1,
+      "processing_time": 0.006474018096923828
+    },
+    {
+      "file": "python-template-generator/loaders/docs/standards/CLAUDE_MD_template.md",
+      "size_bytes": 17632,
+      "chunks_created": 29,
+      "processing_time": 0.008729219436645508
+    },
+    {
+      "file": "python-template-generator/loaders/docs/standards/DEVELOPMENT_WORKFLOW.md",
+      "size_bytes": 7807,
+      "chunks_created": 13,
+      "processing_time": 0.00441741943359375
+    },
+    {
+      "file": "python-template-generator/loaders/docs/standards/DOCUMENTATION_STANDARDS.md",
+      "size_bytes": 7860,
+      "chunks_created": 13,
+      "processing_time": 0.2033519744873047
+    },
+    {
+      "file": "python-template-generator/loaders/docs/standards/ENCODING_ERROR_PREVENTION.md",
+      "size_bytes": 3011,
+      "chunks_created": 5,
+      "processing_time": 0.0017788410186767578
+    },
+    {
+      "file": "python-template-generator/loaders/docs/standards/LINK_VALIDATION_RESULT_template.md",
+      "size_bytes": 2048,
+      "chunks_created": 3,
+      "processing_time": 0.0008103847503662109
+    },
+    {
+      "file": "python-template-generator/loaders/docs/standards/PROJECT_STRUCTURE.md",
+      "size_bytes": 8967,
+      "chunks_created": 14,
+      "processing_time": 0.0045435428619384766
+    },
+    {
+      "file": "python-template-generator/loaders/docs/standards/SECURITY_STANDARDS.md",
+      "size_bytes": 5634,
+      "chunks_created": 10,
+      "processing_time": 0.0030679702758789062
+    },
+    {
+      "file": "python-template-generator/loaders/docs/standards/TESTING_STANDARDS.md",
+      "size_bytes": 6865,
+      "chunks_created": 10,
+      "processing_time": 0.00336456298828125
+    },
+    {
+      "file": "python-template-generator/loaders/docs/troubleshooting.md",
+      "size_bytes": 6556,
+      "chunks_created": 11,
+      "processing_time": 0.003402233123779297
+    },
+    {
+      "file": "python-template-generator/loaders/planning/DOCUMENTS.md",
+      "size_bytes": 17258,
+      "chunks_created": 31,
+      "processing_time": 0.009485244750976562
+    },
+    {
+      "file": "python-template-generator/loaders/planning/PLANNING.md",
+      "size_bytes": 25886,
+      "chunks_created": 38,
+      "processing_time": 0.5832779407501221
+    },
+    {
+      "file": "python-template-generator/loaders/planning/PLANNING_OLD.md",
+      "size_bytes": 24277,
+      "chunks_created": 36,
+      "processing_time": 0.4234354496002197
+    },
+    {
+      "file": "python-template-generator/loaders/planning/PLANNING_template.md",
+      "size_bytes": 45592,
+      "chunks_created": 67,
+      "processing_time": 1.0055897235870361
+    },
+    {
+      "file": "python-template-generator/loaders/planning/TASK.md",
+      "size_bytes": 9474,
+      "chunks_created": 17,
+      "processing_time": 0.26497507095336914
+    },
+    {
+      "file": "python-template-generator/loaders/planning/TASK_COMPLETION_MINIMAL.md",
+      "size_bytes": 872,
+      "chunks_created": 2,
+      "processing_time": 0.022803783416748047
+    },
+    {
+      "file": "python-template-generator/loaders/planning/TASK_COMPLETION_TEMPLATE.md",
+      "size_bytes": 3739,
+      "chunks_created": 7,
+      "processing_time": 0.10670876502990723
+    },
+    {
+      "file": "python-template-generator/loaders/planning/TASK_template.md",
+      "size_bytes": 21672,
+      "chunks_created": 38,
+      "processing_time": 0.011528491973876953
+    },
+    {
+      "file": "python-template-generator/loaders/planning/TECHNICAL_REGISTRY.md",
+      "size_bytes": 15542,
+      "chunks_created": 28,
+      "processing_time": 0.008636713027954102
+    },
+    {
+      "file": "python-template-generator/loaders/planning/TRAVEL_PLAN.md",
+      "size_bytes": 4631,
+      "chunks_created": 9,
+      "processing_time": 0.13317322731018066
+    },
+    {
+      "file": "python-template-generator/loaders/planning/completions/README.md",
+      "size_bytes": 3129,
+      "chunks_created": 5,
+      "processing_time": 0.06901240348815918
+    },
+    {
+      "file": "python-template-generator/loaders/planning/completions/T-001_COMPLETION.md",
+      "size_bytes": 3198,
+      "chunks_created": 6,
+      "processing_time": 0.08341741561889648
+    },
+    {
+      "file": "python-template-generator/loaders/planning/completions/T-002_COMPLETION.md",
+      "size_bytes": 4518,
+      "chunks_created": 8,
+      "processing_time": 0.1144256591796875
+    },
+    {
+      "file": "python-template-generator/loaders/planning/epics/E-001-user-authentication-system.md",
+      "size_bytes": 712,
+      "chunks_created": 1,
+      "processing_time": 0.0003998279571533203
+    },
+    {
+      "file": "python-template-generator/loaders/tests/.pytest_cache/README.md",
+      "size_bytes": 302,
+      "chunks_created": 1,
+      "processing_time": 0.007862567901611328
+    },
+    {
+      "file": "python-template-generator/loaders/tests/FINAL_TEST_REPORT.md",
+      "size_bytes": 5971,
+      "chunks_created": 10,
+      "processing_time": 0.1425158977508545
+    },
+    {
+      "file": "python-template-generator/loaders/tests/README.md",
+      "size_bytes": 6207,
+      "chunks_created": 10,
+      "processing_time": 0.149064302444458
+    },
+    {
+      "file": "python-template-generator/loaders/tests/TEST_SUMMARY.md",
+      "size_bytes": 5033,
+      "chunks_created": 8,
+      "processing_time": 0.11837625503540039
+    },
+    {
+      "file": "test_suite/README.md",
+      "size_bytes": 1613,
+      "chunks_created": 3,
+      "processing_time": 0.03914833068847656
+    },
+    {
+      "file": "test_suite/edge_cases/001_large_trace.md",
+      "size_bytes": 3243,
+      "chunks_created": 6,
+      "processing_time": 0.08440923690795898
+    },
+    {
+      "file": "test_suite/edge_cases/002_legacy_format.md",
+      "size_bytes": 1715,
+      "chunks_created": 3,
+      "processing_time": 0.03696894645690918
+    },
+    {
+      "file": "test_suite/edge_cases/003_trace_degraded_summary.md",
+      "size_bytes": 2952,
+      "chunks_created": 5,
+      "processing_time": 0.07298421859741211
+    },
+    {
+      "file": "test_suite/edge_cases/004_split_trace_fallback.md",
+      "size_bytes": 6683,
+      "chunks_created": 13,
+      "processing_time": 0.19097208976745605
+    },
+    {
+      "file": "test_suite/invalid/001_missing_timestamp.md",
+      "size_bytes": 1246,
+      "chunks_created": 2,
+      "processing_time": 0.02980661392211914
+    },
+    {
+      "file": "test_suite/invalid/002_recursion_limit_exceeded.md",
+      "size_bytes": 1432,
+      "chunks_created": 3,
+      "processing_time": 0.039108991622924805
+    },
+    {
+      "file": "test_suite/invalid/003_recursion_limit_exceeded_live.md",
+      "size_bytes": 4144,
+      "chunks_created": 8,
+      "processing_time": 0.11888980865478516
+    },
+    {
+      "file": "test_suite/valid/001_basic_reasoning.md",
+      "size_bytes": 1652,
+      "chunks_created": 3,
+      "processing_time": 0.043260812759399414
+    },
+    {
+      "file": "test_suite/valid/002_recursive_reasoning.md",
+      "size_bytes": 2182,
+      "chunks_created": 4,
+      "processing_time": 0.05818033218383789
+    },
+    {
+      "file": "test_suite/valid/003_token_limit_fallback.md",
+      "size_bytes": 1927,
+      "chunks_created": 4,
+      "processing_time": 0.05444908142089844
+    }
+  ],
+  "statistics": {
+    "total_files": 248,
+    "successful_files": 248,
+    "total_chunks": 3690,
+    "total_vectors": 3690,
+    "avg_processing_time": 0.17287056580666574,
+    "total_processing_time": 42.8719003200531
+  },
+  "queries_tested": [
+    {
+      "query": "What is the architecture of the system?",
+      "search_time": 0.0051343441009521484,
+      "num_results": 3,
+      "results": [
+        {
+          "score": 0.4655077798480928,
+          "source": "python-template-generator/PTOOL/docs/architecture/README.md",
+          "text_preview": "# 🏗️ Architecture Documentation\n\n> **Purpose**: System architecture, design decisions, and technical overview\n> **Standards**: Follows guidelines in [CLAUDE.md](../../CLAUDE.md)\n> **Context**: See [PL",
+          "chunk_type": "ChunkType.MIXED"
+        },
+        {
+          "score": 0.4655077798480928,
+          "source": "python-template-generator/loaders/docs/architecture/README.md",
+          "text_preview": "# 🏗️ Architecture Documentation\n\n> **Purpose**: System architecture, design decisions, and technical overview\n> **Standards**: Follows guidelines in [CLAUDE.md](../../CLAUDE.md)\n> **Context**: See [PL",
+          "chunk_type": "ChunkType.MIXED"
+        },
+        {
+          "score": 0.4626473023351958,
+          "source": "python-template-generator/PTOOL/content_eng_manuals/components/SUBAGENTS.md",
+          "text_preview": "riendly_code\n```\n\n### Architecture Agents\n\n#### `architecture-reviewer`\nSystem design and architecture expert.\n\n```yaml\n# .claude/subagents/architecture-reviewer.yml\nname: architecture-reviewer\ndescri",
+          "chunk_type": "ChunkType.CODE"
+        }
+      ]
+    },
+    {
+      "query": "How does the RAG pipeline work?",
+      "search_time": 0.005356550216674805,
+      "num_results": 3,
+      "results": [
+        {
+          "score": 0.5523770459985511,
+          "source": "python-template-generator/PRPs/cot_semantic_enhancement_PRP.md",
+          "text_preview": "�� Final Assessment\n\nThe implementation successfully delivered a **production-ready RAG pipeline** with strong foundations. While not all original goals were met, the core system is robust, well-teste",
+          "chunk_type": "ChunkType.TEXT"
+        },
+        {
+          "score": 0.5447457035955903,
+          "source": "python-template-generator/loaders/API_REFERENCE.md",
+          "text_preview": "# RAG Pipeline API Reference\n\nComplete API documentation for all components of the RAG pipeline system.\n\n## Table of Contents\n- [Core Pipeline](#core-pipeline)\n- [Models](#models)\n- [Chunker Module](#",
+          "chunk_type": "ChunkType.MIXED"
+        },
+        {
+          "score": 0.5285004791314774,
+          "source": "python-template-generator/loaders/ARCHITECTURE.md",
+          "text_preview": "# RAG Pipeline Architecture\n\n## System Overview\n\n```\n┌─────────────────────────────────────────────────────────────────────┐\n│                         RAG Pipeline System                         │\n├──",
+          "chunk_type": "ChunkType.CODE"
+        }
+      ]
+    },
+    {
+      "query": "Explain the chunking strategy",
+      "search_time": 0.004953861236572266,
+      "num_results": 3,
+      "results": [
+        {
+          "score": 0.5005710679435993,
+          "source": "python-template-generator/loaders/ENRICHED_EXTENSION_PLAN.md",
+          "text_preview": ".73 for similar vs 0.02 for unrelated)\n- CPU compatibility (avoiding CUDA issues)\n\n**Key Features:**\n- Abstract base provider for extensibility\n- Comprehensive Pydantic models with metadata\n- Cache st",
+          "chunk_type": "ChunkType.MIXED"
+        },
+        {
+          "score": 0.4952092801207307,
+          "source": "python-template-generator/loaders/ARCHITECTURE.md",
+          "text_preview": "  └──────────────┘  └────────────────┘ │\n│         │                │                    │         │\n│         ▼                ▼                    ▼         │\n│  ┌───────────────────────────────────",
+          "chunk_type": "ChunkType.MIXED"
+        },
+        {
+          "score": 0.48390947441421805,
+          "source": "python-template-generator/loaders/ARCHITECTURE.md",
+          "text_preview": " Lists, Links                          │   │\n│  │ • Metadata & Context                            │   │\n│  └─────────────────────────────────────────────────┘   │\n│                                    ",
+          "chunk_type": "ChunkType.MIXED"
+        }
+      ]
+    },
+    {
+      "query": "What are the testing standards?",
+      "search_time": 0.004885435104370117,
+      "num_results": 3,
+      "results": [
+        {
+          "score": 0.5203769767370883,
+          "source": "python-template-generator/PTOOL/PRP/prp-templates/prp-base-experimental/PRPs/prp-readme.md",
+          "text_preview": "- Test actual accessibility of URLs and files\n- Provide specific line references for issues\n- Give actionable fix recommendations\n- Apply the \"No Prior Knowledge\" test rigorously\n- Check validation co",
+          "chunk_type": "ChunkType.REQUIREMENT"
+        },
+        {
+          "score": 0.5160884194473467,
+          "source": "python-template-generator/PTOOL/PRP/prp-templates/prp-base-experimental/README.md",
+          "text_preview": "-templates/prp-base-experimental/` folder to your project root.\n\n## 📚 Table of Contents\n\n- [What Makes This Experimental?](#what-makes-this-experimental)\n- [Advanced Features](#advanced-features)\n- [T",
+          "chunk_type": "ChunkType.MIXED"
+        },
+        {
+          "score": 0.5157227793820026,
+          "source": "python-template-generator/PTOOL/PRP/prp-templates/prp-base-experimental/.claude/agents/prp-quality-agent.md",
+          "text_preview": " Test actual accessibility of URLs and files\n- Provide specific line references for issues\n- Give actionable fix recommendations\n- Apply the \"No Prior Knowledge\" test rigorously\n- Check validation com",
+          "chunk_type": "ChunkType.REQUIREMENT"
+        }
+      ]
+    },
+    {
+      "query": "How to ensure code quality?",
+      "search_time": 0.00475001335144043,
+      "num_results": 3,
+      "results": [
+        {
+          "score": 0.5005127228445511,
+          "source": "python-template-generator/PTOOL/slash-commands/rapid-development/experimental/parallel-prp-creation.md",
+          "text_preview": "\nPrompt: Create a comprehensive PRP for \"${PRP_NAME}\" with focus on CODE QUALITY AND MAINTAINABILITY.\n\nFeature Details: ${IMPLEMENTATION_DETAILS}\n\nYour approach should emphasize:\n- Clean code principl",
+          "chunk_type": "ChunkType.REQUIREMENT"
+        },
+        {
+          "score": 0.49174611677396896,
+          "source": "python-template-generator/PTOOL/CLAUDE.md",
+          "text_preview": " an ADR (Architecture Decision Record).\n- Do not assume prior behavior is preserved unless it is explicitly committed.\n\n### Mandatory Validation Requirements\n\n- **Validate inputs** before processing a",
+          "chunk_type": "ChunkType.MIXED"
+        },
+        {
+          "score": 0.48189198635174924,
+          "source": "python-template-generator/PTOOL/PRP/prp-templates/prp-base-experimental/README.md",
+          "text_preview": "\"\n\n# 5. IMPORTANT: Quality validate before execution\n/prp-quality-check PRPs/your-generated-prp.md\n\n# 6. Execute only after quality approval\n/execute-prp-experimental PRPs/your-validated-prp.md\n```\n\n*",
+          "chunk_type": "ChunkType.MIXED"
+        }
+      ]
+    },
+    {
+      "query": "What are the security requirements?",
+      "search_time": 0.00473332405090332,
+      "num_results": 3,
+      "results": [
+        {
+          "score": 0.4912297714729091,
+          "source": "python-template-generator/PTOOL/docs/standards/SECURITY_STANDARDS.md",
+          "text_preview": "# 🔒 Security Standards\n\n**Purpose**: Single source of truth for all security requirements and practices.  \n**Status**: Authoritative - All other documents should reference this file.  \n**Last Updated*",
+          "chunk_type": "ChunkType.SECTION_HEADER"
+        },
+        {
+          "score": 0.4912297714729091,
+          "source": "python-template-generator/loaders/docs/standards/SECURITY_STANDARDS.md",
+          "text_preview": "# 🔒 Security Standards\n\n**Purpose**: Single source of truth for all security requirements and practices.  \n**Status**: Authoritative - All other documents should reference this file.  \n**Last Updated*",
+          "chunk_type": "ChunkType.SECTION_HEADER"
+        },
+        {
+          "score": 0.4904185888146364,
+          "source": "python-template-generator/PTOOL/docs/standards/SECURITY_STANDARDS.md",
+          "text_preview": "\n- Encrypted connections\n\n### Third-Party Dependencies\n- Regular dependency updates\n- Automated vulnerability scanning\n- Review licenses for compliance\n- Vendor security assessments\n\n## 📊 OWASP ASVS L",
+          "chunk_type": "ChunkType.TEXT"
+        }
+      ]
+    },
+    {
+      "query": "How to set up the development environment?",
+      "search_time": 0.004853010177612305,
+      "num_results": 3,
+      "results": [
+        {
+          "score": 0.5403154445717627,
+          "source": "python-template-generator/PTOOL/slash-commands/development/onboarding.md",
+          "text_preview": "\n- Identify where different types of code live (models, controllers, utils, tests)\n- Highlight any non-standard or unique organizational patterns\n- Note any monorepo structures or submodules\n\n## 3. Ge",
+          "chunk_type": "ChunkType.REQUIREMENT"
+        },
+        {
+          "score": 0.5399219808783124,
+          "source": "python-template-generator/PTOOL/slash-commands/development/onboarding.md",
+          "text_preview": "Please perform a comprehensive onboarding analysis for a new developer joining this project. Execute the following steps:\n\n## 1. Project Overview\nFirst, analyze the repository structure and provide:\n-",
+          "chunk_type": "ChunkType.REQUIREMENT"
+        },
+        {
+          "score": 0.5185529021310992,
+          "source": "python-template-generator/PTOOL/slash-commands/development/onboarding.md",
+          "text_preview": " a new test\n- How to debug common issues\n- How to update dependencies\n\n## 8. Potential Gotchas\nList things that might trip up new developers:\n- Non-obvious configurations\n- Required environment variab",
+          "chunk_type": "ChunkType.REQUIREMENT"
+        }
+      ]
+    },
+    {
+      "query": "What is the git workflow?",
+      "search_time": 0.005034923553466797,
+      "num_results": 3,
+      "results": [
+        {
+          "score": 0.5776633338661021,
+          "source": "python-template-generator/PTOOL/docs/development/git-strategy.md",
+          "text_preview": "# 🔀 Git Strategy and Workflow\n\n> **Purpose**: Define Git workflow, branching strategy, and collaboration guidelines\n> **Standards**: Follows [CLAUDE.md](../../CLAUDE.md) version control requirements\n\n",
+          "chunk_type": "ChunkType.MIXED"
+        },
+        {
+          "score": 0.5776633338661021,
+          "source": "python-template-generator/loaders/docs/development/git-strategy.md",
+          "text_preview": "# 🔀 Git Strategy and Workflow\n\n> **Purpose**: Define Git workflow, branching strategy, and collaboration guidelines\n> **Standards**: Follows [CLAUDE.md](../../CLAUDE.md) version control requirements\n\n",
+          "chunk_type": "ChunkType.MIXED"
+        },
+        {
+          "score": 0.5699938085274895,
+          "source": "python-template-generator/PTOOL/content_eng_manuals/components/SLASH_COMMANDS.md",
+          "text_preview": "** - Standardized workflows across team\n- **🔄 Repeatability** - Same results every time\n- **🧩 Composability** - Combine commands for powerful workflows\n- **📚 Documentation** - Commands serve as living",
+          "chunk_type": "ChunkType.MIXED"
+        }
+      ]
+    },
+    {
+      "query": "How to contribute to the project?",
+      "search_time": 0.005320072174072266,
+      "num_results": 3,
+      "results": [
+        {
+          "score": 0.4826707965746436,
+          "source": "python-template-generator/PTOOL/slash-commands/development/prime-core.md",
+          "text_preview": "> Command for priming Claude Code with core knowledge about your project\n\n# Prime Context for Claude Code\n\nUse the command `tree` to get an understanding of the project structure.\n\nStart with reading ",
+          "chunk_type": "ChunkType.TEXT"
+        },
+        {
+          "score": 0.451055017464748,
+          "source": "python-template-generator/PTOOL/content_eng_manuals/reference/FAQ.md",
+          "text_preview": " be maintained or extended.\n\n## Community and Learning\n\n### Where can I find more examples?\n\n1. **This repository**: Check `examples/` directory\n2. **Community templates**: Browse GitHub for \"context-",
+          "chunk_type": "ChunkType.MIXED"
+        },
+        {
+          "score": 0.4500263891197214,
+          "source": "python-template-generator/PTOOL/slash-commands/development/onboarding.md",
+          "text_preview": "Please perform a comprehensive onboarding analysis for a new developer joining this project. Execute the following steps:\n\n## 1. Project Overview\nFirst, analyze the repository structure and provide:\n-",
+          "chunk_type": "ChunkType.REQUIREMENT"
+        }
+      ]
+    },
+    {
+      "query": "How does the vector store work?",
+      "search_time": 0.004972696304321289,
+      "num_results": 3,
+      "results": [
+        {
+          "score": 0.46672930816456704,
+          "source": "python-template-generator/loaders/ARCHITECTURE.md",
+          "text_preview": "_boundaries: true\n    \n  embeddings:\n    model: \"all-MiniLM-L6-v2\"\n    device: \"cpu\"\n    cache: true\n    \n  vector_store:\n    type: \"FAISS\"\n    index: \"Flat\"\n    metric: \"cosine\"\n    \n  retrieval:\n   ",
+          "chunk_type": "ChunkType.MIXED"
+        },
+        {
+          "score": 0.4630171694723135,
+          "source": "python-template-generator/loaders/ARCHITECTURE.md",
+          "text_preview": "�─►  Embeddings\nFAISSVectorStore     ──►  VectorStoreAdapter   ──►  VectorStore\nRAGPipeline          ──►  ChainAdapter         ──►  Chain\n```\n\n## Performance Characteristics\n\n### Bottlenecks & Optimiz",
+          "chunk_type": "ChunkType.MIXED"
+        },
+        {
+          "score": 0.45487784801326925,
+          "source": "python-template-generator/PRPs/semantic_enhancement_INITIAL.md",
+          "text_preview": "docs.pinecone.io/ - Pinecone vector database\n- https://weaviate.io/developers/weaviate - Weaviate documentation\n- https://qdrant.tech/documentation/ - Qdrant vector search\n- https://docs.trychroma.com",
+          "chunk_type": "ChunkType.TEXT"
+        }
+      ]
+    },
+    {
+      "query": "What embedding models are supported?",
+      "search_time": 0.004889965057373047,
+      "num_results": 3,
+      "results": [
+        {
+          "score": 0.565085818714504,
+          "source": "python-template-generator/PRPs/semantic_enhancement_INITIAL.md",
+          "text_preview": "_visualization.py** - Visualizing semantic relationships\n\n---\n\n## DOCUMENTATION TO RESEARCH:\n\n**Specific documentation that should be thoroughly researched and referenced:**\n\n**Embedding Technologies:",
+          "chunk_type": "ChunkType.REQUIREMENT"
+        },
+        {
+          "score": 0.491315480335305,
+          "source": "python-template-generator/loaders/README.md",
+          "text_preview": "` | int | 512 | Maximum tokens per chunk |\n| `chunk_overlap` | int | 50 | Token overlap between chunks |\n| `embedding_model` | str | \"all-MiniLM-L6-v2\" | Sentence transformer model |\n| `embedding_devi",
+          "chunk_type": "ChunkType.TEXT"
+        },
+        {
+          "score": 0.4887674943997994,
+          "source": "python-template-generator/PRPs/cot_semantic_enhancement_PRP.md",
+          "text_preview": " └── vector_store_test_results.json\n│\n└── TRASH/                         # Archived debug files\n    └── (12 debug/test files moved here during cleanup)\n```\n\n### Core Components Implementation\n\n#### 1.",
+          "chunk_type": "ChunkType.MIXED"
+        }
+      ]
+    },
+    {
+      "query": "Explain semantic chunking",
+      "search_time": 0.005079984664916992,
+      "num_results": 3,
+      "results": [
+        {
+          "score": 0.5901518616330671,
+          "source": "python-template-generator/loaders/API_REFERENCE.md",
+          "text_preview": " List[float]\n    metadata: Dict[str, Any]\n```\n\n**Properties:**\n- `context`: Concatenated document content\n- `source_documents`: Alias for documents\n\n---\n\n## Chunker Module\n\n### `SemanticChunker`\n\nInte",
+          "chunk_type": "ChunkType.CODE"
+        },
+        {
+          "score": 0.5867013644923688,
+          "source": "python-template-generator/loaders/ARCHITECTURE.md",
+          "text_preview": "  └──────────────┘  └────────────────┘ │\n│         │                │                    │         │\n│         ▼                ▼                    ▼         │\n│  ┌───────────────────────────────────",
+          "chunk_type": "ChunkType.MIXED"
+        },
+        {
+          "score": 0.5609375001567242,
+          "source": "python-template-generator/loaders/ARCHITECTURE.md",
+          "text_preview": " Lists, Links                          │   │\n│  │ • Metadata & Context                            │   │\n│  └─────────────────────────────────────────────────┘   │\n│                                    ",
+          "chunk_type": "ChunkType.MIXED"
+        }
+      ]
+    },
+    {
+      "query": "What documentation standards exist?",
+      "search_time": 0.0050280094146728516,
+      "num_results": 3,
+      "results": [
+        {
+          "score": 0.5436336097273552,
+          "source": "CHANGELOG.md",
+          "text_preview": "\n- Post-deferral escalation protocols\n- Token budget management\n- Interoperability guidelines\n\n### Changed\n- Formalized as official standard under CoT Standards Committee\n- Enhanced validation require",
+          "chunk_type": "ChunkType.TEXT"
+        },
+        {
+          "score": 0.5435173905021907,
+          "source": "python-template-generator/CLAUDE.md",
+          "text_preview": "Leverage examples extensively** - Study existing patterns before creating new ones\n\n## 🧱 Code Structure & Modularity\n\n- **Never create files longer than 500 lines** - Split into modules when approachi",
+          "chunk_type": "ChunkType.TEXT"
+        },
+        {
+          "score": 0.5435173905021907,
+          "source": "python-template-generator/PTOOL/PRP/prp-templates/python-template-generator/CLAUDE.md",
+          "text_preview": "Leverage examples extensively** - Study existing patterns before creating new ones\n\n## 🧱 Code Structure & Modularity\n\n- **Never create files longer than 500 lines** - Split into modules when approachi",
+          "chunk_type": "ChunkType.TEXT"
+        }
+      ]
+    },
+    {
+      "query": "How to write good documentation?",
+      "search_time": 0.004900455474853516,
+      "num_results": 3,
+      "results": [
+        {
+          "score": 0.5857164801465721,
+          "source": "python-template-generator/CLAUDE.md",
+          "text_preview": "Leverage examples extensively** - Study existing patterns before creating new ones\n\n## 🧱 Code Structure & Modularity\n\n- **Never create files longer than 500 lines** - Split into modules when approachi",
+          "chunk_type": "ChunkType.TEXT"
+        },
+        {
+          "score": 0.5857164801465721,
+          "source": "python-template-generator/PTOOL/PRP/prp-templates/python-template-generator/CLAUDE.md",
+          "text_preview": "Leverage examples extensively** - Study existing patterns before creating new ones\n\n## 🧱 Code Structure & Modularity\n\n- **Never create files longer than 500 lines** - Split into modules when approachi",
+          "chunk_type": "ChunkType.TEXT"
+        },
+        {
+          "score": 0.5728120156707496,
+          "source": "python-template-generator/PTOOL/subagents/README.md",
+          "text_preview": "---\nname: doc-writer\ndescription: Generate and update documentation\ntools: Read, Write, Edit\n---\nCreate clear documentation for new features.\nUpdate existing docs when code changes.\nEnsure examples ar",
+          "chunk_type": "ChunkType.MIXED"
+        }
+      ]
+    },
+    {
+      "query": "What is Chain of Thought?",
+      "search_time": 0.004894256591796875,
+      "num_results": 3,
+      "results": [
+        {
+          "score": 0.4891999215983898,
+          "source": "python-template-generator/PTOOL/content_eng_manuals/components/COT_GUIDE.md",
+          "text_preview": "# 🧠 Chain-of-Thought (CoT) Guide\n\nChain-of-Thought (CoT) is a structured reasoning methodology that ensures AI assistants make transparent, evidence-based decisions. Version 7.0.0 represents the offic",
+          "chunk_type": "ChunkType.SECTION_HEADER"
+        },
+        {
+          "score": 0.46322419436556334,
+          "source": "USER_MANUAL.md",
+          "text_preview": "# Chain-of-Thought (CoT) Definitive User Manual v7.0.0\n\n## Table of Contents\n\n1. [Introduction](#introduction)\n2. [Core Concepts](#core-concepts)\n3. [Complete Specification](#complete-specification)\n4",
+          "chunk_type": "ChunkType.SECTION_HEADER"
+        },
+        {
+          "score": 0.44977771181611453,
+          "source": "USER_MANUAL_SHORT.md",
+          "text_preview": "# Chain-of-Thought (CoT) Quick Start Guide\n\n## What is CoT?\n\nChain-of-Thought (CoT) is a structured reasoning methodology that enforces evidence-based decision-making in AI systems. It requires explic",
+          "chunk_type": "ChunkType.MIXED"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "analysis": {
+    "coverage": {
+      "files_indexed": 248,
+      "total_chunks": 3690,
+      "avg_chunks_per_file": 14.879032258064516,
+      "total_vectors": 3690
+    },
+    "performance": {
+      "avg_query_time": 0.004985793431599935,
+      "max_query_time": 0.005356550216674805,
+      "min_query_time": 0.00473332405090332,
+      "total_indexing_time": 42.8719003200531
+    },
+    "quality": {
+      "avg_relevance_score": 0.5144612242975625,
+      "max_relevance_score": 0.5901518616330671,
+      "min_relevance_score": 0.44977771181611453,
+      "queries_with_results": 15,
+      "total_queries": 15
+    }
+  }
+}

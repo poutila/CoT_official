@@ -12,10 +12,12 @@ print("Testing context_fixed_enricher...")
 print("\n1. Import ContextFixedEnricher...")
 try:
     from context_fixed_enricher import ContextFixedEnricher
+
     print("   ✓ Success")
 except Exception as e:
     print(f"   ✗ Failed: {e}")
     import traceback
+
     traceback.print_exc()
     sys.exit(1)
 
@@ -24,16 +26,17 @@ try:
     # Create a tiny test file
     test_file = Path("test_tiny.md")
     test_file.write_text("# Test\nHello world")
-    
+
     enricher = ContextFixedEnricher(test_file)
     print("   ✓ Enricher created")
-    
+
     # Clean up
     test_file.unlink()
-    
+
 except Exception as e:
     print(f"   ✗ Failed: {e}")
     import traceback
+
     traceback.print_exc()
     sys.exit(1)
 
@@ -42,17 +45,18 @@ try:
     # Create test file again
     test_file = Path("test_tiny.md")
     test_file.write_text("# Test\nHello world")
-    
+
     enricher = ContextFixedEnricher(test_file)
     doc = enricher.extract_rich_doc()
     print(f"   ✓ Document extracted: {len(doc.sections)} sections")
-    
+
     # Clean up
     test_file.unlink()
-    
+
 except Exception as e:
     print(f"   ✗ Failed: {e}")
     import traceback
+
     traceback.print_exc()
     sys.exit(1)
 

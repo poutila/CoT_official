@@ -11,7 +11,7 @@ print("Step 1: Testing imports...")
 
 try:
     print("  - Importing context_fixed_enricher...")
-    from context_fixed_enricher import ContextFixedEnricher
+
     print("    ✓ Success")
 except Exception as e:
     print(f"    ✗ Failed: {e}")
@@ -19,7 +19,8 @@ except Exception as e:
 
 try:
     print("  - Importing chunker models...")
-    from chunker.models import ChunkingConfig, Chunk
+    from chunker.models import ChunkingConfig
+
     print("    ✓ Success")
 except Exception as e:
     print(f"    ✗ Failed: {e}")
@@ -28,6 +29,7 @@ except Exception as e:
 try:
     print("  - Importing SemanticChunker...")
     from chunker.semantic_chunker import SemanticChunker
+
     print("    ✓ Success")
 except Exception as e:
     print(f"    ✗ Failed: {e}")
@@ -36,17 +38,20 @@ except Exception as e:
 print("\nStep 2: Testing tiktoken...")
 try:
     import tiktoken
-    print(f"  - tiktoken version: {tiktoken.__version__ if hasattr(tiktoken, '__version__') else 'unknown'}")
-    
+
+    print(
+        f"  - tiktoken version: {tiktoken.__version__ if hasattr(tiktoken, '__version__') else 'unknown'}"
+    )
+
     print("  - Getting encoding (this might download on first use)...")
     encoding = tiktoken.get_encoding("cl100k_base")
     print("    ✓ Encoding loaded")
-    
+
     # Test encoding
     test_text = "Hello, world!"
     tokens = encoding.encode(test_text)
     print(f"    ✓ Test encoding works: '{test_text}' -> {len(tokens)} tokens")
-    
+
 except Exception as e:
     print(f"    ✗ Failed: {e}")
     sys.exit(1)
@@ -68,6 +73,7 @@ try:
 except Exception as e:
     print(f"    ✗ Failed: {e}")
     import traceback
+
     traceback.print_exc()
     sys.exit(1)
 

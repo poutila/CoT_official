@@ -4,17 +4,17 @@ This module provides vector storage and retrieval capabilities for the RAG syste
 It supports multiple vector store backends with a unified interface.
 """
 
-from .models import (
-    VectorStoreConfig,
-    VectorStoreType,
-    DistanceMetric,
-    SearchResult,
-    SearchBatch,
-    IndexMetadata,
-    StorageMetrics,
-)
 from .base_store import BaseVectorStore
 from .faiss_store import FAISSVectorStore
+from .models import (
+    DistanceMetric,
+    IndexMetadata,
+    SearchBatch,
+    SearchResult,
+    StorageMetrics,
+    VectorStoreConfig,
+    VectorStoreType,
+)
 
 __all__ = [
     "VectorStoreConfig",
