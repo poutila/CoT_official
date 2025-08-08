@@ -1,7 +1,8 @@
-"""Core RAG pipeline components."""
-# Temporary backward compatibility
-import sys
-import os
-sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+"""Markdown validation utilities."""
+from .base_validator import *
+from .pydantic_models import *
 
-# Will be updated after files are moved
+# Backward compatibility
+import sys
+sys.modules['markdown_base_validator'] = sys.modules['validators.base_validator']
+sys.modules['markdown_pydantic_model'] = sys.modules['validators.pydantic_models']
