@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/claim.schema.v1.json",
+  "title": "Claim",
+  "description": "A statement proposed to be true, subject to validation or rejection.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Optional unique identifier (UUID, hash, etc.)"
+    },
+    "type": {
+      "type": "string",
+      "const": "Claim",
+      "description": "Discriminator for this object type"
+    },
+    "statement": {
+      "type": "string",
+      "description": "The content of the claim"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Optional self-reported confidence score (0-1)"
+    },
+    "source": {
+      "type": "string",
+      "description": "Optional source or context"
+    },
+    "context": {
+      "type": "string",
+      "description": "Where or under what assumptions this claim holds"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Optional topic tags"
+    }
+  },
+  "required": [
+    "type",
+    "statement"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/assumption.schema.v1.json",
+  "title": "Assumption",
+  "description": "An unverified but accepted premise for the sake of reasoning.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Optional unique identifier (UUID, hash, etc.)"
+    },
+    "type": {
+      "type": "string",
+      "const": "Assumption",
+      "description": "Discriminator for this object type"
+    },
+    "statement": {
+      "type": "string",
+      "description": "The content of the assumption"
+    },
+    "scope": {
+      "type": "string",
+      "description": "The logical or contextual scope within which the assumption is accepted"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Optional topic tags"
+    }
+  },
+  "required": [
+    "type",
+    "statement"
+  ],
+  "additionalProperties": false
+}

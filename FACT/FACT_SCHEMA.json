@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/fact.schema.v2.json",
+  "title": "Fact",
+  "description": "Structured representation of a factual statement for use in AI reasoning and validation.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Optional unique identifier (UUID, hash, etc.).",
+      "readOnly": true
+    },
+    "type": {
+      "type": "string",
+      "const": "Fact",
+      "description": "Identifier for this object type."
+    },
+    "statement": {
+      "type": "string",
+      "description": "The factual content in natural language."
+    },
+    "is_verifiable": {
+      "type": "boolean",
+      "description": "True if the fact can be empirically verified."
+    },
+    "is_objective": {
+      "type": "boolean",
+      "description": "True if the fact is not subject to opinion."
+    },
+    "source": {
+      "type": "string",
+      "description": "Optional citation, reference, or authority."
+    },
+    "context": {
+      "type": "string",
+      "description": "Optional condition where the fact applies."
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Optional topic tags (e.g., physics, history)."
+    }
+  },
+  "required": [
+    "type",
+    "statement",
+    "is_verifiable",
+    "is_objective"
+  ],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "type": "Fact",
+      "statement": "Water boils at 100\u00b0C at sea level.",
+      "is_verifiable": true,
+      "is_objective": true,
+      "source": "Chemistry Handbook",
+      "context": "Standard atmospheric pressure",
+      "tags": [
+        "chemistry",
+        "boiling point"
+      ]
+    }
+  ]
+}
