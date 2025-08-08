@@ -6,8 +6,8 @@ without modifying the parent class. Proof of concept for extensibility.
 
 from pathlib import Path
 
-from markdown_pydantic_model import MarkdownDocExtendedRich
-from markdown_validator_enricher import MarkdownDocEnricher
+from validators.pydantic_models import MarkdownDocExtendedRich
+from .markdown_validator import MarkdownDocEnricher
 from pydantic import BaseModel, Field
 
 

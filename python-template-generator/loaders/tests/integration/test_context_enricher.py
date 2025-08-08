@@ -11,7 +11,7 @@ print("Testing context_fixed_enricher...")
 
 print("\n1. Import ContextFixedEnricher...")
 try:
-    from context_fixed_enricher import ContextFixedEnricher
+    from enrichers.context_fixed import ContextFixedEnricher
 
     print("   ✓ Success")
 except Exception as e:

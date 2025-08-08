@@ -9,7 +9,7 @@ import re
 from pathlib import Path
 from typing import Any
 
-from full_enhanced_enricher import (
+from .full_enhanced import (
     CodeBlock,
     ExampleType,
     FullEnhancedDoc,
@@ -34,7 +34,7 @@ class ContextFixedEnricher(FullEnhancedEnricher):
         self.text = None
 
         # Initialize parent class components
-        from markdown_validator_enricher import MarkdownDocEnricher
+        from .markdown_validator import MarkdownDocEnricher
 
         MarkdownDocEnricher.__init__(self, path)
 

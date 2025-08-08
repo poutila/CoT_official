@@ -1,8 +1,8 @@
 """Integration tests for RAG pipeline."""
 
 import pytest
-from rag_models import Document, RAGConfig
-from rag_pipeline import RAGPipeline
+from core.models import Document, RAGConfig
+from core.pipeline import RAGPipeline
 
 
 @pytest.mark.integration

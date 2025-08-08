@@ -106,7 +106,7 @@ def sample_vector_store_config():
 @pytest.fixture
 def sample_rag_config():
     """Create a sample RAG pipeline configuration."""
-    from rag_models import RAGConfig
+    from core.models import RAGConfig
 
     return RAGConfig(
         chunk_size=200, chunk_overlap=20, embedding_model="all-MiniLM-L6-v2", k=5, verbose=False
@@ -252,7 +252,7 @@ def vector_store(sample_vector_store_config):
 @pytest.fixture
 def rag_pipeline(sample_rag_config):
     """Create a RAG pipeline instance."""
-    from rag_pipeline import RAGPipeline
+    from core.pipeline import RAGPipeline
 
     return RAGPipeline(sample_rag_config)
 
@@ -263,7 +263,7 @@ def rag_pipeline(sample_rag_config):
 @pytest.fixture
 def sample_document():
     """Create a sample document for testing."""
-    from rag_models import Document
+    from core.models import Document
 
     return Document(
         page_content="This is test content.", metadata={"source": "test.md", "section": "intro"}
@@ -273,7 +273,7 @@ def sample_document():
 @pytest.fixture
 def sample_documents():
     """Create sample documents for testing."""
-    from rag_models import Document
+    from core.models import Document
 
     return [
         Document(

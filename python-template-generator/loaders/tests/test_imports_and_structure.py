@@ -77,9 +77,9 @@ class TestImportStructure:
         """Test that modules can import from each other correctly."""
         # Test critical import chains
         try:
-            from context_fixed_enricher import ContextFixedEnricher
-            from rag_models import Document, RAGConfig
-            from rag_pipeline import RAGPipeline
+            from enrichers.context_fixed import ContextFixedEnricher
+            from core.models import Document, RAGConfig
+            from core.pipeline import RAGPipeline
 
             # These imports should work without circular dependency issues
             assert RAGPipeline is not None
@@ -149,8 +149,8 @@ class TestModuleInterfaces:
         import tempfile
         from pathlib import Path
 
-        from context_fixed_enricher import ContextFixedEnricher
-        from minimal_enhanced_enricher import MinimalEnhancedEnricher
+        from enrichers.context_fixed import ContextFixedEnricher
+        from enrichers.minimal_enhanced import MinimalEnhancedEnricher
 
         # Create a temporary test file
         with tempfile.NamedTemporaryFile(mode="w", suffix=".md", delete=False) as f:
@@ -176,8 +176,8 @@ class TestModuleInterfaces:
 
     def test_pipeline_public_api(self):
         """Test RAGPipeline public API is intact."""
-        from rag_models import RAGConfig
-        from rag_pipeline import RAGPipeline
+        from core.models import RAGConfig
+        from core.pipeline import RAGPipeline
 
         config = RAGConfig()
         pipeline = RAGPipeline(config)
@@ -227,8 +227,8 @@ class TestDocumentationExamples:
 
     def test_readme_example(self):
         """Test the basic example from README works."""
-        from rag_models import Document
-        from rag_pipeline import RAGPipeline
+        from core.models import Document
+        from core.pipeline import RAGPipeline
 
         # This is from README.md
         pipeline = RAGPipeline()
@@ -238,8 +238,8 @@ class TestDocumentationExamples:
 
     def test_quickstart_example(self):
         """Test quickstart examples work."""
-        from rag_models import RAGConfig
-        from rag_pipeline import RAGPipeline
+        from core.models import RAGConfig
+        from core.pipeline import RAGPipeline
 
         config = RAGConfig(chunk_size=100)
         pipeline = RAGPipeline(config)
@@ -247,7 +247,7 @@ class TestDocumentationExamples:
 
     def test_api_reference_example(self):
         """Test API reference examples work."""
-        from rag_models import Document
+        from core.models import Document
 
         # From API_REFERENCE.md
         doc = Document(

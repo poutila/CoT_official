@@ -15,22 +15,22 @@ class TestImportUpdates:
 
         # Old patterns that should NOT exist after reorganization
         old_patterns = [
-            r"from context_fixed_enricher import",
-            r"from enhanced_enricher_with_examples import",
-            r"from full_enhanced_enricher import",
-            r"from minimal_enhanced_enricher import",
-            r"from markdown_validator_enricher import",
-            r"from markdown_base_validator import",
-            r"from markdown_pydantic_model import",
-            r"from sluggify_util import",
+            r"from enrichers.context_fixed import",
+            r"from enrichers.enhanced_with_examples import",
+            r"from enrichers.full_enhanced import",
+            r"from enrichers.minimal_enhanced import",
+            r"from enrichers.markdown_validator import",
+            r"from validators.base_validator import",
+            r"from validators.pydantic_models import",
+            r"from utils.sluggify import",
             r"import context_fixed_enricher",
             r"import enhanced_enricher_with_examples",
             r"import full_enhanced_enricher",
             r"import minimal_enhanced_enricher",
             r"import markdown_validator_enricher",
-            r"import markdown_base_validator",
-            r"import markdown_pydantic_model",
-            r"import sluggify_util",
+            r"from validators import base_validator",
+            r"from validators import pydantic_models",
+            r"from utils import sluggify",
         ]
 
         # After reorganization, these should be:
@@ -139,7 +139,7 @@ class TestImportUpdates:
                 content = f.read()
 
             # Check for old-style imports that should be relative
-            if "from minimal_enhanced_enricher import" in content:
+            if "from enrichers.minimal_enhanced import" in content:
                 pytest.fail(f"{file.name} still uses old import style instead of relative imports")
 
             # Should use relative imports like:
@@ -159,8 +159,8 @@ class TestImportPerformance:
         start = time.time()
 
         try:
-            from rag_models import Document, RAGConfig
-            from rag_pipeline import RAGPipeline
+            from core.models import Document, RAGConfig
+            from core.pipeline import RAGPipeline
 
             elapsed = time.time() - start
 
@@ -181,8 +181,8 @@ class TestImportPerformance:
 
         # Import our modules
         try:
-            from rag_models import RAGConfig
-            from rag_pipeline import RAGPipeline
+            from core.models import RAGConfig
+            from core.pipeline import RAGPipeline
 
             # Check what new modules were loaded
             modules_after = set(sys.modules.keys())

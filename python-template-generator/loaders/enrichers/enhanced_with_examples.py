@@ -8,7 +8,7 @@ import re
 from enum import Enum
 from pathlib import Path
 
-from minimal_enhanced_enricher import CodeBlock, MinimalEnhancedDoc, MinimalEnhancedEnricher
+from .minimal_enhanced import CodeBlock, MinimalEnhancedDoc, MinimalEnhancedEnricher
 from pydantic import BaseModel, Field
 
 

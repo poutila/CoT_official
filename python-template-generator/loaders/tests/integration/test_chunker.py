@@ -10,7 +10,7 @@ from typing import Any
 sys.path.insert(0, str(Path(__file__).parent))
 
 from chunker import ChunkingConfig, SemanticChunker
-from context_fixed_enricher import ContextFixedEnricher
+from enrichers.context_fixed import ContextFixedEnricher
 
 
 def test_chunker_with_document(sample_markdown_file: Path) -> dict[str, Any]:

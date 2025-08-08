@@ -14,7 +14,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from context_fixed_enricher import ContextFixedEnricher
+from enrichers.context_fixed import ContextFixedEnricher
 
 
 def analyze_markdown_file(file_path: Path) -> dict[str, Any]:

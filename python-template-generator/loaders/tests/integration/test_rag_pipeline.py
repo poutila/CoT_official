@@ -12,13 +12,13 @@ import tempfile
 import time
 from pathlib import Path
 
-from rag_adapters import (
+from core.adapters import (
     BaseEmbeddingsAdapter,
     BaseTextSplitterAdapter,
     ChainAdapter,
 )
-from rag_models import Document, RAGConfig
-from rag_pipeline import RAGPipeline
+from core.models import Document, RAGConfig
+from core.pipeline import RAGPipeline
 
 
 def print_section(title: str):

@@ -1,10 +1,10 @@
 import re
 from pathlib import Path
 
-from markdown_base_validator import MarkdownDocumentValidator
+from validators.base_validator import MarkdownDocumentValidator
 from markdown_it import MarkdownIt
 from markdown_it.tree import SyntaxTreeNode
-from markdown_pydantic_model import (
+from validators.pydantic_models import (
     ChecklistItem,
     MarkdownDoc,
     MarkdownDocExtendedRich,

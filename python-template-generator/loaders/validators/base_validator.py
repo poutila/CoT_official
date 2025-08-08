@@ -2,8 +2,8 @@ from pathlib import Path
 
 from markdown_it import MarkdownIt
 from markdown_it.tree import SyntaxTreeNode
-from markdown_pydantic_model import MarkdownDoc, MarkdownSection
-from sluggify_util import slugify
+from .pydantic_models import MarkdownDoc, MarkdownSection
+from utils.sluggify import slugify
 
 
 class MarkdownDocumentValidator:

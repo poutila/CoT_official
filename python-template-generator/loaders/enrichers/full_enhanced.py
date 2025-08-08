@@ -10,13 +10,13 @@ import re
 from pathlib import Path
 from typing import Any
 
-from enhanced_enricher_with_examples import (
+from .enhanced_with_examples import (
     CodeExample,
     ExampleEnhancedDoc,
     ExampleEnhancedEnricher,
     ExampleType,
 )
-from minimal_enhanced_enricher import CodeBlock
+from .minimal_enhanced import CodeBlock
 from pydantic import Field
 
 

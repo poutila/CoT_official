@@ -1,9 +1,9 @@
 """Document enrichment implementations."""
 from .context_fixed import ContextFixedEnricher
-from .enhanced_with_examples import EnhancedEnricherWithExamples
+from .enhanced_with_examples import ExampleEnhancedEnricher
 from .full_enhanced import FullEnhancedEnricher
 from .minimal_enhanced import MinimalEnhancedEnricher
-from .markdown_validator import MarkdownValidatorEnricher
+from .markdown_validator import MarkdownDocEnricher
 
 # Backward compatibility
 import sys
