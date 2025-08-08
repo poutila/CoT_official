@@ -18,8 +18,8 @@ import numpy as np
 # Force CPU mode for consistent testing
 os.environ['CUDA_VISIBLE_DEVICES'] = ''
 
-# Add current directory to path
-sys.path.insert(0, str(Path(__file__).parent))
+# Add parent directory to path (loaders/)
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from chunker import SemanticChunker
 from chunker.models import ChunkingConfig
@@ -83,8 +83,8 @@ class MarkdownRAGTester:
                 content = file_path.read_text(encoding='utf-8')
                 
                 # Chunk the content
-                # Get project root
-                project_root = Path(__file__).parent.parent.parent
+                # Get project root (CoT_official)
+                project_root = Path(__file__).parent.parent.parent.parent
                 relative_path = file_path.relative_to(project_root)
                 chunks = self.chunker.chunk_text(
                     content, 
@@ -379,8 +379,8 @@ def main():
     print("=" * 60)
     
     # Setup paths
-    base_dir = Path(__file__).parent
-    output_dir = base_dir / 'TEST_RUN_RESULTS'
+    base_dir = Path(__file__).parent.parent  # loaders directory
+    output_dir = base_dir / 'TEST_RUN_RESULTS_AFTER_REORG'
     
     # Find all markdown files within the project
     project_root = base_dir.parent.parent  # CoT_official directory
