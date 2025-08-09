@@ -1,6 +1,8 @@
 """Pytest configuration and shared fixtures for all tests."""
 
 import shutil
+
+# Add parent directory to path for imports
 import sys
 import tempfile
 from pathlib import Path
@@ -9,32 +11,15 @@ from typing import Any
 import numpy as np
 import pytest
 
-# Use PTOOL for path management
-from project_paths import create_project_paths_auto
-
-# Get paths using auto-discovery
-paths = create_project_paths_auto()
-
-# Add loaders directory to path for imports (using PTOOL paths)
-if hasattr(paths, 'loaders_dir'):
-    sys.path.insert(0, str(paths.loaders_dir))
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 
 # ================== Path Fixtures ==================
 
 
 @pytest.fixture
-def project_paths():
-    """Provide PTOOL paths to tests."""
-    return paths
-
-
-@pytest.fixture
 def test_data_dir() -> Path:
-    """Path to test data directory using PTOOL."""
-    if hasattr(paths, 'loaders_test_fixtures'):
-        return Path(paths.loaders_test_fixtures)
-    # Fallback if not configured
+    """Path to test data directory."""
     return Path(__file__).parent / "fixtures"
 
 

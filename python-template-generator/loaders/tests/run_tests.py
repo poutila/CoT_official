@@ -5,8 +5,15 @@ import argparse
 import sys
 from pathlib import Path
 
-# Add parent directory to path
-sys.path.insert(0, str(Path(__file__).parent.parent))
+# Use PTOOL for path management
+from project_paths import create_project_paths_auto
+
+# Get paths using auto-discovery
+paths = create_project_paths_auto()
+
+# Add loaders directory to path for imports (using PTOOL paths)
+if hasattr(paths, 'loaders_dir'):
+    sys.path.insert(0, str(paths.loaders_dir))
 
 
 def run_tests(test_type="all", verbose=False, coverage=False):

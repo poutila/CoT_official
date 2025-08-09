@@ -91,10 +91,58 @@ Create a complete Python package that includes:
 
 ## Package Transformation Requirements
 
+### PTOOL Integration (NEW REQUIREMENT)
+
+The package MUST use PTOOL for all path management, following the standard defined in `ptool_integration_standard_PRP.md`:
+
+```toml
+# pyproject.toml
+[tool.project_paths.paths]
+base_dir = "."
+src_dir = "src/cot_semantic_enhancer"
+tests_dir = "tests"
+docs_dir = "docs"
+examples_dir = "examples"
+
+# Module paths
+core_module = "src/cot_semantic_enhancer/core"
+rag_module = "src/cot_semantic_enhancer/rag"
+embeddings_module = "src/cot_semantic_enhancer/embeddings"
+vector_store_module = "src/cot_semantic_enhancer/vector_store"
+chunker_module = "src/cot_semantic_enhancer/chunker"
+enrichers_module = "src/cot_semantic_enhancer/enrichers"
+
+# Test paths
+unit_tests = "tests/unit"
+integration_tests = "tests/integration"
+test_fixtures = "tests/fixtures"
+
+# Output paths
+coverage_html = "htmlcov"
+build_dir = "build"
+dist_dir = "dist"
+
+[tool.uv.sources]
+path-tool = { path = "../path-tool", editable = true }
+```
+
+All modules MUST use PTOOL for path access:
+
+```python
+# Example: src/cot_semantic_enhancer/core/semantic_engine.py
+from project_paths import create_project_paths_auto
+
+class SemanticEngine:
+    def __init__(self):
+        self.paths = create_project_paths_auto()
+        # Use paths for all file operations
+        self.docs_dir = self.paths.docs_dir if hasattr(self.paths, 'docs_dir') else None
+```
+
 ### Target Package Structure
 ```
 cot-semantic-enhancer/              # New standalone package directory
-├── pyproject.toml                  # Package configuration (NEW)
+├── pyproject.toml                  # Package configuration with PTOOL config
 ├── LICENSE                         # MIT License (NEW)
 ├── README.md                       # Package documentation (NEW)
 ├── src/
