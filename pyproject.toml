@@ -157,10 +157,7 @@ loaders_docs = "python-template-generator/loaders/docs"
 loaders_trash = "python-template-generator/loaders/TRASH"
 
 [tool.project_paths.files]
-# Important files in loaders module
-loaders_api_reference = "python-template-generator/loaders/API_REFERENCE.md"
-loaders_architecture = "python-template-generator/loaders/ARCHITECTURE.md"
-loaders_readme = "python-template-generator/loaders/README.md"
-loaders_reorganization_plan = "python-template-generator/loaders/REORGANIZATION_PLAN.md"
-loaders_finalizing_plan = "python-template-generator/loaders/FINALIZING_PLAN.md"
-
+# Files section temporarily empty - PTOOL currently treats files as directories
+# TODO: Fix PTOOL to distinguish between files and directories
+[tool.uv.sources]
+path-tool = { path = "../EMBEDDED/PACKAGES/PTOOL", editable = true }
