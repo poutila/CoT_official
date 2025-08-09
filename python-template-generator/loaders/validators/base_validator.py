@@ -24,11 +24,11 @@ class MarkdownDocumentValidator:
         current_path = self.path.resolve().parent
         # print(f"Validating links in: {current_path} {self.path}")
         links_cleaned = [x for x in links if x not in [None]]
-        print(f"{links_cleaned}")
+        # print(f"{links_cleaned}")  # Debug output commented
         for file_part, anchor in links_cleaned:
             # print(f"\nValidating link: {file_part}, anchor: {anchor}")
             target_path = current_path / file_part
-            print(f"Target path: {target_path}")
+            # print(f"Target path: {target_path}")  # Debug output commented
             if target_path.is_file() or target_path.is_dir():
                 results["valid_file"].append(Path(file_part))
             else:
